@@ -1,0 +1,119 @@
+@extends('admin.admin_dashboard')
+@section('admin')
+<div class="main-content">
+   <div class="page-title">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col">
+               <h2 class="title">All Customers</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-xl-12">
+            <div class="site-table table-responsive">
+               <form action="" method="get">
+                  <div class="table-filter d-flex justify-content-between">
+                     <div class="filter d-flex">
+                        <div class="search">
+                           <input type="text" id="search" name="query" value="" placeholder="Search">
+                        </div>
+                        <button type="submit" class="apply-btn ms-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search">
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <path d="m21 21-4.3-4.3"></path>
+                           </svg>
+                           Search
+                        </button>
+                     </div>
+                     <div class="filter d-flex">
+                      
+                        <select class="form-select form-select-sm me-2" name="kyc_status" aria-label=".form-select-sm example">
+                           <option value="" selected="">Filter By KYC</option>
+                           <option value="1">Verified</option>
+                           <option value="0">Unverified</option>
+                        </select>
+                        <select class="form-select form-select-sm" name="status" aria-label=".form-select-sm example">
+                           <option value="" selected="">Filter By Status</option>
+                           <option value="1">Active</option>
+                           <option value="0">Disabled</option>
+                           <option value="2">Closed</option>
+                        </select>
+                     </div>
+                  </div>
+               </form>
+            
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">User Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Wallet Balance</th>
+                        <th scope="col">Profit</th>
+                        <th scope="col">KYC</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+@foreach ($customers as $customer)
+<tr>
+    <td>
+        <span class="avatar-text">
+            {{ strtoupper(substr($customer->username, 0, 2)) }}
+        </span>
+    </td>
+    <td><a class="link" href="{{ route('admin.user.edit', $customer->id) }}">{{ $customer->username }}</a></td>
+    <td>{{ Str::limit($customer->email, 20, '...') }}</td>
+    <td>${{ number_format($customer->wallet_balance, 2) }}</td>
+    <td><strong>${{ number_format($customer->profit ?? 0, 2) }}</strong></td>
+   
+    <td>
+       <div class="site-badge 
+            {{ $customer->kyc_verified == 1 ? 'success' : ($customer->kyc_verified == 0 ? 'pending' : 'danger') }}">
+            {{ $customer->kyc_verified == 1 ? 'Active' : ($customer->kyc_verified == 0 ? 'Disabled' : 'Closed') }}
+        </div>
+    </td>
+    <td>
+        <div class="site-badge 
+            {{ $customer->is_active == 1 ? 'success' : ($customer->is_active == 0 ? 'pending' : 'danger') }}">
+            {{ $customer->is_active == 1 ? 'Active' : ($customer->is_active == 0 ? 'Disabled' : 'Closed') }}
+        </div>
+    </td>
+   <td>
+    {{-- Edit Button --}}
+    <a href="{{ route('admin.user.edit', $customer->id) }}" class="round-icon-btn primary-btn" title="Edit User">
+        <i class="lucide lucide-edit-3"></i>
+    </a>
+
+    {{-- Delete Form --}}
+    <form action="{{ route('admin.user.delete', $customer->id) }}" method="POST" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this user?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="round-icon-btn red-btn" title="Delete User">
+            <i class="lucide lucide-trash-2"></i>
+        </button>
+    </form>
+</td>
+
+</tr>
+@endforeach
+</tbody>
+
+
+
+
+
+                  <!-- Modal for Send Email -->
+                  <!-- Modal for Send Email-->
+               </table>
+              
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+@endsection

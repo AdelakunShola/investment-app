@@ -1,20 +1,136 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Customer\CustomerController;
+use App\Http\Controllers\Backend\PlanController;
+use App\Http\Controllers\Backend\TransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+  //  return view('welcome');
+//});
+
+Route::get('/', [UserController::class, 'Index']);
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'AdminAuthenticate'])->name('admin.authenticate');
+Route::post('/admin/user/password-update/{id}', [AdminController::class, 'updateUserPassword'])->name('admin.user.password.update');
+Route::get('/user/login', [UserController::class, 'UserLogin'])->name('user.login');
+Route::post('/user/login', [UserController::class, 'UserAuthenticate'])->name('user.authenticate');
+Route::get('/user/register', [UserController::class, 'UserRegister'])->name('user.register');
+Route::post('/user/register', [UserController::class, 'storeUser'])->name('user.register.submit');
+
+
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.user_dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Route::get('/profile', [UserController::class, 'EditProfile'])->name('edit.profile');
+   // Route::post('/profile/store', [UserController::class, 'ProfileStore'])->name('profile.store');
+   // Route::get('/profile/logout', [UserController::class, 'ProfileLogout'])->name('user.profile.logout');
+   // Route::get('/user/password/change', [UserController::class, 'UserChangePassword'])->name('user.password.change');
+    
+});
+
+require __DIR__.'/auth.php';
+
+//Admin Gorup Middleware
+Route::middleware(['auth'])->group(function(){
+
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/password/update', [AdminController::class, 'AdminPasswordUpdate'])->name('admin.password.update');
+
+
+
+
+
+
+Route::prefix('admin/customer')->group(function () {
+    Route::get('all', [CustomerController::class, 'allCustomer'])->name('admin.customer.all');
+
+    // remove "/admin" from here
+    Route::get('user/{id}/edit', [CustomerController::class, 'editCustomer'])->name('admin.user.edit');
+    Route::put('user/{id}', [CustomerController::class, 'updateCustomer'])->name('admin.user.update');
+    Route::delete('user/{id}', [CustomerController::class, 'deleteUser'])->name('admin.user.delete');
+    Route::post('status-update/{id}', [CustomerController::class, 'updateUserStatus'])->name('admin.user.status.update');
+
+
+    Route::get('active', [CustomerController::class, 'activeCustomer'])->name('admin.customer.active');
+    Route::get('disabled', [CustomerController::class, 'disabledCustomer'])->name('admin.customer.disabled');
+});
+
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('create/plans', [PlanController::class, 'AddPlan'])->name('add.plans');
+    Route::get('/plans', [PlanController::class, 'indexPlan'])->name('admin.manage.plans');
+    // Show edit form
+Route::get('/admin/investment-plans/{id}/edit', [PlanController::class, 'editPlan'])->name('admin.investment-plans.edit');
+Route::post('/admin/investment-plans/{id}/update', [PlanController::class, 'updatePlan'])->name('admin.investment-plans.update');
+Route::delete('/plans/{id}/delete', [PlanController::class, 'destroyPlan'])->name('admin.plans.delete');
+Route::post('/admin/investment-plans', [PlanController::class, 'planStore'])->name('admin.investment-plans.store');
+});
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/transactions', [TransactionController::class, 'allTransaction'])->name('admin.transactions.all');
+    Route::get('/transactions/investments', [TransactionController::class, 'investments'])->name('admin.transactions.investments');
+    Route::get('/transactions/profits', [TransactionController::class, 'userProfits'])->name('admin.transactions.profits');
+});
+
+});
+//End Admin Gorup Middleware
+
+
+
+
+Route::middleware(['auth'])->group(function(){
+
+    Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
+    Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
+    Route::get('/user/profile', [UserController::class, 'UserProfile'])->name('user.profile');
+    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
+    Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
+
+
+
+
+Route::get('/user/plans', [UserController::class, 'UserPlans'])->name('user.plans');
+Route::get('/user/invest-plan/{id}', [UserController::class, 'invest'])->name('user.plan.invest');
+Route::post('/user/plan/{id}/invest-now', [UserController::class, 'investNow'])->name('user.plan.invest.store');
+
+
+
+Route::get('/user/transactions', [UserController::class, 'Transaction'])->name('user.transaction');
+
+Route::get('/user/badge-ranking', [UserController::class, 'userRanking'])->name('user.ranking');
+
+Route::get('/user/referral', [UserController::class, 'userReferral'])->name('user.referral');
+
+Route::get('/user/settings', [UserController::class, 'userSetting'])->name('user.setting');
+Route::post('/user/settings/update', [UserController::class, 'updateUserProfile'])->name('user.setting.update');
+Route::get('/user/kyc', [UserController::class, 'userKyc'])->name('user.kyc');
+Route::post('/user/kyc-submit', [UserController::class, 'submitKyc'])->name('user.kyc.submit');
+
+
+
+
+Route::get('/user/change/password', [UserController::class, 'userChangePw'])->name('user.change.password');
+Route::post('/user/change/password', [UserController::class, 'updatePassword'])->name('user.password.update');
+
+
+
+
+
+
 });
 
 require __DIR__.'/auth.php';

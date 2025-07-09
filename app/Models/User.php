@@ -17,11 +17,14 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
+
+
+    public function investmentPlan()
+{
+    return $this->belongsTo(investment_plan::class);
+}
+
 
     /**
      * The attributes that should be hidden for serialization.

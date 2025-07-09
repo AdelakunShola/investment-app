@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,19 +17,40 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('user.login');
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+      public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        $username = $profileData -> name;
+
+        $notification = array(
+            'message' => 'User '.$username.' logged in successfully',
+            'alert-type' => 'success',
+         );
+
+        $url = '';
+
+        if($request->user()->role === 'admin'){
+            $url = '/admin/dashboard';
+
+        }elseif($request->user()->role === 'user'){
+            $url = 'user/dashboard';
+
+        }
+
+        
+
+        return redirect()->intended($url)->with($notification);
     }
 
     /**

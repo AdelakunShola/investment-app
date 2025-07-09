@@ -8,7 +8,7 @@
       <meta name="csrf-token" content="X35FYZ6cizqru3ehnMKk12ta5sOwjSlNbOE0exqP">
       <meta name="keywords" content="digibank,digital banking">
       <meta name="description" content="Digi Bank is a fully online banking system.">
-      <link rel="canonical" href="https://hyiprio.tdevs.co/login">
+      <link rel="canonical" href="https://hyiprio.tdevs.co/register">
       <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
       <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
@@ -31,7 +31,7 @@
          padding: 0;
          }
       </style>
-      <title>Hyiprio -     Login</title>
+      <title>Hyiprio -     Register</title>
       <style>
          .imageye-selected {
          outline: 2px solid black !important;
@@ -49,47 +49,104 @@
       <section class="section-style site-auth">
          <div class="container">
             <div class="row justify-content-center">
-               <div class="col-xl-5 col-lg-8 col-md-12">
+               <div class="col-xl-8 col-md-12">
                   <div class="auth-content">
                      <div class="logo">
                         <a href="https://hyiprio.tdevs.co"><img src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt=""></a>
                      </div>
                      <div class="title">
-                        <h2> 👋 Welcome Back!</h2>
-                        <p>Sign in to continue with Hyiprio User Panel</p>
+                        <h2> 💪 Create an account</h2>
+                        <p>Register to continue with Hyiprio</p>
                      </div>
                      <div class="site-auth-form">
-                        <form class="row g-3" method="POST" action="{{ route('login') }}">
-                           @csrf                             
-                           <div class="single-field">
-                              <label class="box-label" for="email">Email Or Username</label>
-                              <input type="text" class="box-input @error('login') is-invalid @enderror " id="login" name="login" placeholder="jhon@example.com">
-                              @error('login')
-                              <span class="text-danger"> {{ $message }} </span>
-                              @enderror
-                           </div>
-                           <div class="single-field">
-                              <label class="box-label" for="password">Password</label>
-                              <div class="password">
-                                 <input type="password" name="password" class="box-input" id="password" placeholder="Enter Password"> 
+                            <form method="POST" action="{{ route('user.register.submit') }}">
+                      @csrf                   
+                      <input type="hidden" name="referred_by" value="{{ $refCode }}">
+         
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="name">First Name<span class="required-field">*</span></label>
+                                 <input class="box-input" type="text" placeholder="Your First Name" name="first_name" value="" >
                               </div>
                            </div>
-                          
-                           <div class="single-field">
-                              <input class="form-check-input check-input" type="checkbox" name="remember" id="flexCheckDefault">
-                              <label class="form-check-label" for="flexCheckDefault">
-                              Remember me
-                              </label>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="name">Last Name<span class="required-field">*</span></label>
+                                 <input class="box-input" type="text" placeholder="Your Last Name" name="last_name" value="" >
+                              </div>
                            </div>
-                           <button type="submit" class="site-btn grad-btn w-100">
-                           Account Login
-                           </button>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="email">Email Address<span class="required-field">*</span></label>
+                                 <input class="box-input" type="email" name="email" value="" placeholder="Enter Your Email Address" >
+                              </div>
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="username">User Name<span class="required-field">*</span></label>
+                                 <input class="box-input" type="text" placeholder="Enter Your User Name" name="username" value="" >
+                              </div>
+                           </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="username">Country<span class="required-field">*</span></label>
+                                 <input class="box-input" type="text" placeholder="Enter Your Country" name="country" value="" >
+                              </div>
+                           </div>
+                           
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="username">Phone Number<span class="required-field">*</span></label>
+                                 <div class="input-group joint-input"><span class="input-group-text" id="dial-code">+234</span>
+                                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="" aria-label="Username" aria-describedby="basic-addon1">
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="invite">Referral Code</label>
+                                 <input class="box-input" type="text" placeholder="Enter Your Referral Code" name="referral_code" value="">
+                              </div>
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="password">Password<span class="required-field">*</span></label>
+                                 <div class="password">
+                                    <input class="box-input" type="password" name="password" placeholder="Enter your password" >
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                              <div class="single-field">
+                                 <label class="box-label" for="password">Confirm Password<span class="required-field">*</span></label>
+                                 <div class="password">
+                                    <input class="box-input" type="password" name="password_confirmation" placeholder="Enter your password" >
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                              
+                           </div>
+                           <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                              <div class="single-field">
+                                 <input class="form-check-input check-input" type="checkbox" name="i_agree" value="yes" id="flexCheckDefault" >
+                                 <label class="form-check-label" for="flexCheckDefault">
+                                 I agree with
+                                 <a href="">Privacy &amp; Policy</a>
+                                 and
+                                 <a href="">Terms &amp; Condition</a>
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-xl-12">
+                              <button type="submit" class="site-btn grad-btn w-100">
+                              Create Account
+                              </button>
+                           </div>
                         </form>
                         <div class="singnup-text">
-                           <p>
-                              Don't have an account?
-                              <a href="">Signup for free</a>
-                           </p>
+                           <p>Already have an account? <a href="https://hyiprio.tdevs.co/login">Login</a></p>
                         </div>
                      </div>
                   </div>
@@ -121,26 +178,8 @@
              AOS.init();
          })(jQuery);
       </script>
-      <script type="text/javascript" src="https://hyiprio.tdevs.co/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
-      <script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
-      <!--Start of Tawk.to Script-->
-      <script type="text/javascript">
-         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-         (function () {
-             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-             s1.async = true;
-             s1.src = 'https://embed.tawk.to/635d5805b0d6371309cc36aa/1ggi9vm2o';
-             s1.charset = 'UTF-8';
-             s1.setAttribute('crossorigin', '*');
-             s0.parentNode.insertBefore(s1, s0);
-         })();
-      </script>
-      <!--End of Tawk.to Script-->
-      <div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility linear 0.3s, opacity 0.3s linear; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;">
-         <div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div>
-         <div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div>
-         <div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div>
-         <div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge expires in two minutes" name="c-lhch141kqhjh" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/bframe?hl=en&amp;v=h7qt2xUGz2zqKEhSc8DD8baZ&amp;k=6LdY0AgjAAAAAIe6cwoa8ReDAv-J0gCGMnwF9rDu" style="width: 100%; height: 100%;"></iframe></div>
-      </div>
+     
+    
+     
    </body>
 </html>
