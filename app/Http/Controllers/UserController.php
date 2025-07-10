@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\investment_plan;
+use App\Models\Referral;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,14 +11,50 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Routing\Loader\YamlFileLoader;
 
 class UserController extends Controller
 {
     
-     public function UserDashboard(){
+     public function UserDashboard()
+{
+    $user = auth()->user();
 
-        return view('user.index');
-     }//end method 
+    $totalTransactions = Transaction::where('user_id', $user->id)->count();
+
+    $totalDeposit = Transaction::where('user_id', $user->id)
+                    ->where('type', 'deposit')
+                    ->where('status', 'approved') 
+                    ->sum('amount');
+
+    $totalInvestment = Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $totalWithdraw = Transaction::where('user_id', $user->id)
+    ->where('type', 'withdraw')  
+    ->where('status', 'approved')
+    ->sum('amount');
+
+
+    $totalReferral = Referral::where('referred_by', $user->id)->count();
+
+    $totalProfit = Transaction::where('user_id', $user->id)
+                    ->where('type', 'profit')
+                    ->sum('amount');
+
+    $referralBonus = Referral::where('referred_by', $user->id)
+        ->sum('bonus');
+
+
+        $recentTransactions = Transaction::where('user_id', $user->id)
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('user.index', compact('totalReferral','totalTransactions', 'totalDeposit','totalWithdraw','totalInvestment','totalProfit','referralBonus','recentTransactions'));
+} 
 
      public function UserLogout(Request $request){
         Auth::guard('web')->logout();
@@ -78,6 +115,16 @@ public function storeUser(Request $request)
         'referral_code'  => $newReferralCode,
         'referred_by'    => $referredBy,
     ]);
+
+    // ✅ Step 4: Store in `referrals` table
+    if ($referredBy) {
+        Referral::create([
+            'user_id'     => $user->id,          // new user
+            'referred_by' => $referredBy,        // referrer
+            'bonus'       => 0.00,               // optionally assign signup bonus
+            'status'      => 'pending',          // or 'completed' if auto-approved
+        ]);
+    }
 
     return redirect()->route('user.login')->with('success', 'Account created successfully!');
 }
@@ -320,9 +367,22 @@ public function investNow(Request $request, $id)
 
 
 
-     public function userReferral(){
-        return view('userbackend.referral.referral');
-     }//end method
+
+     public function userReferral()
+{
+    $referrals = Referral::where('referred_by', auth()->id())
+                    ->with('referredUser') // eager load the referred user
+                    ->get();
+                    $referralCount = Referral::where('referred_by', auth()->id())->count();
+                    $referralProfit = Referral::where('referred_by', auth()->id())
+                    ->where('status', 'completed') // optional if you want to show only earned bonuses
+                    ->sum('bonus');
+
+
+
+    return view('userbackend.referral.referral', compact('referrals','referralCount','referralProfit'));
+}
+
 
 
 
@@ -447,5 +507,119 @@ public function updateUserProfile(Request $request)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function showDepositForm()
+{
+    return view('userbackend.transaction.deposit');
+}
+
+
+public function allDeposits()
+{
+    $deposits = Transaction::where('user_id', auth()->id())
+                ->where('type', 'deposit')
+                ->latest()
+                ->get();
+
+    return view('userbackend.transaction.all_deposit', compact('deposits'));
+}
+
+
+
+public function storeDeposit(Request $request)
+{
+    
+
+    // Upload file only if it exists
+    if ($request->hasFile('screenshot')) {
+        $path = $request->file('screenshot')->store('screenshots', 'public');
+
+        Transaction::create([
+            'user_id'     => auth()->id(),
+            'amount'      => $request->amount,
+            'type'        => 'deposit',
+            'description' => 'Deposit',
+            'screenshot'  => $path,
+            'method' => 'Cryptocurrency',
+            'status'      => 'pending',
+        ]);
+
+        return redirect()->route('user.deposits.all')->with('success', 'Deposit request submitted successfully.');
+    }
+
+    return back()->with('error', 'Screenshot upload failed.');
+}
+
+
+public function showWithdrawForm()
+{
+    return view('userbackend.transaction.withdraw');
+}
+
+
+public function allWithdraw()
+{
+    $withdraw = Transaction::where('user_id', auth()->id())
+                ->where('type', 'withdraw')
+                ->latest()
+                ->get();
+
+    return view('userbackend.transaction.all_withdraw', compact('withdraw'));
+}
+
+
      
+
+
+
+
+public function storeWithdraw(Request $request)
+{
+    
+
+    $user = auth()->user();
+
+    if ($request->amount > $user->wallet_balance) {
+        return back()->withErrors(['amount' => 'Insufficient wallet balance.'])->withInput();
+    }
+
+    Transaction::create([
+        'user_id'     => $user->id,
+        'amount'      => $request->amount,
+        'type'        => 'withdraw',
+        'method'      => 'Cryptocurrency',
+        'description' => 'User Withdrawal',
+        'status'      => 'pending',
+       
+    ]);
+
+   return redirect()->route('user.withdraw.all')->with('success', 'Withdrawal request submitted.');
+
+}
+
 }

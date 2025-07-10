@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="actions">
-            <a href="https://hyiprio.tdevs.co/user/deposit" class="user-sidebar-btn"><i class="anticon anticon-file-add"></i>Deposit</a>
+            <a href="{{ route('user.deposit.form') }}" class="user-sidebar-btn"><i class="anticon anticon-file-add"></i>Deposit</a>
             <a href="{{ route('user.plans') }}" class="user-sidebar-btn red-btn"><i class="anticon anticon-export"></i>Invest Now</a>
         </div>
     </div>
@@ -39,23 +39,36 @@
             </li>
 
 
-            <li class="side-nav-item   ">
-                <a href="https://hyiprio.tdevs.co/user/deposit"><i class="anticon anticon-file-add"></i><span>Add Money</span></a>
-            </li>
-            
+            <li class="side-nav-item dropdown">
+    <a href="#depositDropdown" data-bs-toggle="collapse" class="dropdown-toggle" aria-expanded="false">
+        <i class="anticon anticon-file-add"></i>
+        <span>Deposit</span>
+    </a>
+    <ul class="collapse list-unstyled" id="depositDropdown">
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.deposit.form') }}">Add New Deposit</a>
+        </li>
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.deposits.all') }}">View All Deposits</a>
+        </li>
+    </ul>
+</li>
 
-            <li class="side-nav-item ">
-                <a href="https://hyiprio.tdevs.co/user/wallet-exchange"><i class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
-            </li>
 
-            <li class="side-nav-item   ">
-                <a href="https://hyiprio.tdevs.co/user/send-money"><i class="anticon anticon-export"></i><span>Send Money</span></a>
-            </li>
-            
-
-            <li class="side-nav-item   ">
-                <a href="https://hyiprio.tdevs.co/user/withdraw"><i class="anticon anticon-bank"></i><span>Withdraw</span></a>
-            </li>
+          <li class="side-nav-item dropdown">
+    <a href="#withdrawDropdown" data-bs-toggle="collapse" class="dropdown-toggle" aria-expanded="false">
+        <i class="anticon anticon-file-add"></i>
+        <span>Withdraw</span>
+    </a>
+    <ul class="collapse list-unstyled" id="withdrawDropdown">
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.withdraw.form') }}">Withdraw Funds</a>
+        </li>
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.withdraw.all') }}">View All Withdrawal</a>
+        </li>
+    </ul>
+</li>
            
 
                         <li class="side-nav-item ">

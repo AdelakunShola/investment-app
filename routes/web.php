@@ -65,6 +65,10 @@ Route::prefix('admin/customer')->group(function () {
 
     Route::get('active', [CustomerController::class, 'activeCustomer'])->name('admin.customer.active');
     Route::get('disabled', [CustomerController::class, 'disabledCustomer'])->name('admin.customer.disabled');
+
+
+    Route::post('/user/balance-update/{id}', [CustomerController::class, 'updateBalance'])->name('admin.user.balance.update');
+
 });
 
 
@@ -84,6 +88,17 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/transactions', [TransactionController::class, 'allTransaction'])->name('admin.transactions.all');
     Route::get('/transactions/investments', [TransactionController::class, 'investments'])->name('admin.transactions.investments');
     Route::get('/transactions/profits', [TransactionController::class, 'userProfits'])->name('admin.transactions.profits');
+
+
+    Route::get('/deposits', [TransactionController::class, 'adminDeposits'])->name('admin.deposits.all');
+    Route::get('/pending/deposits', [TransactionController::class, 'adminDepositsPending'])->name('admin.deposits.pending');
+    Route::post('/admin/deposit/action-now', [TransactionController::class, 'depositAction'])->name('admin.deposit.action');
+
+
+        Route::get('/withdrawal', [TransactionController::class, 'adminWithdrawal'])->name('admin.withdrawal.all');
+    Route::get('/pending/withdrawal', [TransactionController::class, 'adminWithdrawalPending'])->name('admin.withdrawal.pending');
+    Route::post('/admin/withdrawal/action-now', [TransactionController::class, 'WithdrawalAction'])->name('admin.withdrawal.action');
+
 });
 
 });
@@ -128,6 +143,13 @@ Route::post('/user/change/password', [UserController::class, 'updatePassword'])-
 
 
 
+Route::get('/user/deposit', [UserController::class, 'showDepositForm'])->name('user.deposit.form');
+Route::get('/user/deposits', [UserController::class, 'allDeposits'])->name('user.deposits.all');
+Route::post('/user/deposit', [UserController::class, 'storeDeposit'])->name('user.deposit.store');
+
+Route::get('/user/withdraw', [UserController::class, 'showWithdrawForm'])->name('user.withdraw.form');
+Route::get('/all/user/withdraw', [UserController::class, 'allWithdraw'])->name('user.withdraw.all');
+Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->name('user.withdraw.store');
 
 
 

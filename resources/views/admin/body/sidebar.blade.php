@@ -163,7 +163,7 @@
             </a>
             <ul class="dropdown-items">
                <li class="">
-                  <a href="https://hyiprio.tdevs.co/admin/deposit/manual-pending">
+                  <a href="{{ route('admin.deposits.pending') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="columns" icon-name="columns" class="lucide lucide-columns">
                         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
                         <line x1="12" x2="12" y1="3" y2="21"></line>
@@ -172,7 +172,7 @@
                   </a>
                </li>
                <li class="">
-                  <a href="https://hyiprio.tdevs.co/admin/deposit/history">
+                  <a href="{{ route('admin.deposits.all') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clipboard-check" icon-name="clipboard-check" class="lucide lucide-clipboard-check">
                         <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
                         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
@@ -202,7 +202,7 @@
             </a>
             <ul class="dropdown-items">
                <li class="">
-                  <a href="https://hyiprio.tdevs.co/admin/withdraw/pending">
+                  <a href="{{ route('admin.withdrawal.pending') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wallet" icon-name="wallet" class="lucide lucide-wallet">
                         <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
                         <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
@@ -212,7 +212,7 @@
                   </a>
                </li>
                <li class="">
-                  <a href="https://hyiprio.tdevs.co/admin/withdraw/history">
+                  <a href="{{ route('admin.withdrawal.all') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="piggy-bank" icon-name="piggy-bank" class="lucide lucide-piggy-bank">
                         <path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path>
                         <path d="M2 9v1c0 1.1.9 2 2 2h1"></path>

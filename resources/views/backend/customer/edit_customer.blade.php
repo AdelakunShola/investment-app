@@ -1,6 +1,11 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
 <div class="main-content">
         <div class="page-title">
@@ -32,14 +37,29 @@
                             <div>
                                 
                             </div>
-                            <div class="btns">
-                                                                   
-                                                                                                    <span data-bs-toggle="modal" data-bs-target="#addSubBal">
-                                        <a href="javascript:void(0);" class="site-btn-round primary-btn" data-bs-toggle="tooltip" title="" data-bs-original-title="Fund Add or Subtract">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wallet" icon-name="wallet" class="lucide lucide-wallet"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
-                                        </a>
-                                    </span>
-                                                            </div>
+                  <div class="btns">
+   <a href="javascript:void(0);"
+   class="site-btn-round primary-btn openBalanceModal"
+   data-user-id="{{ $user->id }}"
+   data-bs-toggle="modal"
+   data-bs-target="#addSubBal"
+   title="Fund Add or Subtract">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         class="lucide lucide-wallet">
+        <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+        <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+        <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+    </svg>
+</a>
+
+</div>
+
+
+
+
+
                         </div>
                         <div class="site-card">
                             <div class="site-card-body">
@@ -145,49 +165,39 @@
                 </div>
 
                 <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="site-tab-bars">
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <!-- Informations Tab -->
-                                                            <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=informations" class="nav-link active" id="pills-informations-tab" type="button" role="tab" aria-controls="pills-informations" aria-selected="true">
+  <div class="site-tab-bars">
+    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+      <!-- Information Tab -->
+      <li class="nav-item" role="presentation">
+        <a href="#pills-informations" class="nav-link active" id="pills-informations-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-informations" aria-selected="true">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user" icon-name="user" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Informations
                                     </a>
                                 </li>
                             
                         <!-- Investment Tab -->
                                                             <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=investments" class="nav-link " id="pills-transfer-tab" type="button" role="tab" aria-controls="pills-transfer" aria-selected="false">
+    <a href="#pills-investments" class="nav-link" id="pills-investments-tab" data-bs-toggle="pill" type="button" role="tab" aria-controls="pills-investments" aria-selected="false">
+
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="anchor" icon-name="anchor" class="lucide lucide-anchor"><circle cx="12" cy="5" r="3"></circle><line x1="12" x2="12" y1="22" y2="8"></line><path d="M5 12H2a10 10 0 0 0 20 0h-3"></path></svg>Investments
                                     </a>
                                 </li>
-                            
-                        <!-- Earning Tab -->
-                                                            <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=earnings" class="nav-link " id="pills-deposit-tab" type="button" role="tab" aria-controls="pills-deposit" aria-selected="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="credit-card" icon-name="credit-card" class="lucide lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>Earnings
-                                    </a>
-                                </li>
-                            
+
                         <!-- Transaction Tab -->
                                                             <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=transactions" class="nav-link " id="pills-transactions-tab" type="button" role="tab" aria-controls="pills-transactions" aria-selected="false">
+                             <a href="#pills-transactions" class="nav-link" id="pills-transactions-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-transactions" aria-selected="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cast" icon-name="cast" class="lucide lucide-cast"><path d="M2 8V6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"></path><path d="M2 12a9 9 0 0 1 8 8"></path><path d="M2 16a5 5 0 0 1 4 4"></path><line x1="2" x2="2.01" y1="20" y2="20"></line></svg>Transactions
                                     </a>
                                 </li>
                             
                         <!-- Referral Tree Tab -->
                                                             <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=referral_tree" class="nav-link " id="pills-tree-tab" type="button" role="tab" aria-controls="pills-tree" aria-selected="false">
+                                    <a href="#pills-referral_tree" class="nav-link" id="pills-referral_tree-tab" data-bs-toggle="pill" role="tab" aria-controls="pills-referral_tree" aria-selected="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="network" icon-name="network" class="lucide lucide-network"><rect x="16" y="16" width="6" height="6" rx="1"></rect><rect x="2" y="16" width="6" height="6" rx="1"></rect><rect x="9" y="2" width="6" height="6" rx="1"></rect><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"></path><path d="M12 12V8"></path></svg>Referral Tree
                                     </a>
                                 </li>
                             
-                        <!-- Ticket Tab -->
-                                                            <li class="nav-item" role="presentation">
-                                    <a href="https://hyiprio.tdevs.co/admin/user/11937/edit?tab=tickets" class="nav-link " id="pills-ticket-tab" type="button" role="tab" aria-controls="pills-ticket" aria-selected="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wrench" icon-name="wrench" class="lucide lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>Ticket
-                                    </a>
-                                </li>
+                     
+                                                       
                                                     </ul>
                     </div>
 
@@ -332,132 +342,85 @@
                                 </div>
                             
                         <!-- Investments Tab -->
-                                                            <div class="tab-pane fade " id="pills-investments" role="tabpanel">
-                                    <div class="tab-pane fade " id="pills-transfer" role="tabpanel" aria-labelledby="pills-transfer-tab">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="site-card">
-                <div class="site-card-header">
-                    <h4 class="title">Investments</h4>
-                </div>
-                <div class="site-card-body table-responsive">
-                    <div class="site-datatable">
-                        <table class="display data-table">
-                            <thead>
-                            <tr>
-                                <th>Icon</th>
-                                <th>Schema</th>
-                                <th>ROI</th>
-                                <th>Profit</th>
-                                <th>Capital Back</th>
-                                <th>Timeline</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                                        </tbody>
-                        </table>
-                        <div class="site-pagination">
-    <nav aria-label="...">
-        <ul class="pagination">
-                            <li class="page-item disabled">
-                    <a class="page-link">Prev</a>
-                </li>
-            
-                                                                                                <li class="page-item active"><span class="page-link">1</span></li>
-                                                            
-                            <li class="page-item disabled">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            
-        </ul>
-    </nav>
+               <div class="tab-pane fade" id="pills-investments" role="tabpanel" aria-labelledby="pills-investments-tab">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="site-card">
+        <div class="site-card-header">
+          <h4 class="title">Investments</h4>
+        </div>
+        <div class="site-card-body table-responsive">
+          <div class="site-datatable">
+            <table class="display data-table">
+              <thead>
+                <tr>
+                  <th>Icon</th>
+                  <th>Schema</th>
+                  <th>Weekly ROI</th>
+                  <th>Profit</th>
+                  <th>Amount Invested</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+          <tbody>
+    @forelse ($investmentTransactions as $transaction)
+        <tr>
+            <td>
+                @php
+                    $icon = optional($transaction->user->investmentPlan)->icon;
+                @endphp
+                @if($icon)
+                    <img src="{{ asset('storage/' . $icon) }}" alt="Icon" width="30">
+                @else
+                    <span class="site-badge warning">No Icon</span>
+                @endif
+            </td>
+
+            <td>{{ optional($transaction->user->investmentPlan)->name ?? 'N/A' }}</td>
+
+            <td>
+                {{ optional($transaction->user->investmentPlan)->weekly_interest ?? 'N/A' }}%
+            </td>
+
+
+            <td>
+                <span class="site-badge primary-bg">
+                    {{ optional($transaction->user->investmentPlan)->amount ?? 'N/A' }}
+                </span>
+            </td>
+
+            <td>
+                {{ number_format($transaction->amount, 2) }} USD
+            </td>
+
+            <td>
+                {{ \Carbon\Carbon::parse($transaction->created_at)->format('M d, Y') }}
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" class="text-center">No investment transactions found.</td>
+        </tr>
+    @endforelse
+</tbody>
+
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>                                </div>
                             
-                        <!-- Earnings Tab -->
-                                                            <div class="tab-pane fade " id="pills-earnings" role="tabpanel">
-                                    <div class="tab-pane fade " id="pills-deposit" role="tabpanel" aria-labelledby="pills-deposit-tab">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="site-card">
-                <div class="site-card-header">
-                    <h4 class="title">Earnings</h4>
-                    <div class="card-header-info">Total Earnings 3 USD</div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="site-table table-responsive">
-                                <form action="https://hyiprio.tdevs.co/admin/user/11937/edit" method="get">
-                                    <div class="table-filter">
-                                        <div class="filter">
-                                        </div>
-                                    <!-- <div class="filter d-flex">
-                                            <div class="search">
-                                                <input type="text" id="search" name="query" value="" placeholder="Search" />
-                                            </div>
-                                            <button type="submit" class="apply-btn"><i data-lucide="search"></i>Search</button>
-                                        </div> -->
-                                    </div>
-                                </form>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">User</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Profit From</th>
-                                        <th scope="col">Description</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                                                            <tr>
-                                            <td>Jul 05 2025 12:26</td>
-                                            <td><a class="link" href="https://hyiprio.tdevs.co/admin/user/11937/edit">DeathBringer</a></td>
-                                            <td><strong class="green-color">+3 USD</strong></td>
-                                            <td><div class="site-badge primary-bg">Signup Bonus</div></td>
-                                            <td>System</td>
-                                            <td>Signup Bonus</td>
-                                        </tr>
-                                                                        </tbody>
-                                </table>
-                                                                <div class="site-pagination">
-    <nav aria-label="...">
-        <ul class="pagination">
-                            <li class="page-item disabled">
-                    <a class="page-link">Prev</a>
-                </li>
-            
-                                                                                                <li class="page-item active"><span class="page-link">1</span></li>
-                                                            
-                            <li class="page-item disabled">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            
-        </ul>
-    </nav>
-</div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                                </div>
+          
+                             
                             
                         <!-- Transactions Tab -->
-                                                            <div class="tab-pane fade " id="pills-transactions" role="tabpanel">
-                                    <div class="tab-pane fade " id="pills-transactions" role="tabpanel" aria-labelledby="pills-transactions-tab">
+                                                            
+                                    <div class="tab-pane fade" id="pills-transactions" role="tabpanel" aria-labelledby="pills-transactions-tab">
     <div class="site-card">
         <div class="site-card-header">
             <h3 class="title">Transactions</h3>
@@ -477,45 +440,45 @@
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody>
-                                                    <tr>
-                                <td>Jul 05 2025 12:26</td>
-                                <td><a class="link" href="https://hyiprio.tdevs.co/admin/user/11937/edit">DeathBringer</a></td>
-                                <td>TRXXOUSZAQLDK</td>
-                                <td><div class="site-badge primary-bg">Signup Bonus</div></td>
-                                <td><strong class="green-color">+3 USD</strong></td>
-                                <td>System</td>
-                                <td><div class="site-badge success">Success</div>
-    </td>
-                            </tr>
-                                                </tbody>
+                       <tbody>
+@forelse ($transactions as $transaction)
+    <tr>
+        <td>{{ $transaction->created_at->format('M d Y h:i') }}</td>
+        <td><a class="link" href="{{ route('admin.user.edit', $user->id) }}">{{ $user->username }}</a></td>
+        <td>{{ 'TRX' . strtoupper(substr(md5($transaction->id), 0, 12)) }}</td>
+        <td><div class="site-badge primary-bg">{{ $transaction->type }}</div></td>
+        <td>
+            <strong class="{{ $transaction->type === 'debit' ? 'danger-color' : 'green-color' }}">
+                {{ $transaction->type === 'debit' ? '-' : '+' }}{{ $transaction->amount }} USD
+            </strong>
+        </td>
+        <td>{{ $transaction->method ?? 'System' }}</td>
+        <td>
+            <div class="site-badge 
+                {{ $transaction->status === 'Success' ? 'success' : ($transaction->status === 'Pending' ? 'warning' : 'danger') }}">
+                {{ $transaction->status }}
+            </div>
+        </td>
+    </tr>
+@empty
+    <tr>
+        <td colspan="7" class="text-center">No transactions found.</td>
+    </tr>
+@endforelse
+</tbody>
+
                     </table>
-                                        <div class="site-pagination">
-    <nav aria-label="...">
-        <ul class="pagination">
-                            <li class="page-item disabled">
-                    <a class="page-link">Prev</a>
-                </li>
-            
-                                                                                                <li class="page-item active"><span class="page-link">1</span></li>
-                                                            
-                            <li class="page-item disabled">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            
-        </ul>
-    </nav>
-</div>
+                                       
 
                 </div>
             </form>
         </div>
     </div>
-</div>                                </div>
+</div>                               
                             
                         <!-- Referral Tree Tab -->
-                                                            <div class="tab-pane fade " id="pills-referral_tree" role="tabpanel">
-                                    <div class="tab-pane fade " id="pills-tree" role="tabpanel" aria-labelledby="pills-transactions-tab">
+                                                           
+                              <div class="tab-pane fade" id="pills-referral_tree" role="tabpanel" aria-labelledby="pills-referral_tree-tab">
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
             <div class="site-card">
@@ -525,7 +488,33 @@
                 <div class="site-card-body table-responsive">
 
                     
-                                            <p>No Referral user found</p>
+                         @if($referrals->isEmpty())
+    <p>No referral users found.</p>
+@else
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Referred User</th>
+                <th>Email</th>
+                <th>Join Date</th>
+                <th>Bonus</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($referrals as $ref)
+                <tr>
+                    <td>{{ $ref->referredUser->username }}</td>
+                    <td>{{ $ref->referredUser->email }}</td>
+                    <td>{{ $ref->referredUser->created_at->format('M d, Y') }}</td>
+                    <td>{{ $ref->bonus ?? 0 }} USD</td>
+                    <td><span class="site-badge primary-bg">{{ ucfirst($ref->status) }}</span></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
+
                     
                 </div>
             </div>
@@ -533,60 +522,89 @@
     </div>
 </div>
 
-                                </div>
+                              
                             
-                        <!-- Ticket Tab -->
-                                                            <div class="tab-pane fade " id="pills-tickets" role="tabpanel">
-                                    <div class="tab-pane fade " id="pills-ticket" role="tabpanel" aria-labelledby="pills-ticket-tab">
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="site-card">
-                <div class="site-card-header">
-                    <h4 class="title">Support Tickets</h4>
-                </div>
-                <div class="site-card-body table-responsive">
-                    <div class="site-datatable">
-                        <table class="display data-table">
-                            <thead>
-                            <tr>
-                                <th>Ticket Name</th>
-                                <th>Opening Date</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                                        </tbody>
-                        </table>
-                                                    <p>No tickets found.</p>
-                                                <div class="site-pagination">
-    <nav aria-label="...">
-        <ul class="pagination">
-                            <li class="page-item disabled">
-                    <a class="page-link">Prev</a>
-                </li>
-            
-                                                                                                <li class="page-item active"><span class="page-link">1</span></li>
-                                                            
-                            <li class="page-item disabled">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            
-        </ul>
-    </nav>
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>                                </div>
+                     
                                                     </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+<!-- Balance Add or Subtract Modal -->
+<div class="modal fade" id="addSubBal" tabindex="-1" aria-labelledby="addSubBalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content site-table-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSubBalLabel">Balance Add or Subtract</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="balanceUpdateForm" action="" method="POST">
+
+
+                    @csrf
+
+                    <div class="row">
+                        <!-- Radio Buttons -->
+                        <div class="col-xl-12 mb-3">
+                            <div class="switch-field">
+                                <input type="radio" id="addMon" name="type" value="add" checked>
+                                <label for="addMon">Add</label>
+
+                                <input type="radio" id="addMon2" name="type" value="subtract">
+                                <label for="addMon2">Subtract</label>
+                            </div>
+                        </div>
+
+                        <!-- Wallet Select -->
+                        <div class="col-xl-12 mb-3">
+                            <select class="form-select" name="wallet" required>
+                                <option value="main">Main Wallet</option>
+                                <option value="profit">Profit Wallet</option>
+                            </select>
+                        </div>
+
+                        <!-- Amount Input -->
+                        <div class="col-xl-12 mb-3">
+                            <div class="site-input-groups">
+                                <div class="input-group joint-input">
+                                    <span class="input-group-text">USD</span>
+                                    <input type="text" name="amount" class="form-control" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" placeholder="Enter amount" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-xl-12">
+                            <button type="submit" class="site-btn primary-btn w-100">Apply Now</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modalTriggerButtons = document.querySelectorAll('.openBalanceModal');
+        const form = document.getElementById('balanceUpdateForm');
+
+        modalTriggerButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const userId = this.getAttribute('data-user-id');
+                const actionUrl = `/admin/customer/user/balance-update/${userId}`;
+                form.action = actionUrl;
+            });
+        });
+    });
+</script>
+
 
         @endsection

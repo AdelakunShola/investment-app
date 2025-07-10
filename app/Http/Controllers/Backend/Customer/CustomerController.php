@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\investment_plan;
+use App\Models\Referral;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,11 +33,23 @@ class CustomerController extends Controller
         return view('backend.customer.disabled_customer', compact('customers'));
     }
 
-    public function editCustomer($id)
+public function editCustomer($id)
 {
-    $user = User::findOrFail($id);
-    return view('backend.customer.edit_customer', compact('user'));
+    $user = User::with('investmentPlan')->findOrFail($id);
+    $investmentPlans = investment_plan::all();
+    $investmentTransactions = Transaction::where('user_id', $user->id)
+    ->where('type', 'investment')
+    ->latest()
+    ->get();
+    $referrals = Referral::with(['referredUser', 'referrer'])
+    ->where('referred_by', $user->id)
+    ->get();
+
+    $transactions = Transaction::where('user_id', $id)->latest()->get();
+    return view('backend.customer.edit_customer', compact('user', 'investmentPlans','transactions','investmentTransactions','referrals'));
 }
+
+ // eager load
 
 
 
@@ -77,5 +92,37 @@ public function updateUserStatus(Request $request, $id)
     return back()->with('success', 'User status updated successfully.');
 }
 
+
+
+
+
+
+public function updateBalance(Request $request, $id)
+{
+    
+
+    $user = User::findOrFail($id);
+    $amount = $request->amount;
+
+    if ($request->wallet === 'main') {
+        if ($request->type === 'add') {
+            $user->wallet_balance += $amount;
+        } else {
+            $user->wallet_balance -= $amount;
+            if ($user->wallet_balance < 0) $user->wallet_balance = 0;
+        }
+    } elseif ($request->wallet === 'profit') {
+        if ($request->type === 'add') {
+            $user->profit_balance += $amount;
+        } else {
+            $user->profit_balance -= $amount;
+            if ($user->profit_balance < 0) $user->profit_balance = 0;
+        }
+    }
+
+    $user->save();
+
+    return back()->with('success', 'User balance updated successfully.');
+}
 
 }

@@ -48,4 +48,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+   public function referrals()
+{
+    return $this->hasMany(Referral::class, 'referred_by');
+}
+
+// Who referred this user
+public function referredBy()
+{
+    return $this->hasOne(Referral::class, 'user_id');
+}
+
 }

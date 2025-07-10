@@ -106,4 +106,121 @@ public function investments(Request $request)
 
     return view('backend.transaction.user_profit', compact('transactions'));
 }
+
+
+
+
+
+public function adminDeposits()
+{
+    $deposits = Transaction::where('type', 'deposit')
+                ->latest()
+                ->get();
+
+    return view('backend.deposit.deposit_history', compact('deposits'));
+}
+
+
+public function adminDepositsPending()
+{
+    $deposits = Transaction::where('type', 'deposit')
+                ->where('status', '!=', 'approved')
+                ->latest()
+                ->get();
+
+    return view('backend.deposit.deposit_pending', compact('deposits'));
+}
+
+
+public function depositAction(Request $request)
+{
+    $deposit = Transaction::findOrFail($request->id);
+
+    if ($request->has('approve')) {
+        if ($deposit->status !== 'approved') {
+            $deposit->status = 'approved';
+            $deposit->save();
+
+            // Update user's wallet balance
+            $user = $deposit->user;
+            $user->wallet_balance += $deposit->amount;
+            $user->save();
+        }
+
+    } elseif ($request->has('reject')) {
+        $deposit->status = 'rejected';
+        $deposit->save();
+    }
+
+    return back()->with('success', 'Deposit status updated.');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function adminWithdrawal()
+{
+    $withdraw = Transaction::where('type', 'withdraw')
+                ->latest()
+                ->get();
+
+    return view('backend.withdrawal.withdrawal_history', compact('withdraw'));
+}
+
+
+public function adminWithdrawalPending()
+{
+    $withdraw = Transaction::where('type', 'withdraw')
+                ->where('status', '!=', 'approved')
+                ->latest()
+                ->get();
+
+    return view('backend.withdrawal.withdrawal_pending', compact('withdraw'));
+}
+
+
+public function WithdrawalAction(Request $request)
+{
+    $withdraw = Transaction::findOrFail($request->id);
+
+    if ($request->has('approve')) {
+        if ($withdraw->status !== 'approved') {
+            $withdraw->status = 'approved';
+            $withdraw->save();
+
+            // Update user's wallet balance
+            $user = $withdraw->user;
+            $user->wallet_balance -= $withdraw->amount;
+            $user->save();
+        }
+
+    } elseif ($request->has('reject')) {
+        $withdraw->status = 'rejected';
+        $withdraw->save();
+    }
+
+    return back()->with('success', 'Withdrawal status updated.');
+}
+
+
+
+
 }

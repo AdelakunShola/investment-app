@@ -45,11 +45,7 @@
                     </div>
                                 
 
-                <div class="single-right">
-                    <select name="language" id="" class="site-nice-select" onchange="window.location.href=this.options[this.selectedIndex].value;" style="display: none;">
-                                                    <option value="https://hyiprio.tdevs.co/language-update?name=en" selected="">English</option>
-                                            </select><div class="nice-select site-nice-select" tabindex="0"><span class="current">English</span><ul class="list"><li data-value="https://hyiprio.tdevs.co/language-update?name=en" class="option selected">English</li><li data-value="https://hyiprio.tdevs.co/language-update?name=es" class="option">Spanish</li><li data-value="https://hyiprio.tdevs.co/language-update?name=fr" class="option">Franch</li></ul></div>
-                </div>
+              
                 <div class="single-right">
                     <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="anticon anticon-user"></i>
