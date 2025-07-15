@@ -6,6 +6,7 @@ use App\Models\investment_plan;
 use App\Models\Referral;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\UserRanking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,10 +16,24 @@ use Symfony\Component\Routing\Loader\YamlFileLoader;
 
 class UserController extends Controller
 {
+
+
+    public function Index(){
+
+      return view('frontend.index');
+
+    }//end method
+
+
+
+
+
+
     
      public function UserDashboard()
 {
-    $user = auth()->user();
+      $user = auth()->user()->load('ranking');
+
 
     $totalTransactions = Transaction::where('user_id', $user->id)->count();
 
@@ -362,7 +377,10 @@ public function investNow(Request $request, $id)
 
 
      public function userRanking(){
-        return view('userbackend.ranking.badge-ranking');
+        
+    $rankings = UserRanking::where('status', 1)->orderBy('ranking')->get(); // Optional: filter active only
+    
+        return view('userbackend.ranking.badge-ranking', compact('rankings'));
      }//end method 
 
 

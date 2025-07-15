@@ -132,6 +132,40 @@
                <span>User Profits</span>
             </a>
          </li>
+
+
+          <li class="side-nav-item category-title">
+            <span>Blog Ads</span>
+         </li>
+
+         <li class="side-nav-item">
+            <a href="{{ route('admin.luxury_ads.create') }}">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-anchor">
+                  <circle cx="12" cy="5" r="3"></circle>
+                  <line x1="12" x2="12" y1="22" y2="8"></line>
+                  <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+               </svg>
+               <span>Create ad</span>
+            </a>
+         </li>
+
+
+          <li class="side-nav-item">
+            <a href="{{ route('admin.luxury_ads.index') }}">
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-anchor">
+                  <circle cx="12" cy="5" r="3"></circle>
+                  <line x1="12" x2="12" y1="22" y2="8"></line>
+                  <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+               </svg>
+               <span>All ads</span>
+            </a>
+         </li>
+
+
+         
+
+
+
          <li class="side-nav-item category-title">
             <span>Essentials</span>
          </li>
@@ -252,7 +286,7 @@
             </ul>
          </li>
          <li class="side-nav-item ">
-            <a href="https://hyiprio.tdevs.co/admin/ranking">
+            <a href="{{ route('rankings.index') }}">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="medal" icon-name="medal" class="lucide lucide-medal">
                   <path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"></path>
                   <path d="M11 12 5.12 2.2"></path>

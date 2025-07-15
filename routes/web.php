@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\Customer\CustomerController;
 use App\Http\Controllers\Backend\PlanController;
 use App\Http\Controllers\Backend\TransactionController;
+use App\Http\Controllers\Backend\UserRankingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [UserController::class, 'Index']);
+
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'AdminAuthenticate'])->name('admin.authenticate');
 Route::post('/admin/user/password-update/{id}', [AdminController::class, 'updateUserPassword'])->name('admin.user.password.update');
@@ -98,11 +101,44 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/withdrawal', [TransactionController::class, 'adminWithdrawal'])->name('admin.withdrawal.all');
     Route::get('/pending/withdrawal', [TransactionController::class, 'adminWithdrawalPending'])->name('admin.withdrawal.pending');
     Route::post('/admin/withdrawal/action-now', [TransactionController::class, 'WithdrawalAction'])->name('admin.withdrawal.action');
+    
 
 });
 
 });
 //End Admin Gorup Middleware
+
+
+
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+
+  Route::get('/rankings', [UserRankingController::class, 'Rankingindex'])->name('rankings.index');
+    Route::post('/ranking', [UserRankingController::class, 'Rankingstore'])->name('admin.ranking.store');
+    Route::put('/update/rankings/{id}', [UserRankingController::class, 'Rankingupdate'])->name('admin.ranking.update');
+    Route::delete('/rankings/{id}', [UserRankingController::class, 'Rankingdestroy'])->name('admin.ranking.destroy');
+
+    Route::get('/admin/assign-user-rankings', [UserRankingController::class, 'assignRankingsToUsers'])->name('rankings.assign');
+});
+
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/luxury-ads/create', [BlogController::class, 'Blogcreate'])->name('admin.luxury_ads.create');
+Route::post('/luxury-ads', [BlogController::class, 'Blogstore'])->name('admin.luxury_ads.store');
+    Route::get('/all/ads', [BlogController::class, 'Blogindex'])->name('admin.luxury_ads.index');
+    Route::get('blog/{id}/edit', [BlogController::class, 'Blogedit'])->name('admin.blog.edit');
+Route::put('blog/{id}', [BlogController::class, 'Blogupdate'])->name('admin.blog.update');
+Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name('admin.luxury_ads.destroy');
+
+
+    Route::post('/user/share-ad', [BlogController::class, 'shareAdReward'])->name('user.share.ad')->middleware('auth');
+
+
+});
+
+
 
 
 
