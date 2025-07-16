@@ -42,7 +42,8 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/' . $ad->image) }}" alt="Ad Image" width="60">
+                                         <img src="{{ asset($ad->image) }}" alt="Ad Image" width="60">
+
                                         </td>
                                         <td>{{ $ad->title }}</td>
                                         <td>{{ $ad->category ?? 'N/A' }}</td>

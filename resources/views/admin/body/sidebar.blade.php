@@ -316,7 +316,7 @@
             </a>
             <ul class="dropdown-items">
                <li class="">
-                  <a href="https://hyiprio.tdevs.co/admin/settings/site">
+                  <a href="{{ route('about.edit') }}">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings-2" icon-name="settings-2" class="lucide lucide-settings-2">
                         <path d="M20 7h-9"></path>
                         <path d="M14 17H5"></path>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
   //  return view('welcome');
 //});
 
-Route::get('/', [UserController::class, 'Index']);
+Route::get('/', [UserController::class, 'Index'])->name('home');
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'AdminAuthenticate'])->name('admin.authenticate');
@@ -135,6 +135,9 @@ Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name(
 
     Route::post('/user/share-ad', [BlogController::class, 'shareAdReward'])->name('user.share.ad')->middleware('auth');
 
+    Route::get('/admin/about/edit', [UserController::class, 'editAbout'])->name('about.edit');
+    Route::post('/admin/about/update', [UserController::class, 'updateAbout'])->name('admin.about.update');
+
 
 });
 
@@ -190,5 +193,15 @@ Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->n
 
 
 });
+
+
+
+
+
+
+Route::get('/ad/listing', [UserController::class, 'Allad'])->name('frontend.all.ad');
+Route::get('/ad/listing/{id}', [UserController::class, 'showDetails'])->name('ad.details');
+Route::get('/about-us', [UserController::class, 'Aboutus'])->name('about.us');
+
 
 require __DIR__.'/auth.php';

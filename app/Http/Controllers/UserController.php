@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Blog;
 use App\Models\investment_plan;
 use App\Models\Referral;
 use App\Models\Transaction;
@@ -11,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 
@@ -19,8 +23,10 @@ class UserController extends Controller
 
 
     public function Index(){
+        $plans = investment_plan::all();
+$featuredAds = Blog::where('featured', true)->latest()->take(8)->get();
 
-      return view('frontend.index');
+      return view('frontend.index', compact('featuredAds','plans'));
 
     }//end method
 
@@ -639,5 +645,92 @@ public function storeWithdraw(Request $request)
    return redirect()->route('user.withdraw.all')->with('success', 'Withdrawal request submitted.');
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function Allad() {
+    $ads = Blog::latest()->get();
+    return view('frontend.listing.all_ad', compact('ads'));
+}
+
+
+public function showDetails($id)
+{
+    $ad = Blog::findOrFail($id);
+
+    return view('frontend.listing.ad_details', compact('ad'));
+}
+
+public function Aboutus()
+{
+    return view('frontend.about');
+}
+
+
+
+
+
+
+public function editAbout()
+{
+    $about = About::first();
+    return view('backend.about.edit', compact('about'));
+}
+
+public function updateAbout(Request $request) {
+    $about = About::first();
+
+    // Prepare data array from request (excluding token and image for now)
+    $data = $request->except('_token', 'image');
+
+    // Handle image upload if a new image is provided
+    if ($request->hasFile('image')) {
+        // Optionally delete old image
+        if ($about->image && file_exists(public_path($about->image))) {
+            unlink(public_path($about->image));
+        }
+
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('uploads/about'), $imageName);
+        $data['image'] = 'uploads/about/' . $imageName;
+    }
+
+    // Update the about record
+    $about->update($data);
+
+    return redirect()->route('about.edit')->with('success', 'About section updated.');
+}
+
+
 
 }

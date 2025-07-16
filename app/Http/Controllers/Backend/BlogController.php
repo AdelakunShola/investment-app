@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 
 class BlogController extends Controller
@@ -30,17 +33,29 @@ public function Blogstore(Request $request)
 
     // Handle image upload if present
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('luxury_ads', 'public');
+        $file = $request->file('image');
+        $filename = date('YmdHis') . $file->getClientOriginalName();
+        $uploadPath = public_path('upload/blog_images/');
+
+        // ✅ Ensure the directory exists
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
+        }
+
+        // ✅ Resize and save the image
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file)->resize(400, 300);
+        $img->toJpeg(80)->save($uploadPath . $filename);
+
+        $data['image'] = 'upload/blog_images/' . $filename;
     }
 
     // Encode specifications if provided
-    if (isset($data['specifications']) && is_array($data['specifications'])) {
-        $data['specifications'] = json_encode($data['specifications']);
-    } else {
-        $data['specifications'] = json_encode([]);
-    }
+    $data['specifications'] = isset($data['specifications']) && is_array($data['specifications'])
+        ? json_encode($data['specifications'])
+        : json_encode([]);
 
-    // Ensure 'featured' is explicitly set (true if checked, false if not)
+    // Ensure 'featured' is explicitly set
     $data['featured'] = $request->has('featured');
 
     // Create the ad
@@ -48,9 +63,6 @@ public function Blogstore(Request $request)
 
     return redirect()->back()->with('success', 'Ad created successfully.');
 }
-
-
-
 
 public function Blogedit($id)
 {
@@ -64,9 +76,23 @@ public function Blogupdate(Request $request, $id)
 
     $data = $request->except(['_token', '_method']);
 
-    // Handle image upload
+    // Handle image upload with resizing
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('luxury_ads', 'public');
+        $file = $request->file('image');
+        $filename = date('YmdHis') . $file->getClientOriginalName();
+        $uploadPath = public_path('upload/blog_images/');
+
+        // Ensure the directory exists
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true); // create with permissions
+        }
+
+        // Resize and save
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file)->resize(425, 300);
+        $img->toJpeg(80)->save($uploadPath . $filename);
+
+        $data['image'] = 'upload/blog_images/' . $filename;
     }
 
     // Encode specifications

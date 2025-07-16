@@ -59,16 +59,16 @@
                                        <nav class="tp-main-menu-content">
                                           <ul id="menu-1-79c0421" class="tp-nav-menu ">
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-3291" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-3291 menu-item-3291 nav-item">
-                                                <a title="Home" href="https://wp.aqlova.com/listbnb/" class="nav-links">Home</a>
+                                                <a title="Home" href="{{ route('home') }}" class="nav-links">Home</a>
                                                 
                                              </li>
 
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-21 menu-item-21 nav-item">
-                                                <a title="Listings" href="https://wp.aqlova.com/listbnb/listings/" class="nav-links">Listings</a>
+                                                <a title="Listings" href="{{ route('frontend.all.ad') }}" class="nav-links">Listings</a>
                                              </li>
 
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-28" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown has-dropdown menu-item-28 menu-item-28 nav-item">
-                                                <a title="Pages" href="#" class="nav-links">About</a>
+                                                <a title="Pages" href="{{ route('about.us') }}" class="nav-links">About</a>
                                              </li>
 
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26 menu-item-26 nav-item">

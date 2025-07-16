@@ -1,3 +1,5 @@
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <div class="elementor-element elementor-element-fb3380a e-flex e-con-boxed e-con e-parent" data-id="fb3380a" data-element_type="container">
             <div class="e-con-inner">
                <div class="elementor-element elementor-element-71928a8 elementor-widget elementor-widget-section-title" data-id="71928a8" data-element_type="widget" data-widget_type="section-title.default">
@@ -48,127 +50,108 @@
                      </div>
                   </div>
                </div>
-               <div class="elementor-element elementor-element-1158e34 e-con-full e-flex e-con e-child" data-id="1158e34" data-element_type="container">
-                  <div class="elementor-element elementor-element-350e90d e-con-full e-flex e-con e-child" data-id="350e90d" data-element_type="container">
-                     <div class="elementor-element elementor-element-2d92842 elementor-widget elementor-widget-tp-pricing-table" data-id="2d92842" data-element_type="widget" data-widget_type="tp-pricing-table.default">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           <div class="swiper myPlanSwiper elementor-element elementor-element-1158e34 e-con-full e-flex e-con e-child">
+    <div class="swiper-wrapper">
+        @foreach ($plans as $plan)
+            <div class="swiper-slide">
+                <div class="elementor-element e-con-full e-flex e-con e-child" data-id="plan-{{ $plan->id }}" data-element_type="container">
+                    <div class="elementor-element elementor-widget elementor-widget-tp-pricing-table" data-id="pricing-{{ $plan->id }}" data-element_type="widget" data-widget_type="tp-pricing-table.default">
                         <div class="elementor-widget-container">
-                           <div class="tp-price-item text-center  ">
-                              <div class="tp-price-top mb-15">
-                                 <h5 class="tp-price-number tp-el-box-ammount"><i>&#036;</i>49</h5>
-                                 <span class="tp-el-header-title">STANDARD PLAN</span>
-                              </div>
-                              <div class="tp-price-list mb-15">
-                                 <ul>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 10 Ads Listings</span>
-                                       <i class="fal fa-trophy-alt"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Featured For 1 Day</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 24/7 Online Support</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Edit Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Upload Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <div class="tp-price-button">
-                                 <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-btn-border w-100 tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
-                              </div>
-                           </div>
+                            <div class="tp-price-item text-center {{ $loop->first ? 'active' : '' }} {{ $plan->badge ? 'border-theme' : '' }}">
+                                @if ($plan->badge)
+                                    <div class="tp-price-badge tp-el-badge">
+                                        <span>{{ $plan->badge }}</span>
+                                    </div>
+                                @endif
+
+                                <div class="tp-price-top mb-15">
+                                    <h6 class="tp-price-number tp-el-box-ammount" style="font-size: 30px;">
+                                        <i>&#036;</i>{{ number_format($plan->min_amount, 2) }} - {{ number_format($plan->max_amount, 2) }}
+                                    </h6>
+                                    <span class="tp-el-header-title">{{ strtoupper($plan->name) }}</span>
+                                </div>
+
+                                <div class="tp-price-list mb-15">
+                                    <ul>
+                                        <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">
+                                                Ads Range: {{ number_format($plan->min_amount) }} - {{ number_format($plan->max_amount) }}
+                                            </span>
+                                            <i class="fal fa-check"></i>
+                                        </li>
+                                        <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">Weekly Interest: {{ $plan->weekly_interest }}%</span>
+                                            <i class="fal fa-check"></i>
+                                        </li>
+                                        <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">24/7 Online Support</span>
+                                            <i class="fal fa-check"></i>
+                                        </li>
+                                        <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">Limited Edit Option</span>
+                                            <i class="fal fa-check"></i>
+                                        </li>
+                                        <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">Limited Upload Option</span>
+                                            <i class="fal fa-check"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div  class="tp-price-button">
+                                    <a style="color: pink; href="#" class="tp-btn-border w-100 tp-el-box-btn">
+                                        Subscribe Now <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <div class="elementor-element elementor-element-73ea623 e-con-full e-flex e-con e-child" data-id="73ea623" data-element_type="container">
-                     <div class="elementor-element elementor-element-93dd30b elementor-widget elementor-widget-tp-pricing-table" data-id="93dd30b" data-element_type="widget" data-widget_type="tp-pricing-table.default">
-                        <div class="elementor-widget-container">
-                           <div class="tp-price-item text-center active ">
-                              <div class="tp-price-top mb-15">
-                                 <h5 class="tp-price-number tp-el-box-ammount"><i>&#036;</i>199</h5>
-                                 <span class="tp-el-header-title">STANDARD PLAN</span>
-                              </div>
-                              <div class="tp-price-list mb-15">
-                                 <ul>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 15 Ads Listings</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Featured For 1 Day</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 24/7 Online Support</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Edit Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Upload Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <div class="tp-price-button">
-                                 <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-btn-border w-100 tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="elementor-element elementor-element-a59be17 e-con-full e-flex e-con e-child" data-id="a59be17" data-element_type="container">
-                     <div class="elementor-element elementor-element-391903b elementor-widget elementor-widget-tp-pricing-table" data-id="391903b" data-element_type="widget" data-widget_type="tp-pricing-table.default">
-                        <div class="elementor-widget-container">
-                           <div class="tp-price-item text-center  border-theme">
-                              <div class="tp-price-badge tp-el-badge">
-                                 <span>Recommended</span>
-                              </div>
-                              <div class="tp-price-top mb-15">
-                                 <h5 class="tp-price-number tp-el-box-ammount"><i>&#036;</i>499</h5>
-                                 <span class="tp-el-header-title">STANDARD PLAN</span>
-                              </div>
-                              <div class="tp-price-list mb-15">
-                                 <ul>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 30 Ads Listings</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Featured For 1 Day</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> 24/7 Online Support</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Edit Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                    <li class="tp-el-box-list">
-                                       <span class="tp-el-feature-title"> Limited Upload Option</span>
-                                       <i class="fal fa-check"></i>
-                                    </li>
-                                 </ul>
-                              </div>
-                              <div class="tp-price-button">
-                                 <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-btn-border w-100 tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-         </div>
+        @endforeach
+    </div>
+
+    {{-- Optional Navigation Buttons --}}
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+<!-- Swiper Scripts -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    new Swiper('.myPlanSwiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            }
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    });
+</script>

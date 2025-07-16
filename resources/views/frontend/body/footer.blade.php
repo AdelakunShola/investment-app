@@ -35,7 +35,7 @@
                                              <a href="https://wp.aqlova.com/listbnb"><img src="{{ asset('frontend/wp-content/uploads/2024/05/logo-black.png') }}" alt="logo"></a>
                                           </div>
                                           <div class="tp-footer-content pb-10">
-                                             <p><i>Listbnb</i> a Largest Classified Listing Marketplace
+                                             <p><i>ShareAlux</i> a Largest Classified Listing Marketplace
                                                 offers perfect WordPress Ads classified Themes to build your own classified websites.
                                              </p>
                                           </div>

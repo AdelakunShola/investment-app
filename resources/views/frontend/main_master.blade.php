@@ -11,6 +11,39 @@
       <style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
       <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
     
+
+  
+
+
+
+@isset($ad)
+    @php
+        $shareUrl = route('ad.details', $ad->id);
+    @endphp
+
+    <!-- Open Graph for Facebook, LinkedIn, etc. -->
+    <meta property="og:url" content="{{ $shareUrl }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ $ad->title ?? 'Default Ad Title' }}" />
+    <meta property="og:description" content="{{ Str::limit(strip_tags($ad->description), 150) }}" />
+    <meta property="og:image" content="{{ asset($ad->image) }}" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $ad->title ?? 'Default Ad Title' }}" />
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($ad->description), 150) }}" />
+    <meta name="twitter:image" content="{{ asset($ad->image) }}" />
+@endisset
+
+
+
+
+
+
+
+
+
+
       <style id='wp-emoji-styles-inline-css' type='text/css'>
          img.wp-smiley, img.emoji {
          display: inline !important;
@@ -96,6 +129,8 @@
       <link rel="apple-touch-icon" href="../wp-content/uploads/2024/05/favicon-1.png" />
       <meta name="msapplication-TileImage" content="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/favicon-1.png" />
       <style id="kirki-inline-styles"></style>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
    </head>
    <body class="wp-singular page-template page-template-elementor_header_footer page page-id-15 wp-custom-logo wp-embed-responsive wp-theme-listbnb breadcrumb-blog rtcl-no-js translatepress-en_US no-sidebar elementor-default elementor-template-full-width elementor-kit-10 elementor-page elementor-page-15">
     
