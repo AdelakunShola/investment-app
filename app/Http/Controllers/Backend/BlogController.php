@@ -24,7 +24,7 @@ class BlogController extends Controller
         return view('backend.blog.create');
     }
 
-    public function Blogstore(Request $request)
+public function Blogstore(Request $request)
 {
     $data = $request->all();
 
@@ -39,6 +39,9 @@ class BlogController extends Controller
     } else {
         $data['specifications'] = json_encode([]);
     }
+
+    // Ensure 'featured' is explicitly set (true if checked, false if not)
+    $data['featured'] = $request->has('featured');
 
     // Create the ad
     Blog::create($data);
@@ -61,16 +64,22 @@ public function Blogupdate(Request $request, $id)
 
     $data = $request->except(['_token', '_method']);
 
+    // Handle image upload
     if ($request->hasFile('image')) {
         $data['image'] = $request->file('image')->store('luxury_ads', 'public');
     }
 
+    // Encode specifications
     $data['specifications'] = json_encode($request->input('specifications', []));
+
+    // Ensure 'featured' is explicitly set (true if checked, false if not)
+    $data['featured'] = $request->has('featured');
 
     $ad->update($data);
 
     return redirect()->route('admin.luxury_ads.index')->with('success', 'Ad updated successfully.');
 }
+
 
 
 public function Blogdestroy($id)

@@ -81,6 +81,16 @@
                                 <textarea name="description" class="form-textarea" rows="5" placeholder="Describe the item..."></textarea>
                             </div>
 
+
+                            <div class="site-input-groups mb-3">
+    <label class="box-input-label d-block">Feature this Ad?</label>
+    <label class="d-inline-flex align-items-center">
+        <input type="checkbox" name="featured" value="1" class="me-2">
+        <span>Yes, mark as featured</span>
+    </label>
+</div>
+
+
                             <div class="action-btns">
                                 <button type="submit" class="site-btn-sm primary-btn me-2">
                                     <i class="lucide lucide-check"></i> Create Ad
