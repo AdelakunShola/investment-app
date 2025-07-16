@@ -1,79 +1,86 @@
- <section class="get-section padding-top padding-bottom">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-10 col-lg-8">
-                        <div class="section-header">
-                            <span class="cate">get to know</span>
-                            <h2 class="title">how we work?</h2>
-                            <p>
-                                Follow these simple steps and make profit!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hover-tab">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 d-lg-block d-none">
-                            <div class="hover-tab-area">
-                                <div class="tab-area">
-                                    <div class="tab-item active first">
-                                        <img src="assets/images/how/how01.png" alt="how">
-                                    </div>
-                                    <div class="tab-item second">
-                                        <img src="assets/images/how/how02.png" alt="how">
-                                    </div>
-                                    <div class="tab-item third">
-                                        <img src="assets/images/how/how03.png" alt="how">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-9">
-                            <div class="hover-tab-menu">
-                                <ul class="tab-menu">
-                                    <li class="active">
-                                        <div class="menu-thumb">
-                                            <span>
-                                                01
-                                            </span>
-                                        </div>
-                                        <div class="menu-content">
-                                            <h5 class="title">Instant  registration</h5>
-                                            <p>
-                                                Click <a href="#0">Sign Up</a> to fill the blank, our 256 SSL will Protect your privacy.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="menu-thumb">
-                                            <span>
-                                                02
-                                            </span>
-                                        </div>
-                                        <div class="menu-content">
-                                            <h5 class="title">MAKE AN INVEST</h5>
-                                            <p>
-                                                <a href="#0">Login</a> your account to click invest to start to earn the profit.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="menu-thumb">
-                                            <span>
-                                                03
-                                            </span>
-                                        </div>
-                                        <div class="menu-content">
-                                            <h5 class="title">get profit</h5>
-                                            <p>
-                                                You will get your profit on your profile, also you will get Instant Payment
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="elementor-element elementor-element-2529805 e-con-full elementor-hidden-mobile_extra elementor-hidden-mobile e-flex e-con e-parent" data-id="2529805" data-element_type="container">
+            <div class="elementor-element elementor-element-126e11e elementor-widget elementor-widget-big-title" data-id="126e11e" data-element_type="widget" data-widget_type="big-title.default">
+               <div class="elementor-widget-container">
+                  <div class="tp-choose-big-text d-lg-block position-static ele-content-align">
+                     <span class="tp-el-title">CHOOSE</span>
+                  </div>
+               </div>
             </div>
-        </section>
+         </div>
+         <div class="elementor-element elementor-element-8bc14c9 e-flex e-con-boxed e-con e-parent" data-id="8bc14c9" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+            <div class="e-con-inner">
+               <div class="elementor-element elementor-element-b45b553 e-con-full e-flex e-con e-child" data-id="b45b553" data-element_type="container">
+                  <div class="elementor-element elementor-element-06c026b elementor-widget elementor-widget-section-title" data-id="06c026b" data-element_type="widget" data-widget_type="section-title.default">
+                     <div class="elementor-widget-container">
+                        <div class="tp-fea-ads-title-box ele-content-align">
+                           <h2 class="tp-section-title-2 pb-5 tp-el-title">
+                              Why choose  
+                              <span class="p-relative">
+                                 us 
+                                 <span class="tp-section-title-shape">
+                                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M21.2132 42.7799L35.7089 36.0624" stroke="#F50963" stroke-width="2" stroke-linecap="round" />
+                                       <path d="M3.53575 25.1023L11.6675 9.89954" stroke="#F50963" stroke-width="2" stroke-linecap="round" />
+                                       <path d="M12.7282 34.2947L33.5879 12.0209" stroke="#F50963" stroke-width="2" stroke-linecap="round" />
+                                    </svg>
+                                 </span>
+                              </span>
+                           </h2>
+                           <p class="tp-el-content">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text. Many desktop publishing packages and web page editors now...</p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="elementor-element elementor-element-5aa8dbc e-flex e-con-boxed e-con e-child" data-id="5aa8dbc" data-element_type="container">
+                     <div class="e-con-inner">
+                        <div class="elementor-element elementor-element-0b1fa98 e-con-full e-flex e-con e-child" data-id="0b1fa98" data-element_type="container">
+                           <div class="elementor-element elementor-element-81092a9 elementor-widget elementor-widget-tp-text" data-id="81092a9" data-element_type="widget" data-widget_type="tp-text.default">
+                              <div class="elementor-widget-container">
+                                 <div class="tp-choose-text">
+                                    <span class="tp-el-title">Get unlimited listing &amp;<br>inspire. Level up your<br> design hustle.</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="elementor-element elementor-element-980143a e-con-full e-flex e-con e-child" data-id="980143a" data-element_type="container">
+                           <div class="elementor-element elementor-element-f9e3200 elementor-widget elementor-widget-tp-text" data-id="f9e3200" data-element_type="widget" data-widget_type="tp-text.default">
+                              <div class="elementor-widget-container">
+                                 <div class="tp-choose-text">
+                                    <span class="tp-el-title">24/7 our support engineer <br> ready to help you out.</span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="elementor-element elementor-element-8c32125 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="8c32125" data-element_type="widget" data-widget_type="divider.default">
+                     <div class="elementor-widget-container">
+                        <div class="elementor-divider">
+                           <span class="elementor-divider-separator">
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="elementor-element elementor-element-1375291 elementor-widget elementor-widget-tp-text-link" data-id="1375291" data-element_type="widget" data-widget_type="tp-text-link.default">
+                     <div class="elementor-widget-container">
+                        <div class="tp-choose-link">
+                           <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-el-btn">Get Started Now</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="elementor-element elementor-element-e233e3b e-con-full e-flex e-con e-child" data-id="e233e3b" data-element_type="container">
+                  <div class="elementor-element elementor-element-9d36571 elementor-widget elementor-widget-tp-video-popup" data-id="9d36571" data-element_type="widget" data-widget_type="tp-video-popup.default">
+                     <div class="elementor-widget-container">
+                        <div class="tp-choose-thumb-box p-relative text-end">
+                           <div class="tp-choose-thumb">
+                              <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/04/thumb-1.jpg') }}" alt="">
+                           </div>
+                           <div class="tp-choose-play-icon">
+                              <a class="popup-video" href="https://www.youtube.com/watch?v=_RpLvsA1SNM"><i class="fa-solid fa-play"></i></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>

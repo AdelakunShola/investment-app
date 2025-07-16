@@ -27,10 +27,12 @@
         @include('frontend.home.how')
         <!--=======How-Section Ends Here=======-->
 
+               @include('frontend.home.testimonial')
+
 
         <!--=======Check-Section Starts Here=======-->
        
-         @include('frontend.home.contact')
+         @include('frontend.home.brand')
         <!--=======Check-Section Ends Here=======-->
 
 
@@ -40,21 +42,10 @@
         <!--=======Offer-Section Ends Here=======-->
 
 
-        <!--=======Proit-Section Starts Here=======-->
-      
-         @include('frontend.home.profit')
-        <!--=======Proit-Section Ends Here=======-->
-
-
-        <!--=======Latest-Transaction-Section Starts Here=======-->
-        
-         @include('frontend.home.transaction')
-        <!--=======Latest-Transaction-Section Ends Here=======-->
-
 
 
         <!--=======Check-Section Starts Here=======-->
-        @include('frontend.home.testimonial')
+ 
         <!--=======Check-Section Ends Here=======-->
 
 
