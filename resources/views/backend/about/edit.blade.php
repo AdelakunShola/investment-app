@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="site-input-groups mb-3">
-                                <label class="box-input-label">Short Description:</label>
+                                <label class="box-input-label">Footer Description:</label>
                                 <textarea name="short_description" class="form-textarea" rows="3">{{ $about->short_description }}</textarea>
                             </div>
 

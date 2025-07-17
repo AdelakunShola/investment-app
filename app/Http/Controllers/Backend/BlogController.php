@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -135,6 +136,16 @@ public function shareAdReward(Request $request)
 {
     $user = Auth::user();
 
+    // Properly load investmentPlan relationship
+    $user->loadMissing('investmentPlan');
+
+    if (!$user) {
+        Log::warning('ShareAdReward: Unauthenticated access attempt.');
+        return response()->json(['status' => false, 'message' => 'User not authenticated.'], 401);
+    }
+
+    Log::info("ShareAdReward: User {$user->id} attempting to share ad.");
+
     // Check if user already earned today
     $alreadyEarned = Transaction::where('user_id', $user->id)
         ->whereDate('created_at', Carbon::today())
@@ -144,23 +155,38 @@ public function shareAdReward(Request $request)
         ->exists();
 
     if ($alreadyEarned) {
-        return response()->json(['status' => false, 'message' => 'You have already earned from ad sharing today.']);
+        Log::info("ShareAdReward: User {$user->id} already earned today.");
+        return response()->json([
+            'status' => false,
+            'message' => 'You have already earned from ad sharing today.'
+        ]);
     }
 
-    // Determine reward amount
+    // Default reward
+    $dailyReward = 0.50;
+
+    // Calculate reward from investment plan if available
     if ($user->investmentPlan) {
         $baseAmount = $user->investmentPlan->amount;
         $weeklyPercent = $user->investmentPlan->weekly_interest;
 
-        $weeklyReward = ($weeklyPercent / 100) * $baseAmount;
-        $dailyReward = round($weeklyReward / 7, 2);
+        Log::info("ShareAdReward: Loaded plan for user {$user->id} - amount: {$baseAmount}, interest: {$weeklyPercent}");
+
+        if ($baseAmount > 0 && $weeklyPercent > 0) {
+            $weeklyReward = ($weeklyPercent / 100) * $baseAmount;
+            $dailyReward = round($weeklyReward / 7, 2);
+            Log::info("ShareAdReward: Calculated daily reward of ₦{$dailyReward} for user {$user->id}.");
+        } else {
+            Log::warning("ShareAdReward: Invalid plan values for user {$user->id}. Using default reward ₦0.50.");
+        }
     } else {
-        $dailyReward = 0.50;
+        Log::info("ShareAdReward: No investment plan found. Using default reward ₦0.50 for user {$user->id}.");
     }
 
-    // Credit user balance (assumes `profit_balance` or similar exists)
+    // Add reward to user's profit balance
     $user->profit_balance += $dailyReward;
     $user->save();
+    Log::info("ShareAdReward: Updated profit_balance for user {$user->id}.");
 
     // Record transaction
     Transaction::create([
@@ -175,10 +201,16 @@ public function shareAdReward(Request $request)
         'pay_amount' => null,
         'manual_field_data' => null,
         'approval_cause' => null,
-        'status' => 'approved', // or 'completed' if you're using statuses
+        'status' => 'approved',
     ]);
 
-    return response()->json(['status' => true, 'message' => 'Reward added successfully.', 'amount' => $dailyReward]);
+    Log::info("ShareAdReward: Transaction recorded for user {$user->id}, amount ₦{$dailyReward}.");
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Reward added successfully.',
+        'amount' => $dailyReward
+    ]);
 }
 
 

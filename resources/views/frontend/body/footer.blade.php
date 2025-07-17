@@ -34,8 +34,7 @@
                                              <a href="{{ route('home') }}"><img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="logo"></a>
                                           </div>
                                           <div class="tp-footer-content pb-10">
-                                             <p><i>ShareAlux</i> a Largest Classified Listing Marketplace
-                                                offers perfect WordPress Ads classified Themes to build your own classified websites.
+                                             <p><i>ShareAlux</i> {{ $about->short_description }}
                                              </p>
                                           </div>
                                           <div class="tp-footer-2-form-box">

@@ -20,10 +20,13 @@ class User extends Authenticatable
     protected $guarded = [];
 
 
-    public function investmentPlan()
+
+public function investmentPlan()
 {
-    return $this->belongsTo(investment_plan::class);
+    return $this->belongsTo(investment_plan::class, 'investment_plan_id');
 }
+
+
 
 
     /**
@@ -98,6 +101,9 @@ public function adShares()
 {
     return $this->hasMany(AdShare::class);
 }
+
+
+
 
 
 

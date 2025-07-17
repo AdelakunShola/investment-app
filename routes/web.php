@@ -133,7 +133,7 @@ Route::put('blog/{id}', [BlogController::class, 'Blogupdate'])->name('admin.blog
 Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name('admin.luxury_ads.destroy');
 
 
-    Route::post('/user/share-ad', [BlogController::class, 'shareAdReward'])->name('user.share.ad')->middleware('auth');
+    
 
     Route::get('/about/edit', [UserController::class, 'editAbout'])->name('about.edit');
     Route::post('/about/update', [UserController::class, 'updateAbout'])->name('admin.about.update');
@@ -190,6 +190,14 @@ Route::get('/user/withdraw', [UserController::class, 'showWithdrawForm'])->name(
 Route::get('/all/user/withdraw', [UserController::class, 'allWithdraw'])->name('user.withdraw.all');
 Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->name('user.withdraw.store');
 
+
+
+
+
+
+
+
+Route::post('/user/share-ad', [BlogController::class, 'shareAdReward'])->name('user.share.ad')->middleware('auth');
 
 
 });
