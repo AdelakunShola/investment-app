@@ -20,9 +20,9 @@
                                  </div>
                                  <h1 class="tp-hero-3-title mb-45 tp-el-title" data-wow-duration=".9s" data-wow-delay=".5s">The largest <br> site for buying &amp; selling in NYC.</h1>
                                  <div class="tp-hero-3-button">
-                                    <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+                                    <a href="{{ route('contact.us') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
                                     </a>
-                                    <a href="https://wp.aqlova.com/listbnb/listing-form/" target="_self" rel="nofollow" class="tp-btn-border hover-2 tp-el-btn-2">List Your Ads                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+                                    <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border hover-2 tp-el-btn-2">List Your Ads                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
                                     </a>
                                  </div>
                               </div>

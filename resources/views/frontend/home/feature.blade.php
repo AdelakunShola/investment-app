@@ -16,7 +16,7 @@
                               </span>
                            </span>
                         </h2>
-                        <p class="tp-el-content">Listbnb is a platform on which you can buy and sell almost everything!</p>
+                        <p class="tp-el-content">Sharealux is a platform on which you can buy and sell almost everything!</p>
                      </div>
                   </div>
                </div>
@@ -59,8 +59,12 @@
                         </div>
                     </div>
                     <div class="tp-fea-ads-2-price-icon">
-                       <a href="#" title="Share this Ad">
-        <i class="fas fa-share-alt"></i>
+                       <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" 
+   target="_blank" title="Share on Facebook">
+      <i class="fas fa-share-alt"></i>
+
+
+     
         <span class="favourite-label">Share</span>
     </a>
                     </div>
@@ -77,7 +81,7 @@
                </div>
                <div class="elementor-element elementor-element-17ad1a6 elementor-widget elementor-widget-tp-button" data-id="17ad1a6" data-element_type="widget" data-widget_type="tp-button.default">
                   <div class="elementor-widget-container">
-                     <a href="https://wp.aqlova.com/listbnb/listings/" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">More Items<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
+                     <a href="{{ route('frontend.all.ad') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">More Items<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
                   </div>
                </div>
             </div>

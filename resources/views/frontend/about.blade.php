@@ -2,21 +2,22 @@
 @section('main')
 <!-- wrapper-box start -->
 <!-- breadcrumb area start -->
-      <div class="breadcrumb__area black-bg breadcrumb__height breadcrumb__border">
-         <div class="container">
-            <div class="row">
-               <div class="col-xxl-12">
-                  <div class="breadcrumb__content text-center z-index">
-                     <div class="breadcrumb__list">
-                        <span><a href="{{ route('home') }}">Home</a></span>
-                        &nbsp;/&nbsp;                        <span><a href="{{ route('about.us') }}">About-us</a></span>
-                       
-                     </div>
+       <div class="breadcrumb__area breadcrumb__overlay breadcrumb__bg p-relative fix" style="background-image:url(https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/breadcurmb.jpg); ">
+      <div class="container">
+         <div class="row">
+            <div class="col-xxl-12">
+               <div class="breadcrumb__content z-index">
+                                 <div class="breadcrumb__list mb-10">
+                    <!-- Breadcrumb NavXT 7.4.1 -->
+<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to ListBnb." href="{{ route('home') }}" class="home"><span property="name">Home</span></a><meta property="position" content="1"></span><span class="dvdr"><i class="fa-solid fa-angle-right"></i></span><span property="itemListElement" typeof="ListItem"><span property="name" class="post post-page current-item">About-us</span><meta property="url" content=""><meta property="position" content="2"></span>                  </div>
+                                    <div class="breadcrumb__section-title-box">
+                     <h3 class="breadcrumb__title">About-us</h3>
                   </div>
                </div>
             </div>
          </div>
       </div>
+     </div>
 <!-- breadcrumb area end -->
 <div data-elementor-type="wp-page" data-elementor-id="1872" class="elementor elementor-1872">
   <div class="elementor-element elementor-element-c0a19c5 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="c0a19c5" data-element_type="container">
@@ -225,7 +226,7 @@
    </div>
 
    <!-- LEFT-ALIGNED DESCRIPTION BELOW -->
-   <p style="text-align: left; margin-top: 10px; margin-left: 60px;">About description</p>
+   <p style="text-align: left; margin-top: 10px; margin-left: 60px;"> {{ $about->full_description ?? 'No about content available.' }}</p>
 
 </div>
 

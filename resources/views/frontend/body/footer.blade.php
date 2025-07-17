@@ -1,3 +1,9 @@
+ @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
+ 
  <div data-elementor-type="wp-post" data-elementor-id="3135" class="elementor elementor-3135">
         <div class="elementor-element elementor-element-f7e0f02 e-flex e-con-boxed e-con e-parent"
      data-id="f7e0f02" 
@@ -20,19 +26,12 @@
                                     <p role="status" aria-live="polite" aria-atomic="true"></p>
                                     <ul></ul>
                                  </div>
-                                 <form action="https://wp.aqlova.com/listbnb/home-3/#wpcf7-f3166-o3" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                                    <div style="display: none;">
-                                       <input type="hidden" name="_wpcf7" value="3166" />
-                                       <input type="hidden" name="_wpcf7_version" value="6.0.6" />
-                                       <input type="hidden" name="_wpcf7_locale" value="en_US" />
-                                       <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f3166-o3" />
-                                       <input type="hidden" name="_wpcf7_container_post" value="0" />
-                                       <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-                                    </div>
+                                 <form action=""  class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
+                                    
                                     <div class="tp-footer-style-2">
                                        <div class="tp-footer-left text-md-center">
                                           <div class="tp-footer-logo mb-25">
-                                             <a href="https://wp.aqlova.com/listbnb"><img src="{{ asset('frontend/wp-content/uploads/2024/05/logo-black.png') }}" alt="logo"></a>
+                                             <a href="{{ route('home') }}"><img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="logo"></a>
                                           </div>
                                           <div class="tp-footer-content pb-10">
                                              <p><i>ShareAlux</i> a Largest Classified Listing Marketplace
@@ -73,7 +72,7 @@
                         <div class="tp-footer-style-2">
                            <div class="tp-footer-social ele-content-align">
                               <span class="tp-el-title">Follow Us</span>
-                              <a target="_blank" rel="noopener"  href="https://facebook.com/" class="tp-el-social-link elementor-repeater-item-e542457"><i class="fab fa-facebook" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="https://linkedin.com/" class="tp-el-social-link elementor-repeater-item-4596138"><i class="fab fa-linkedin" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="https://twitter.com/" class="tp-el-social-link elementor-repeater-item-790aabb"><i class="fab fa-twitter" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="https://youtube.com/" class="tp-el-social-link elementor-repeater-item-e798d3e"><i class="fab fa-youtube" aria-hidden="true"></i></a>            
+                              <a target="_blank" rel="noopener"  href="{{ $about->facebook }}" class="tp-el-social-link elementor-repeater-item-e542457"><i class="fab fa-facebook" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="{{ $about->linkedin }}" class="tp-el-social-link elementor-repeater-item-4596138"><i class="fab fa-linkedin" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="{{ $about->twitter }}" class="tp-el-social-link elementor-repeater-item-790aabb"><i class="fab fa-twitter" aria-hidden="true"></i></a><a target="_blank" rel="noopener"  href="{{ $about->instagram }}" class="tp-el-social-link elementor-repeater-item-e798d3e"><i class="fab fa-instagram" aria-hidden="true"></i></a>            
                            </div>
                         </div>
                      </div>
@@ -86,7 +85,7 @@
                <div class="elementor-element elementor-element-44b4825 elementor-widget elementor-widget-tp-copyright" data-id="44b4825" data-element_type="widget" data-widget_type="tp-copyright.default">
                   <div class="elementor-widget-container">
                      <div class="tp-copyright-2-text text-center wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
-                        <p>Copyright &amp; Design by                                    <a href="#" target="_blank" rel="nofollow" class="tp-el-btn">@ThemePure</a>
+                        <p>Copyright &amp; Design<a href="webmotionhq.com" target="_blank" rel="nofollow" class="tp-el-btn" style="color: white">WebmotionHq</a>
                            - 2025
                         </p>
                      </div>

@@ -73,6 +73,28 @@
 
 
                             <div class="site-input-groups mb-3">
+                                <label class="box-input-label">Facebook:</label>
+                                <textarea name="facebook" class="form-textarea" rows="3">{{ $about->facebook }}</textarea>
+                            </div>
+
+                            <div class="site-input-groups mb-3">
+                                <label class="box-input-label">Linkedin:</label>
+                                <textarea name="linkedin" class="form-textarea" rows="3">{{ $about->linkedin }}</textarea>
+                            </div>
+
+                             <div class="site-input-groups mb-3">
+                                <label class="box-input-label">Twitter:</label>
+                                <textarea name="twitter" class="form-textarea" rows="3">{{ $about->twitter }}</textarea>
+                            </div>
+
+
+                            <div class="site-input-groups mb-3">
+                                <label class="box-input-label">Instagram:</label>
+                                <textarea name="instagram" class="form-textarea" rows="3">{{ $about->instagram }}</textarea>
+                            </div>
+
+
+                            <div class="site-input-groups mb-3">
                                 <label class="box-input-label">Current Image:</label><br>
                                 @if($about->image)
                                     <img src="{{ asset($about->image) }}" alt="About Image" width="150">

@@ -23,10 +23,11 @@ class UserController extends Controller
 
 
     public function Index(){
+        $about = About::first();
         $plans = investment_plan::all();
 $featuredAds = Blog::where('featured', true)->latest()->take(8)->get();
 
-      return view('frontend.index', compact('featuredAds','plans'));
+      return view('frontend.index', compact('featuredAds','plans','about'));
 
     }//end method
 
@@ -674,7 +675,15 @@ public function storeWithdraw(Request $request)
 
 
 
+public function Contactus() {
+    $contact = About::first();
+    return view('frontend.contact', compact('contact'));
+}
 
+public function Plan() {
+    $plans = investment_plan::all(); // fetch all plans, not just the first
+    return view('frontend.plan', compact('plans'));
+}
 
 
 public function Allad() {
@@ -692,7 +701,8 @@ public function showDetails($id)
 
 public function Aboutus()
 {
-    return view('frontend.about');
+    $about = About::first();
+    return view('frontend.about', compact('about'));
 }
 
 

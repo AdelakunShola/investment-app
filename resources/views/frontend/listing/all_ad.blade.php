@@ -7,7 +7,7 @@
          <div class="col-xxl-12">
             <div class="breadcrumb__content text-center z-index">
                <div class="breadcrumb__list">
-                  <span><a href="https://wp.aqlova.com/listbnb">Home</a></span>
+                  <span><a href="{{ route('home') }}">Home</a></span>
                   &nbsp;/&nbsp;Listings                                                <span></span>
                </div>
             </div>
@@ -77,7 +77,8 @@
                                              </div>
                                           </div>
                                          <div class="tp-fea-ads-2-price-icon">
-    <a href="#" title="Share this Ad">
+     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" 
+   target="_blank" title="Share on Facebook">
         <i class="fas fa-share-alt"></i>
         <span class="favourite-label">Share</span>
     </a>

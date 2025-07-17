@@ -3,7 +3,7 @@
                <div class="elementor-element elementor-element-db567f3 elementor-widget elementor-widget-big-title" data-id="db567f3" data-element_type="widget" data-widget_type="big-title.default">
                   <div class="elementor-widget-container">
                      <div class="tp-faq-big-text position-static ele-content-align">
-                        <span class="tp-el-title">Listbnb</span>
+                        <span class="tp-el-title" style="font-size: 64px;">Sharealux </span>
                      </div>
                   </div>
                </div>
@@ -15,10 +15,10 @@
                <div class="elementor-element elementor-element-ff145a6 elementor-widget elementor-widget-section-title" data-id="ff145a6" data-element_type="widget" data-widget_type="section-title.default">
                   <div class="elementor-widget-container">
                      <div class="tp-feature-title-box ele-content-align">
-                        <h4 class="tp-section-title pb-5 tp-el-title">About <i>Listbnb</i>, 
+                        <h4 class="tp-section-title pb-5 tp-el-title">About <i>Sharealux </i>, 
                            The Largest 
                            <span class="p-relative">  Marketplace <span class="tp-section-title-shape-4">
-                           <img decoding="async" src="" alt=""> </span> </span> <br> Marketplace in <b>United States.</b>
+                           <img decoding="async" src="" alt=""> </span> </span> <br> Marketplace.
                         </h4>
                      </div>
                   </div>
@@ -50,11 +50,11 @@
                                  </div>
                                  <div class="tp-feature-content">
                                     <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Audio &amp; Sound Systems<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
                                  </div>
                               </div>
                            </div>
@@ -76,11 +76,11 @@
                                  </div>
                                  <div class="tp-feature-content">
                                     <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">15,300 ads <span> in Apartments</span></h4>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Audio &amp; Sound Systems<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
                                  </div>
                               </div>
                            </div>
@@ -105,11 +105,11 @@
                                  </div>
                                  <div class="tp-feature-content">
                                     <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Vehicles</span></h4>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="https://wp.aqlova.com/listbnb/listings/">Audio &amp; Sound Systems<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
+                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
                                  </div>
                               </div>
                            </div>

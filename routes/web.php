@@ -135,8 +135,8 @@ Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name(
 
     Route::post('/user/share-ad', [BlogController::class, 'shareAdReward'])->name('user.share.ad')->middleware('auth');
 
-    Route::get('/admin/about/edit', [UserController::class, 'editAbout'])->name('about.edit');
-    Route::post('/admin/about/update', [UserController::class, 'updateAbout'])->name('admin.about.update');
+    Route::get('/about/edit', [UserController::class, 'editAbout'])->name('about.edit');
+    Route::post('/about/update', [UserController::class, 'updateAbout'])->name('admin.about.update');
 
 
 });
@@ -202,6 +202,8 @@ Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->n
 Route::get('/ad/listing', [UserController::class, 'Allad'])->name('frontend.all.ad');
 Route::get('/ad/listing/{id}', [UserController::class, 'showDetails'])->name('ad.details');
 Route::get('/about-us', [UserController::class, 'Aboutus'])->name('about.us');
+Route::get('/contact-us', [UserController::class, 'Contactus'])->name('contact.us');
+Route::get('/plan', [UserController::class, 'Plan'])->name('plan');
 
 
 require __DIR__.'/auth.php';

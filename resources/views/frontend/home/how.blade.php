@@ -63,7 +63,7 @@
                   <div class="elementor-element elementor-element-1375291 elementor-widget elementor-widget-tp-text-link" data-id="1375291" data-element_type="widget" data-widget_type="tp-text-link.default">
                      <div class="elementor-widget-container">
                         <div class="tp-choose-link">
-                           <a href="https://wp.aqlova.com/listbnb/contact/" target="_self" rel="nofollow" class="tp-el-btn">Get Started Now</a>
+                           <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-el-btn">Get Started Now</a>
                         </div>
                      </div>
                   </div>
@@ -75,9 +75,7 @@
                            <div class="tp-choose-thumb">
                               <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/04/thumb-1.jpg') }}" alt="">
                            </div>
-                           <div class="tp-choose-play-icon">
-                              <a class="popup-video" href="https://www.youtube.com/watch?v=_RpLvsA1SNM"><i class="fa-solid fa-play"></i></a>
-                           </div>
+                          
                         </div>
                      </div>
                   </div>

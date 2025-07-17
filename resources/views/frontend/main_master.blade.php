@@ -124,10 +124,10 @@
          }
          }
       </style>
-      <link rel="icon" href="../wp-content/uploads/2024/05/favicon-1.png" sizes="32x32" />
-      <link rel="icon" href="../wp-content/uploads/2024/05/favicon-1.png" sizes="192x192" />
-      <link rel="apple-touch-icon" href="../wp-content/uploads/2024/05/favicon-1.png" />
-      <meta name="msapplication-TileImage" content="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/favicon-1.png" />
+      <link rel="icon" href="{{ asset('frontend/wp-content/uploads/2024/05/favicon-1.jpg') }}" sizes="32x32" />
+      <link rel="icon" href="{{ asset('frontend/wp-content/uploads/2024/05/favicon-1.jpg') }}" sizes="192x192" />
+      <link rel="apple-touch-icon" href="{{ asset('frontend/wp-content/uploads/2024/05/favicon-1.jpg') }}" />
+      <meta name="msapplication-TileImage" content="{{ asset('frontend/wp-content/uploads/2024/05/favicon-1.jpg') }}" />
       <style id="kirki-inline-styles"></style>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 

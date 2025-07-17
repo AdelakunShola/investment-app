@@ -25,7 +25,7 @@
                      <div class="elementor-element elementor-element-f0f799b e-con-full e-flex e-con e-child" data-id="f0f799b" data-element_type="container">
                         <div class="elementor-element elementor-element-7761ee6 elementor-widget elementor-widget-tp-button" data-id="7761ee6" data-element_type="widget" data-widget_type="tp-button.default">
                            <div class="elementor-widget-container">
-                              <a href="https://wp.aqlova.com/listbnb/listing-form/" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">List Your Ads<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
+                              <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">List Your Ads<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
                            </div>
                         </div>
                      </div>
@@ -83,7 +83,7 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Listbnb is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Alonso D. Dowson</span>
@@ -124,7 +124,7 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Listbnb is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Rosalina D. William</span>
@@ -152,7 +152,7 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Listbnb is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Rosalina D. William</span>
@@ -204,7 +204,7 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Listbnb is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Miranda H. Halim</span>

@@ -1,4 +1,37 @@
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@extends('frontend.main_master')    
+@section('main')
+
+
+
+
+
+
+
+   
+
+   <!-- wrapper-box start -->
+       <!-- breadcrumb area start -->
+    <div class="breadcrumb__area breadcrumb__overlay breadcrumb__bg p-relative fix" style="background-image:url(https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/breadcurmb.jpg); ">
+      <div class="container">
+         <div class="row">
+            <div class="col-xxl-12">
+               <div class="breadcrumb__content z-index">
+                                 <div class="breadcrumb__list mb-10">
+                    <!-- Breadcrumb NavXT 7.4.1 -->
+<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to ListBnb." href="{{ route('home') }}" class="home"><span property="name">Home</span></a><meta property="position" content="1"></span><span class="dvdr"><i class="fa-solid fa-angle-right"></i></span><span property="itemListElement" typeof="ListItem"><span property="name" class="post post-page current-item">Plans</span><meta property="url" content=""><meta property="position" content="2"></span>                  </div>
+                                    <div class="breadcrumb__section-title-box">
+                     <h3 class="breadcrumb__title">Plans</h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+     </div>
+   
+     
+
+
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <div class="elementor-element elementor-element-fb3380a e-flex e-con-boxed e-con e-parent" data-id="fb3380a" data-element_type="container">
             <div class="e-con-inner">
@@ -43,7 +76,7 @@
                            </div>
                            <div class="col-xl-4 col-lg-6 col-md-6">
                               <div class="tp-price-button text-md-end">
-                                 <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
+                                 <a href="" target="_self" rel="nofollow" class="tp-btn-border tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
                               </div>
                            </div>
                         </div>
@@ -155,3 +188,8 @@
         }
     });
 </script>
+
+			
+@endsection
+
+

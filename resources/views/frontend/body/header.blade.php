@@ -1,4 +1,9 @@
-    <div data-elementor-type="wp-post" data-elementor-id="2901" class="elementor elementor-2901">
+     @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
+<div data-elementor-type="wp-post" data-elementor-id="2901" class="elementor elementor-2901">
          <div class="elementor-element elementor-element-d17ec59 e-con-full e-flex e-con e-parent" data-id="d17ec59" data-element_type="container">
             <div class="elementor-element elementor-element-79c0421 elementor-widget elementor-widget-tp-header-04" data-id="79c0421" data-element_type="widget" data-widget_type="tp-header-04.default">
                <div class="elementor-widget-container">
@@ -9,32 +14,50 @@
                            <div class="row align-items-center">
                               <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-6">
                                  <div class="tp-header-logo">
-                                    <a href="https://wp.aqlova.com/listbnb/">
-                                    <img class="tpLogoImg" src="{{ asset('frontend/wp-content/uploads/2024/05/logo.png') }}" alt="">
-                                    </a>
+                                
+                                    <a href="{{ route('home') }}"> 
+    <img class="tpLogoImg" 
+       src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 80px; width: auto;" alt="Logo">
+</a>
                                  </div>
                               </div>
+
                               <div class="col-xxl-7 col-xl-6 col-lg-8 d-none d-lg-block">
-                                 <form action="https://wp.aqlova.com/listbnb/listings/">
-                                    <div class="tp-header-search-box">
-                                       <input type="text" name="s" placeholder="Search with keyword">
-                                       <div class="search-icon">
-                                          <i class="fa-regular fa-magnifying-glass"></i>
-                                       </div>
-                                    </div>
-                                 </form>
-                              </div>
-                              <div class="col-xxl-3 col-xl-4 col-lg-2 col-md-6 col-6">
-                                 <div class="tp-header-right d-flex align-items-center justify-content-end">
-                                    <div class="tp-header-sign-box d-none d-sm-block">
-                                       <a href="https://wp.aqlova.com/listbnb/my-account/" target="_self" rel="nofollow" class="tp-btn-purple tpMenuAccountBtn"><i class="fa-light fa-user"></i>Sign In</a>
-                                    </div>
-                                    <div class="tp-header-btn d-none d-xl-block">
-                                       <a href="https://wp.aqlova.com/listbnb/listing-form/" target="_self" rel="nofollow" class="tp-btn-theme tpMenuAdBtn"><span>Post Your Ad <i
-                                          class="fa-sharp fa-regular fa-arrow-right-long"></i></span></a>
-                                    </div>
-                                 </div>
-                              </div>
+    <form onsubmit="return false;">
+        <div class="tp-header-search-box">
+            <input type="text" name="s" placeholder="Search with keyword" disabled>
+            <div class="search-icon">
+                <i class="fa-regular fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </form>
+</div>
+
+                             <div class="col-xxl-3 col-xl-4 col-lg-2 col-md-6 col-6">
+   <div class="tp-header-right d-flex align-items-center justify-content-end">
+      @auth
+         {{-- If user is logged in --}}
+         <div class="tp-header-sign-box d-none d-sm-block">
+            <a href="{{ route('user.dashboard') }}" class="tp-btn-purple tpMenuAccountBtn">
+               <i class="fa-light fa-user"></i> Dashboard
+            </a>
+         </div>
+      @else
+         {{-- If user is not logged in --}}
+         <div class="tp-header-sign-box d-none d-sm-block">
+            <a href="{{ route('user.login') }}" class="tp-btn-purple tpMenuAccountBtn">
+               <i class="fa-light fa-user"></i> Sign In
+            </a>
+         </div>
+         <div class="tp-header-btn d-none d-xl-block">
+            <a href="{{ route('user.register') }}" class="tp-btn-theme tpMenuAdBtn">
+               <span>Signup <i class="fa-sharp fa-regular fa-arrow-right-long"></i></span>
+            </a>
+         </div>
+      @endauth
+   </div>
+</div>
+
                            </div>
                         </div>
                      </div>
@@ -48,8 +71,8 @@
                                     <div class="tp-header__left d-flex align-items-center">
                                       
                                        <div class="tp-header-logo d-md-none">
-                                          <a href="https://wp.aqlova.com/listbnb/">
-                                          <img class="tpLogoImg" src="{{ asset('frontend/wp-content/uploads/2024/05/logo.png') }}" alt="">
+                                          <a href="{{ route('home') }}">
+                                          <img class="tpLogoImg" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="">
                                           </a>
                                        </div>
                                     </div>
@@ -72,11 +95,11 @@
                                              </li>
 
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26 menu-item-26 nav-item">
-                                                <a title="Plans" href="https://wp.aqlova.com/listbnb/plans/" class="nav-links">Plans</a>
+                                                <a title="Plans" href="{{ route('plan') }}" class="nav-links">Plans</a>
                                              </li>
 
                                              <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-2557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-2557 menu-item-2557 nav-item">
-                                                <a title="Contact" href="https://wp.aqlova.com/listbnb/contact/" class="nav-links">Contact</a>
+                                                <a title="Contact" href="{{ route('contact.us') }}" class="nav-links">Contact</a>
                                              </li>
 
                                           </ul>
@@ -104,8 +127,8 @@
                            <button class="close-btn"><i class="fal fa-times"></i></button>
                         </div>
                         <div class="tpoffcanvas__logo">
-                           <a href="https://wp.aqlova.com/listbnb/">
-                           <img class="offcanLogo" src="{{ asset('frontend/wp-content/uploads/2024/05/logo-white.png') }}" alt="">
+                           <a href="{{ route('user.login') }}">
+                           <img class="offcanLogo" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="">
                            </a>
                         </div>
                         <div class="tpoffcanvas__title">
@@ -119,15 +142,15 @@
                            <ul>
                               <li class="offConListIcon">
                                  <i class="fas fa-location-arrow"></i>
-                                 <a href="https://www.google.com/maps/@23.8223586,90.3661283,15z" target="_blank">Melbone st,  Australia, Ny 12099</a>
+                                 <a href="https://www.google.com/maps/@23.8223586,90.3661283,15z" target="_blank">{{ $about->address }}</a>
                               </li>
                               <li class="offConListIcon">
                                  <i class="far fa-envelope-open"></i>
-                                 <a href="mailto:softec@gmail.com" target="_blank">themepure@gmail.com</a>
+                                 <a href="mailto:{{ $about->email }}" target="_blank">{{ $about->email }}</a>
                               </li>
                               <li class="offConListIcon">
                                  <i class="fal fa-phone"></i>
-                                 <a href="tel:+48%20555%20223%20224" target="_blank">+48 555 223 224</a>
+                                 <a href="tel:{{ $about->phone1 }}" target="_blank">{{ $about->phone1 }}</a>
                               </li>
                            </ul>
                         </div>
@@ -140,15 +163,8 @@
                                  <p role="status" aria-live="polite" aria-atomic="true"></p>
                                  <ul></ul>
                               </div>
-                              <form action="https://wp.aqlova.com/listbnb/home-3/#wpcf7-f2883-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                                 <div style="display: none;">
-                                    <input type="hidden" name="_wpcf7" value="2883" />
-                                    <input type="hidden" name="_wpcf7_version" value="6.0.6" />
-                                    <input type="hidden" name="_wpcf7_locale" value="en_US" />
-                                    <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f2883-o1" />
-                                    <input type="hidden" name="_wpcf7_container_post" value="0" />
-                                    <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-                                 </div>
+                              <form  class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
+                                
                                  <div class="p-relative">
                                     <span class="wpcf7-form-control-wrap" data-name="your-email"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" autocomplete="email" aria-required="true" aria-invalid="false" placeholder="Enter mail" value="" type="email" name="your-email" /></span>
                                     <button type="submit">
@@ -192,15 +208,8 @@
                                        <p role="status" aria-live="polite" aria-atomic="true"></p>
                                        <ul></ul>
                                     </div>
-                                    <form action="https://wp.aqlova.com/listbnb/home-3/#wpcf7-f2806-o2" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                                       <div style="display: none;">
-                                          <input type="hidden" name="_wpcf7" value="2806" />
-                                          <input type="hidden" name="_wpcf7_version" value="6.0.6" />
-                                          <input type="hidden" name="_wpcf7_locale" value="en_US" />
-                                          <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f2806-o2" />
-                                          <input type="hidden" name="_wpcf7_container_post" value="0" />
-                                          <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-                                       </div>
+                                    <form  class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
+                                   
                                        <div class="tp-message-form__input">
                                           <span class="wpcf7-form-control-wrap" data-name="your-name"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" autocomplete="name" aria-required="true" aria-invalid="false" placeholder="Your Name*" value="" type="text" name="your-name" /></span>
                                        </div>
