@@ -29,7 +29,7 @@
          padding: 0;
          }
       </style>
-      <title>Hyiprio -     Login</title>
+      <title>Sharealux -    User Login</title>
       <style>
          .imageye-selected {
          outline: 2px solid black !important;
@@ -44,13 +44,21 @@
          }
       </script>
       <!-- Login Section -->
+
+           @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
+
       <section class="section-style site-auth">
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-xl-5 col-lg-8 col-md-12">
                   <div class="auth-content">
                      <div class="logo">
-                        <a href="https://hyiprio.tdevs.co"><img src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt=""></a>
+                        <a href="{{ route('home') }}">
+                           <img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 80px; width: auto;" alt="Logo"></a>
                      </div>
                      <div class="title">
                         <h2> 👋 Welcome Back!</h2>
@@ -86,7 +94,7 @@
                         <div class="singnup-text">
                            <p>
                               Don't have an account?
-                              <a href="">Signup for free</a>
+                              <a href="{{ route('user.register') }}">Signup for free</a>
                            </p>
                         </div>
                      </div>

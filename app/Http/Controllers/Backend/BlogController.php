@@ -134,17 +134,14 @@ public function Blogdestroy($id)
 
 public function shareAdReward(Request $request)
 {
-    $user = Auth::user();
-
-    // Properly load investmentPlan relationship
-    $user->loadMissing('investmentPlan');
+    $user = Auth::user()->load('investmentPlan');
 
     if (!$user) {
         Log::warning('ShareAdReward: Unauthenticated access attempt.');
         return response()->json(['status' => false, 'message' => 'User not authenticated.'], 401);
     }
 
-    Log::info("ShareAdReward: User {$user->id} attempting to share ad.");
+    Log::info('ShareAdReward: User ' . $user->id . ' attempting to share ad.');
 
     // Check if user already earned today
     $alreadyEarned = Transaction::where('user_id', $user->id)
@@ -155,32 +152,40 @@ public function shareAdReward(Request $request)
         ->exists();
 
     if ($alreadyEarned) {
-        Log::info("ShareAdReward: User {$user->id} already earned today.");
+        Log::info('ShareAdReward: User ' . $user->id . ' already earned today.');
         return response()->json([
             'status' => false,
             'message' => 'You have already earned from ad sharing today.'
         ]);
     }
 
-    // Default reward
-    $dailyReward = 0.50;
+    $dailyReward = 0.50; // default fallback
 
-    // Calculate reward from investment plan if available
     if ($user->investmentPlan) {
-        $baseAmount = $user->investmentPlan->amount;
+        $planName = $user->investmentPlan->name;
         $weeklyPercent = $user->investmentPlan->weekly_interest;
 
-        Log::info("ShareAdReward: Loaded plan for user {$user->id} - amount: {$baseAmount}, interest: {$weeklyPercent}");
+        // Find the most recent investment transaction matching the plan name
+        $investmentTransaction = Transaction::where('user_id', $user->id)
+            ->where('type', 'investment')
+            ->where('description', $planName)
+            ->orderBy('created_at', 'desc')
+            ->first();
 
-        if ($baseAmount > 0 && $weeklyPercent > 0) {
-            $weeklyReward = ($weeklyPercent / 100) * $baseAmount;
-            $dailyReward = round($weeklyReward / 7, 2);
-            Log::info("ShareAdReward: Calculated daily reward of ₦{$dailyReward} for user {$user->id}.");
+        if ($investmentTransaction) {
+            $amount = floatval($investmentTransaction->amount);
+
+            Log::info("ShareAdReward: Loaded plan for user {$user->id} - amount: {$amount}, interest: {$weeklyPercent}");
+
+            if ($amount > 0 && $weeklyPercent > 0) {
+                $weeklyReward = ($weeklyPercent / 100) * $amount;
+                $dailyReward = round($weeklyReward / 7, 2);
+            } else {
+                Log::warning("ShareAdReward: Invalid plan values for user {$user->id}. Using default reward ₦0.50.");
+            }
         } else {
-            Log::warning("ShareAdReward: Invalid plan values for user {$user->id}. Using default reward ₦0.50.");
+            Log::warning("ShareAdReward: No valid investment transaction found for user {$user->id}. Using default ₦0.50.");
         }
-    } else {
-        Log::info("ShareAdReward: No investment plan found. Using default reward ₦0.50 for user {$user->id}.");
     }
 
     // Add reward to user's profit balance
@@ -197,10 +202,6 @@ public function shareAdReward(Request $request)
         'charge' => 0,
         'final_amount' => $dailyReward,
         'method' => 'system',
-        'pay_currency' => null,
-        'pay_amount' => null,
-        'manual_field_data' => null,
-        'approval_cause' => null,
         'status' => 'approved',
     ]);
 

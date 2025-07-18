@@ -86,11 +86,11 @@
                                                 
                                              </li>
 
-                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-21 menu-item-21 nav-item">
+                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-21 menu-item-21 nav-item">
                                                 <a title="Listings" href="{{ route('frontend.all.ad') }}" class="nav-links">Listings</a>
                                              </li>
 
-                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-28" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown has-dropdown menu-item-28 menu-item-28 nav-item">
+                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-28" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-28 menu-item-28 nav-item">
                                                 <a title="Pages" href="{{ route('about.us') }}" class="nav-links">About</a>
                                              </li>
 
@@ -98,7 +98,7 @@
                                                 <a title="Plans" href="{{ route('plan') }}" class="nav-links">Plans</a>
                                              </li>
 
-                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-2557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-2557 menu-item-2557 nav-item">
+                                             <li itemscope="itemscope" itemtype="https://www.schema.org/SiteNavigationElement" id="menu-item-2557" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2557 menu-item-2557 nav-item">
                                                 <a title="Contact" href="{{ route('contact.us') }}" class="nav-links">Contact</a>
                                              </li>
 
@@ -142,7 +142,7 @@
                            <ul>
                               <li class="offConListIcon">
                                  <i class="fas fa-location-arrow"></i>
-                                 <a href="https://www.google.com/maps/@23.8223586,90.3661283,15z" target="_blank">{{ $about->address }}</a>
+                                 <a href="" target="_blank">{{ $about->address }}</a>
                               </li>
                               <li class="offConListIcon">
                                  <i class="far fa-envelope-open"></i>

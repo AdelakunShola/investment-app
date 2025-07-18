@@ -6,7 +6,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Home 3 &#8211; ListBnb</title>
+      <title>ShareAlux </title>
       <meta name='robots' content='max-image-preview:large' />
       <style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
       <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />

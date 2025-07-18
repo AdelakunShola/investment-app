@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="KAaDjbWmlmESWK1df8MEDpcD6mqN7hbDvwhFqyU7 ">
-    <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
-    <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
+    <meta name="csrf-token" content="">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/animate.css">
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/custom.css?var=2.2">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/styles.css?var=2.2">
     
-    <title>Hyiprio -     Login
+    <title>Sharealux -    Admin Login
 </title>
 <style>
   .imageye-selected {
@@ -95,9 +95,13 @@
                 <h3>Admin Login</h3>
             </div>
         </div>
+           @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
         <div class="login-content">
             <div class="logo">
-                <a href="https://hyiprio.tdevs.co"><img src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="https://hyiprio.tdevs.co/assets/Hyiprio"></a>
+                <a href=""><img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 80px; width: auto;" alt="Logo"></a></a>
             </div>
             <div class="auth-body">
 

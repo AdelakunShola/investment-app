@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="en">
    <head>
-      <meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
+      <meta http-equiv="origin-trial" content="">
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="csrf-token" content="X35FYZ6cizqru3ehnMKk12ta5sOwjSlNbOE0exqP">
+      <meta name="csrf-token" content="">
       <meta name="keywords" content="digibank,digital banking">
       <meta name="description" content="Digi Bank is a fully online banking system.">
       <link rel="canonical" href="https://hyiprio.tdevs.co/register">
-      <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
-      <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
+      <link rel="shortcut icon" href="" type="image/x-icon">
+      <link rel="icon" href="" type="image/x-icon">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/vendor/bootstrap.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/animate.css">
@@ -31,7 +31,7 @@
          padding: 0;
          }
       </style>
-      <title>Hyiprio -     Register</title>
+      <title>Sharealux -    User Register</title>
       <style>
          .imageye-selected {
          outline: 2px solid black !important;
@@ -46,17 +46,23 @@
          }
       </script>
       <!-- Login Section -->
+      
+           @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
       <section class="section-style site-auth">
          <div class="container">
             <div class="row justify-content-center">
                <div class="col-xl-8 col-md-12">
                   <div class="auth-content">
                      <div class="logo">
-                        <a href="https://hyiprio.tdevs.co"><img src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt=""></a>
+                        <a href=""><img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 80px; width: auto;" alt="Logo"></a>
                      </div>
                      <div class="title">
                         <h2> 💪 Create an account</h2>
-                        <p>Register to continue with Hyiprio</p>
+                        <p>Register to continue with Sharealux</p>
                      </div>
                      <div class="site-auth-form">
                             <form method="POST" action="{{ route('user.register.submit') }}">
@@ -146,7 +152,7 @@
                            </div>
                         </form>
                         <div class="singnup-text">
-                           <p>Already have an account? <a href="https://hyiprio.tdevs.co/login">Login</a></p>
+                           <p>Already have an account? <a href="{{ route('user.login') }}">Login</a></p>
                         </div>
                      </div>
                   </div>

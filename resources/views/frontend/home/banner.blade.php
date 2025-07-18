@@ -22,8 +22,14 @@
                                  <div class="tp-hero-3-button">
                                     <a href="{{ route('contact.us') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
                                     </a>
-                                    <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border hover-2 tp-el-btn-2">List Your Ads                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
-                                    </a>
+                                   <a href="{{ Auth::check() ? route('user.dashboard') : route('user.register') }}" 
+   target="_self" 
+   rel="nofollow" 
+   class="tp-btn-border hover-2 tp-el-btn-2">
+    List Your Ads                        
+    <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+</a>
+
                                  </div>
                               </div>
                            </div>
