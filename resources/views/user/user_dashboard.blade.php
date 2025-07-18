@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/styles.css?var=2.1">
 <script src="https://hyiprio.tdevs.co/assets/global/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ant-design-icons/4.7.0/ant-design-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
     <style>
@@ -33,7 +34,7 @@
 }
     </style>
 
-    <title>Hyiprio -     Dashboard
+    <title>Sharealux -    User Dashboard
 </title>
 
 

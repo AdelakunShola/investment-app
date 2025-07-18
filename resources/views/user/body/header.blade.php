@@ -1,18 +1,24 @@
+       @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
 <div class="panel-header">
     <div class="logo">
-        <a href="https://hyiprio.tdevs.co">
-            <img class="logo-unfold" src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="Logo">
-            <img class="logo-fold" src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="Logo">
+        <a href="">
+            <img class="logo-unfold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
+            <img class="logo-fold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
         </a>
     </div>
     <div class="nav-wrap">
         <div class="nav-left">
             <button class="sidebar-toggle">
-                <i class="anticon anticon-arrow-left"></i>
+             <i class="fas fa-bars"></i>
+
             </button>
             <div class="mob-logo">
-                <a href="https://hyiprio.tdevs.co">
-                    <img src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="Site Name">
+                <a href="">
+                    <img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Site Name">
                 </a>
             </div>
         </div>

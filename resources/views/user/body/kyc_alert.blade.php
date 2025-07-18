@@ -9,7 +9,8 @@
             <div class="col">
                 <div class="alert site-alert alert-dismissible fade show" role="alert">
                     <div class="content">
-                        <div class="icon"><i class="anticon anticon-warning"></i></div>
+                        <div class="icon"><i class="fa-solid fa-triangle-exclamation"></i>
+</i></div>
                         <strong>KYC Pending</strong>
                     </div>
                 </div>
@@ -40,7 +41,8 @@
         {{-- 📩 KYC NOT SUBMITTED --}}
         <div class="alert site-alert alert-dismissible fade show" role="alert">
             <div class="content">
-                <div class="icon"><i class="anticon anticon-warning"></i></div>
+                <div class="icon"><i class="fa-solid fa-triangle-exclamation"></i>
+</i></div>
                 You need to submit your
                 <strong>KYC and Other Documents</strong> before proceed to the system.
             </div>

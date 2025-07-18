@@ -38,7 +38,7 @@
                             </button>
                         </div>
                         <p class="referral-joined">
-                            {{ $totalReferral }} people(s) are joined by using this URL
+                            {{ $totalReferral }} person(s) are joined by using this URL
                         </p>
                     </div>
                 </div>
@@ -51,7 +51,8 @@
         <div class="row user-cards ">
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-inbox"></i></div>
+            <div class="icon"><i class="fa-solid fa-box-archive"></i>
+</div>
             <div class="content">
                 <h4><span class="count">{{ $totalTransactions }}</span></h4>
                 <p>All Transactions</p>
@@ -60,7 +61,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-file-add"></i></div>
+            <div class="icon"><i class="fa-solid fa-file-circle-plus"></i></div>
             <div class="content">
                 <h4><b>$</b><span class="count">{{ number_format($totalDeposit, 2) }}</span></h4>
                 <p>Total Deposit</p>
@@ -69,7 +70,8 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-check-square"></i></div>
+            <div class="icon"><i class="fa-solid fa-square-check"></i>
+</i></div>
             <div class="content">
                 <h4><b>$</b><span class="count">{{ number_format($totalInvestment, 2) }}</span></h4>
                 <p>Total Investment</p>
@@ -78,7 +80,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-credit-card"></i></div>
+            <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
             <div class="content">
                 <h4><b>$</b><span class="count">{{ number_format($totalProfit, 2) }}</span></h4>
                 <p>Total Profit</p>
@@ -88,7 +90,8 @@
  
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-money-collect"></i></div>
+            <div class="icon"><i class="fa-solid fa-sack-dollar"></i>
+</i></div>
             <div class="content">
                 <h4><b>$</b><span class="count">{{ number_format($totalWithdraw, 2) }}</span></h4>
                 <p>Total Withdraw</p>
@@ -97,7 +100,8 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-gift"></i></div>
+            <div class="icon"><i class="fa-solid fa-gift"></i>
+</i></div>
             <div class="content">
                 <h4><b>$</b><span class="count">{{ number_format($referralBonus, 2) }}</span></h4>
                 </h4>
@@ -109,7 +113,8 @@
    
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-inbox"></i></div>
+            <div class="icon"><i class="fa-solid fa-inbox"></i></div>
+
             <div class="content">
                 <h4 class="count">{{ $totalReferral }}</h4>
                 <p>Total Referral</p>
@@ -119,7 +124,8 @@
 
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="single">
-            <div class="icon"><i class="anticon anticon-radar-chart"></i></div>
+            <div class="icon"><i class="fa-solid fa-chart-line"></i>
+</i></div>
             <div class="content">
                 <h4 class="count">0</h4>
                 <p>Rank Achieved</p>

@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="title-content">
-                            <h2 class="title">Hyiprio Dashboard</h2>
+                            <h2 class="title">Sharealux Dashboard</h2>
                         </div>
                     </div>
                 </div>

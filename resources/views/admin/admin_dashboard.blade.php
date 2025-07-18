@@ -3,8 +3,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content=" ">
-    <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
-    <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/animate.css">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/custom.css?var=2.2">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/backend/css/styles.css?var=2.2">
     
-    <title>Hyiprio -     Dashboard
+    <title>Sharealux -    Admin Dashboard
 </title>
 <style>
   .imageye-selected {
@@ -102,42 +102,7 @@
 
 
     <!-- Modal for Send Email -->
-    <div class="modal fade" id="sendEmail" tabindex="-1" aria-labelledby="sendEmailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered">
-        <div class="modal-content site-table-modal">
-            <div class="modal-body popup-body">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="popup-body-text">
-                    <h3 class="title mb-4"> Send Mail to <span id="name"></span></h3>
-                    <form action="https://hyiprio.tdevs.co/admin/user/mail-send" method="post" id="send-mail-form">
-                        <input type="hidden" name="_token" value="QHBP7OTaE7V6lflJgoX3Vwvo4uQf9KPRkvMgrKLN">
-                        <input type="hidden" name="id" value="0" id="userId">
-
-                        <div class="site-input-groups">
-                            <label for="" class="box-input-label">Subject:</label>
-                            <input type="text" name="subject" class="box-input mb-0" required="">
-                        </div>
-                        <div class="site-input-groups">
-                            <label for="" class="box-input-label">Email Details</label>
-                            <textarea name="message" class="form-textarea mb-0"></textarea>
-                        </div>
-
-                        <div class="action-btns">
-                            <button type="submit" class="site-btn-sm primary-btn me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" icon-name="send" class="lucide lucide-send"><line x1="22" x2="11" y1="2" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                Send Email
-                            </button>
-                            <a href="#" class="site-btn-sm red-btn" data-bs-dismiss="modal" aria-label="Close">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" icon-name="x" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-                                Close
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    
     <!-- Modal for Send Email-->
 
     </div>
