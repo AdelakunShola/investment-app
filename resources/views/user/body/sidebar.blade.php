@@ -2,6 +2,15 @@
     $user = Auth::user();
 @endphp
 
+@php
+    use App\Models\Transaction;
+
+    $totalProfit = \App\Models\Transaction::where('user_id', auth()->id())
+                    ->where('type', 'profit')
+                    ->sum('amount');
+@endphp
+
+
 <div class="desktop-screen-show">
     <div class="side-nav">
         <div class="side-wallet-box default-wallet mb-0">
@@ -20,7 +29,8 @@
                     <div class="wallet-id">
                         <i class="fa-solid fa-landmark"></i> Profit Wallet
                     </div>
-                    <div class="balance">({{ number_format($user->profit_balance, 2) }} USD)</div>
+                <div class="balance">({{ number_format($totalProfit, 2) }} USD)</div>
+
                 </div>
             </div>
             <div class="actions">
@@ -53,7 +63,7 @@
                     </a>
                 </li>
 
-                <li class="side-nav-item dropdown">
+<li class="side-nav-item dropdown">
     <a href="#depositDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">
         <div>
             <i class="fa-solid fa-money-bill-wave me-2"></i> <span>Deposit</span>
@@ -83,6 +93,26 @@
         </li>
         <li class="side-nav-sub-item">
             <a href="{{ route('user.withdraw.all') }}">View All Withdrawal</a>
+        </li>
+    </ul>
+</li>
+
+
+
+<li class="side-nav-item dropdown">
+    <a href="#AdDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">
+        <div>
+            <i class="fa-solid fa-rectangle-ad"></i>
+<span>Post AD</span>
+        </div>
+        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+    </a>
+    <ul class="collapse list-unstyled ps-4" id="AdDropdown">
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.all.ads') }}">All Ads</a>
+        </li>
+        <li class="side-nav-sub-item">
+            <a href="{{ route('user.create.ads') }}">Create Ad</a>
         </li>
     </ul>
 </li>

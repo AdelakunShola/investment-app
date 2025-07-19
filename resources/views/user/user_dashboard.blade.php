@@ -7,9 +7,11 @@
     <meta name="keywords" content="digibank,digital banking">
     <meta name="description" content="Digi Bank is a fully online banking system.">
     <link rel="canonical" href="https://hyiprio.tdevs.co/user/dashboard">
-    <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
 
-    <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon"> 
+
+    
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/animate.css">

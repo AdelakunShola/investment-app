@@ -193,6 +193,20 @@ Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->n
 
 
 
+Route::prefix('user')->middleware(['auth'])->group(function () {
+Route::get('/luxury-ads/create', [BlogController::class, 'UserBlogcreate'])->name('user.create.ads');
+Route::post('/luxury-ads', [BlogController::class, 'UserBlogstore'])->name('user.ads.store');
+Route::get('/all/ads', [BlogController::class, 'UserBlogindex'])->name('user.all.ads');
+Route::get('blog/{id}/edit', [BlogController::class, 'UserBlogedit'])->name('user.blog.edit');
+Route::put('blog/{id}', [BlogController::class, 'UserBlogupdate'])->name('user.blog.update');
+Route::delete('/luxury_ads/{id}', [BlogController::class, 'UserBlogdestroy'])->name('user.luxury_ads.destroy');
+
+
+});
+
+
+
+
 
 
 

@@ -32,7 +32,8 @@
                                     <th>Price</th>
                                     <th>Condition</th>
                                     <th>Location</th>
-                                    <th>Status</th>
+                                    <th>Author</th>
+                                     <th>Featured</th>
                                     <th>Created</th>
                                     <th>Actions</th>
                                 </tr>
@@ -50,22 +51,24 @@
                                         <td>${{ number_format($ad->price, 2) }}</td>
                                         <td>{{ $ad->condition }}</td>
                                         <td>{{ $ad->location ?? '—' }}</td>
-                                        <td>
-                                            <span class="badge bg-{{ $ad->status ? 'success' : 'secondary' }}">
-                                                {{ $ad->status ? 'Published' : 'Draft' }}
-                                            </span>
-                                        </td>
+                                        <td>{{ $ad->user->username ?? 'Unknown' }}</td>
+                                         <td>
+                                       <span class="badge {{ $ad->featured ? 'bg-success' : 'bg-secondary' }}">
+                                          {{ $ad->featured ? 'Yes' : 'No' }}
+                                       </span>
+                                    </td>
+                                      
                                         <td>{{ $ad->created_at->diffForHumans() }}</td>
                                       <td>
     <a href="{{ route('admin.blog.edit', $ad->id) }}" class="btn btn-sm btn-primary">
-        <i class="lucide lucide-pencil"></i>
+        <i class="fas fa-edit"></i>
     </a>
 
     <form action="{{ route('admin.luxury_ads.destroy', $ad->id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Delete this ad?')">
         @csrf
         @method('DELETE')
         <button class="btn btn-sm btn-danger">
-            <i class="lucide lucide-trash-2"></i>
+            <i class="fas fa-trash-alt"></i>
         </button>
     </form>
 </td>
@@ -79,9 +82,7 @@
                         </table>
 
                         {{-- Pagination if applicable --}}
-                        <div class="mt-3">
-                            {{ $luxuryAds->links() }}
-                        </div>
+                      
                     </div>
                 </div>
             </div>

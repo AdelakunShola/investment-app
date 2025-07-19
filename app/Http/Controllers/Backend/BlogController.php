@@ -19,7 +19,7 @@ class BlogController extends Controller
 {
     public function Blogindex()
 {
-    $luxuryAds = Blog::latest()->paginate(10); // or use get() if you don't want pagination
+    $luxuryAds = Blog::with('user')->latest()->get();
     return view('backend.blog.index', compact('luxuryAds'));
 }
 
@@ -31,6 +31,8 @@ class BlogController extends Controller
 public function Blogstore(Request $request)
 {
     $data = $request->all();
+
+     $data['user_id'] = auth()->id();
 
     // Handle image upload if present
     if ($request->hasFile('image')) {
@@ -76,6 +78,7 @@ public function Blogupdate(Request $request, $id)
     $ad = Blog::findOrFail($id);
 
     $data = $request->except(['_token', '_method']);
+     $data['user_id'] = auth()->id();
 
     // Handle image upload with resizing
     if ($request->hasFile('image')) {
@@ -127,14 +130,9 @@ public function Blogdestroy($id)
 
 
 
-
-
-
-
-
 public function shareAdReward(Request $request)
 {
-    $user = Auth::user()->load('investmentPlan');
+    $user = Auth::user();
 
     if (!$user) {
         Log::warning('ShareAdReward: Unauthenticated access attempt.');
@@ -159,34 +157,21 @@ public function shareAdReward(Request $request)
         ]);
     }
 
-    $dailyReward = 0.50; // default fallback
+    // Calculate reward
+   $dailyReward = 0.50;
 
-    if ($user->investmentPlan) {
-        $planName = $user->investmentPlan->name;
-        $weeklyPercent = $user->investmentPlan->weekly_interest;
+if ($user->investmentPlan) {
+    $baseAmount = $user->investmentPlan->amount;
+    $weeklyPercent = $user->investmentPlan->weekly_interest;
 
-        // Find the most recent investment transaction matching the plan name
-        $investmentTransaction = Transaction::where('user_id', $user->id)
-            ->where('type', 'investment')
-            ->where('description', $planName)
-            ->orderBy('created_at', 'desc')
-            ->first();
-
-        if ($investmentTransaction) {
-            $amount = floatval($investmentTransaction->amount);
-
-            Log::info("ShareAdReward: Loaded plan for user {$user->id} - amount: {$amount}, interest: {$weeklyPercent}");
-
-            if ($amount > 0 && $weeklyPercent > 0) {
-                $weeklyReward = ($weeklyPercent / 100) * $amount;
-                $dailyReward = round($weeklyReward / 7, 2);
-            } else {
-                Log::warning("ShareAdReward: Invalid plan values for user {$user->id}. Using default reward ₦0.50.");
-            }
-        } else {
-            Log::warning("ShareAdReward: No valid investment transaction found for user {$user->id}. Using default ₦0.50.");
-        }
+    if ($baseAmount > 0 && $weeklyPercent > 0) {
+        $weeklyReward = ($weeklyPercent / 100) * $baseAmount;
+        $dailyReward = round($weeklyReward / 7, 2);
+    } else {
+        Log::warning("ShareAdReward: User {$user->id} has invalid plan values: amount={$baseAmount}, weekly_interest={$weeklyPercent}. Using default ₦0.50.");
     }
+}
+
 
     // Add reward to user's profit balance
     $user->profit_balance += $dailyReward;
@@ -202,6 +187,10 @@ public function shareAdReward(Request $request)
         'charge' => 0,
         'final_amount' => $dailyReward,
         'method' => 'system',
+        'pay_currency' => null,
+        'pay_amount' => null,
+        'manual_field_data' => null,
+        'approval_cause' => null,
         'status' => 'approved',
     ]);
 
@@ -213,6 +202,161 @@ public function shareAdReward(Request $request)
         'amount' => $dailyReward
     ]);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////USER ADS SECTION
+
+
+public function UserBlogindex()
+{
+    $luxuryAds = Blog::with('user')
+                    ->where('user_id', Auth::id())
+                    ->latest()
+                    ->get();
+
+    return view('userbackend.blog.index', compact('luxuryAds'));
+}
+
+public function UserBlogcreate()
+    {
+        return view('userbackend.blog.create');
+}
+
+public function UserBlogstore(Request $request)
+{
+    $data = $request->all();
+
+    // ✅ Assign the logged-in user's ID
+    $data['user_id'] = auth()->id();
+
+    // ✅ Handle image upload
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = date('YmdHis') . '_' . $file->getClientOriginalName();
+        $uploadPath = public_path('upload/blog_images/');
+
+        // Create directory if it doesn't exist
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
+        }
+
+        // Resize and save image
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file)->resize(400, 300);
+        $img->toJpeg(80)->save($uploadPath . $filename);
+
+        $data['image'] = 'upload/blog_images/' . $filename;
+    }
+
+    // ✅ Encode specifications to JSON
+    $data['specifications'] = isset($data['specifications']) && is_array($data['specifications'])
+        ? json_encode($data['specifications'])
+        : json_encode([]);
+
+    // ✅ Mark as featured if checkbox is checked
+    $data['featured'] = $request->has('featured');
+
+    // ✅ Create the blog post
+    Blog::create($data);
+
+    return redirect()->back()->with('success', 'Ad created successfully.');
+}
+
+
+public function UserBlogedit($id)
+{
+    $ad = Blog::findOrFail($id);
+    return view('userbackend.blog.edit', compact('ad'));
+}
+
+public function UserBlogupdate(Request $request, $id)
+{
+    $ad = Blog::findOrFail($id);
+
+    $data = $request->except(['_token', '_method']);
+    $data['user_id'] = auth()->id();
+
+    // Handle image upload with resizing
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $filename = date('YmdHis') . $file->getClientOriginalName();
+        $uploadPath = public_path('upload/blog_images/');
+
+        // Ensure the directory exists
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true); // create with permissions
+        }
+
+        // Resize and save
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($file)->resize(425, 300);
+        $img->toJpeg(80)->save($uploadPath . $filename);
+
+        $data['image'] = 'upload/blog_images/' . $filename;
+    }
+
+    // Encode specifications
+    $data['specifications'] = json_encode($request->input('specifications', []));
+
+    // Ensure 'featured' is explicitly set (true if checked, false if not)
+    $data['featured'] = $request->has('featured');
+
+    $ad->update($data);
+
+    return redirect()->route('user.all.ads')->with('success', 'Ad updated successfully.');
+}
+
+
+public function UserBlogdestroy($id)
+{
+    $ad = Blog::findOrFail($id);
+
+    // Delete the image from storage if it exists
+    if ($ad->image && Storage::disk('public')->exists($ad->image)) {
+        Storage::disk('public')->delete($ad->image);
+    }
+
+    $ad->delete();
+
+    return redirect()->back()->with('success', 'Ad deleted successfully.');
+}
+
 
 
 }

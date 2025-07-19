@@ -1,8 +1,14 @@
+        @php
+    use App\Models\About;
+    $about = About::first();
+@endphp
+
+ 
  <div class="header">
     <div class="logo">
-        <a href="https://hyiprio.tdevs.co/admin">
-            <img class="logo-unfold" src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="Logo">
-            <img class="logo-fold" src="https://hyiprio.tdevs.co/assets/global/images/paciTCYiu8qnAjTEmCQg.png" alt="Logo">
+        <a href="">
+            <img class="logo-unfold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
+            <img class="logo-fold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
         </a>
     </div>
     <div class="nav-wrap">

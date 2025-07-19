@@ -503,7 +503,7 @@
                         <span id="copy">Copy</span>
                     </button>
                 </div>
-                <p class="referral-joined"> {{ $totalReferral }} people(s) are joined by using this URL</p>
+                <p class="referral-joined"> {{ $totalReferral }} person(s) are joined by using this URL</p>
             </div>
         </div>
     </div>
