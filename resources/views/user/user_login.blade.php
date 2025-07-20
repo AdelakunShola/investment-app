@@ -62,7 +62,7 @@
                      </div>
                      <div class="title">
                         <h2> 👋 Welcome Back!</h2>
-                        <p>Sign in to continue with Hyiprio User Panel</p>
+                        <p>Sign in to continue with Sharealux User Panel</p>
                      </div>
                      <div class="site-auth-form">
                         <form class="row g-3" method="POST" action="{{ route('user.authenticate') }}">

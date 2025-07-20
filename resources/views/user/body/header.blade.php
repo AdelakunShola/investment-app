@@ -5,7 +5,7 @@
 
 <div class="panel-header">
     <div class="logo">
-        <a href="">
+        <a href="{{ route('user.dashboard') }}">
             <img class="logo-unfold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
             <img class="logo-fold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
         </a>
@@ -17,7 +17,7 @@
 
             </button>
             <div class="mob-logo">
-                <a href="">
+                <a href="{{ route('user.dashboard') }}">
                     <img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Site Name">
                 </a>
             </div>
@@ -54,22 +54,18 @@
               
                 <div class="single-right">
                     <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="anticon anticon-user"></i>
+                        <i class="fas fa-user"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a href="{{ route('user.setting') }}" class="dropdown-item" type="button"><i class="anticon anticon-setting"></i>Settings</a>
+                            <a href="{{ route('user.setting') }}" class="dropdown-item" type="button"><i class="fas fa-cog me-1"></i>Settings</a>
                         </li>
                         <li>
                             <a href="{{ route('user.change.password') }}" class="dropdown-item" type="button">
-                                <i class="anticon anticon-lock"></i>Change Password
+                                <i class="fas fa-lock me-1"></i>Change Password
                             </a>
                         </li>
-                        <li>
-                            <a href="https://hyiprio.tdevs.co/user/support-ticket/index" class="dropdown-item" type="button">
-                                <i class="anticon anticon-customer-service"></i>Support Tickets
-                            </a>
-                        </li>
+                        
                          <li class="logout">
 
                         <a href="{{ route('user.logout')}}" class="dropdown-item" type="button">

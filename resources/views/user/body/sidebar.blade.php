@@ -11,6 +11,35 @@
 @endphp
 
 
+@php
+    $user = auth()->user();
+
+    $totalDeposit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
+        ->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw;
+@endphp
+
+
 <div class="desktop-screen-show">
     <div class="side-nav">
         <div class="side-wallet-box default-wallet mb-0">
@@ -23,7 +52,7 @@
                     <div class="wallet-id">
                         <i class="fa-solid fa-wallet"></i> Main Wallet
                     </div>
-                    <div class="balance">({{ number_format($user->wallet_balance, 2) }} USD)</div>
+                    <div class="balance">({{ number_format($walletBalance, 2) }} USD)</div>
                 </div>
                 <div class="wallet-info">
                     <div class="wallet-id">

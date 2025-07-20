@@ -1,6 +1,34 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+
+@php
+    $user = auth()->user();
+
+    $totalDeposit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
+        ->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+@endphp
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -74,7 +102,7 @@
                                             </div>
                                             <div class="wallet-info">
                                                 <div class="wallet-id">USD</div>
-                                                <div class="balance">${{ $user->wallet_balance }}</div>
+                                                <div class="balance">${{ number_format($walletBalance, 2) }}</div>
                                             </div>
                                         </div>
                                         <div class="admin-user-balance-card">
@@ -86,7 +114,7 @@
                                             </div>
                                             <div class="wallet-info">
                                                 <div class="wallet-id">USD</div>
-                                                <div class="balance">${{ $user->profit_balance }}</div>
+                                                <div class="balance">${{ number_format($totalProfit, 2) }}</div>
                                             </div>
                                         </div>
                                     </div>

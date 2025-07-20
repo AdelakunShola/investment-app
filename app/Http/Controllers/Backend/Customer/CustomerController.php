@@ -99,18 +99,36 @@ public function updateUserStatus(Request $request, $id)
 
 public function updateBalance(Request $request, $id)
 {
-    
-
     $user = User::findOrFail($id);
-    $amount = $request->amount;
+    $amount = floatval($request->amount);
+
+    if ($amount <= 0) {
+        return back()->with('error', 'Invalid amount specified.');
+    }
 
     if ($request->wallet === 'main') {
         if ($request->type === 'add') {
-            $user->wallet_balance += $amount;
+            // Add as an approved deposit
+            Transaction::create([
+                'user_id'     => $user->id,
+                'amount'      => $amount,
+                'type'        => 'deposit',
+                'status'      => 'approved',
+                'method'      => 'system',
+                'description' => 'system added to wallet',
+            ]);
         } else {
-            $user->wallet_balance -= $amount;
-            if ($user->wallet_balance < 0) $user->wallet_balance = 0;
+            // Add as an approved withdrawal
+            Transaction::create([
+                'user_id'     => $user->id,
+                'amount'      => $amount,
+                'type'        => 'withdraw',
+                'status'      => 'approved',
+                'method'      => 'system',
+                'description' => 'system deducted from wallet',
+            ]);
         }
+
     } elseif ($request->wallet === 'profit') {
         if ($request->type === 'add') {
             $user->profit_balance += $amount;
@@ -118,11 +136,11 @@ public function updateBalance(Request $request, $id)
             $user->profit_balance -= $amount;
             if ($user->profit_balance < 0) $user->profit_balance = 0;
         }
+        $user->save();
     }
-
-    $user->save();
 
     return back()->with('success', 'User balance updated successfully.');
 }
+
 
 }

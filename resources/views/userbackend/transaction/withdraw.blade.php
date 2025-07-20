@@ -1,5 +1,35 @@
 @extends('user.user_dashboard')
 @section('user')
+
+@php
+    $user = auth()->user();
+
+    $totalDeposit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
+        ->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+@endphp
+
+
 <div class="main-content">
    <div class="section-gap">
       <div class="container-fluid">
@@ -24,7 +54,7 @@
    @error('amount')
       <small class="text-danger">{{ $message }}</small>
    @enderror
-   <p class="text-muted mb-1">Available Balance: <strong>${{ number_format(auth()->user()->wallet_balance, 2) }}</strong></p>
+   <p class="text-muted mb-1">Available Balance: <strong>${{ number_format($walletBalance, 2) }} </strong></p>
 
 
 </div>

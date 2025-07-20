@@ -319,30 +319,37 @@ public function investNow(Request $request, $id)
         return back()->with('error', 'Amount must be between $' . $plan->min_amount . ' and $' . $plan->max_amount);
     }
 
-    // Check user wallet balance
-    if ($user->wallet_balance < $amount) {
+    // Dynamically calculate wallet balance
+    $totalDeposit = Transaction::where('user_id', $user->id)->where('type', 'deposit')->where('status', 'approved')->sum('amount');
+    $totalProfit = Transaction::where('user_id', $user->id)->where('type', 'profit')->sum('amount');
+    $totalWithdraw = Transaction::where('user_id', $user->id)->where('type', 'withdraw')->where('status', 'approved')->sum('amount');
+    $totalInvestment = Transaction::where('user_id', $user->id)->where('type', 'investment')->where('status', 'completed')->sum('amount');
+    $referralBonus = Referral::where('referred_by', $user->id)->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+
+    // Check wallet balance
+    if ($walletBalance < $amount) {
         return back()->with('error', 'Insufficient balance in Main Wallet.');
     }
 
-    // Deduct balance
-    $user->wallet_balance -= $amount;
+    // Update user investment plan
     $user->investment_plan_id = $plan->id;
     $user->save();
 
-    // Record transaction
+    // Log the investment transaction
     Transaction::create([
         'user_id' => $user->id,
         'description' => $plan->name,
         'amount' => $amount,
         'type' => 'investment',
         'status' => 'completed',
-        'method' => 'wallet'
+        'method' => 'wallet',
     ]);
-
-    // Optional: You can store the investment in a dedicated `investments` table
 
     return redirect()->route('user.transaction')->with('success', 'Investment successful!');
 }
+
 
 
 
@@ -625,14 +632,38 @@ public function allWithdraw()
 
 public function storeWithdraw(Request $request)
 {
-    
-
     $user = auth()->user();
 
-    if ($request->amount > $user->wallet_balance) {
+    // Calculate dynamic wallet balance
+    $totalDeposit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $user->id)->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+
+    // Check wallet balance against requested amount
+    if ($request->amount > $walletBalance) {
         return back()->withErrors(['amount' => 'Insufficient wallet balance.'])->withInput();
     }
 
+    // Store withdrawal request
     Transaction::create([
         'user_id'     => $user->id,
         'amount'      => $request->amount,
@@ -640,12 +671,11 @@ public function storeWithdraw(Request $request)
         'method'      => 'Cryptocurrency',
         'description' => 'User Withdrawal',
         'status'      => 'pending',
-       
     ]);
 
-   return redirect()->route('user.withdraw.all')->with('success', 'Withdrawal request submitted.');
-
+    return redirect()->route('user.withdraw.all')->with('success', 'Withdrawal request submitted.');
 }
+
 
 
 

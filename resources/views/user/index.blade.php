@@ -5,6 +5,45 @@
     $user = Auth::user();
 @endphp
 
+
+@php
+   
+    $totalProfit = \App\Models\Transaction::where('user_id', auth()->id())
+                    ->where('type', 'profit')
+                    ->sum('amount');
+@endphp
+
+
+@php
+    $user = auth()->user();
+
+    $totalDeposit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
+        ->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw;
+@endphp
+
+
+
   <div class="main-content">
             <div class="section-gap">
                 <div class="container-fluid">
@@ -220,7 +259,7 @@
             <div class="one">
                 <div class="balance">
 
-                    <span class="symbol">$</span>({{ number_format($user->wallet_balance, 2) }} USD)
+                    <span class="symbol">$</span>({{ number_format($walletBalance, 2) }} USD)
                 </div>
                 <div class="wallet">Main Wallet</div>
             </div>
@@ -228,7 +267,7 @@
 
             <div class="one p-wal">
                 <div class="balance">
-                    <span class="symbol">$</span>({{ number_format($user->profit_balance, 2) }} USD)
+                    <span class="symbol">$</span>({{ number_format($totalProfit, 2) }} USD)
                 </div>
                 <div class="wallet">Profit Wallet</div>
             </div>
@@ -288,10 +327,20 @@
                 </a>
             </div>
         </div>
+
+        <div class="col-4">
+            <div class="single">
+                <a href="{{ route('user.deposits.all') }}">
+                    <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/deposit.png" alt="">
+                    </div>
+                    <div class="name">All Deposit</div>
+                </a>
+            </div>
+        </div>
         
         <div class="col-4">
             <div class="single">
-                <a href="https://hyiprio.tdevs.co/user/wallet-exchange">
+                <a href="">
                     <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/wallet-exchange.png" alt="">
                     </div>
                     <div class="name">Wallet Exch.</div>
@@ -308,9 +357,49 @@
                     </a>
                 </div>
             </div>
+
+             <div class="col-4">
+                <div class="single">
+                    <a href="{{ route('user.withdraw.all') }}">
+                        <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/withdraw.png" alt="">
+                        </div>
+                        <div class="name">All Withdrawal</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="single">
+                    <a href="{{ route('user.referral') }}">
+                        <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/referral.png" alt="">
+                        </div>
+                        <div class="name">Referral</div>
+                    </a>
+                </div>
+            </div>
     </div>
     <div class="moretext">
         <div class="row contents">
+
+
+            <div class="col-4">
+                <div class="single">
+                    <a href="{{ route('user.create.ads') }}">
+                        <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/ranking.png" alt="">
+                        </div>
+                        <div class="name">Create Ad</div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="single">
+                    <a href="{{ route('user.all.ads') }}">
+                        <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/referral.png" alt="">
+                        </div>
+                        <div class="name">All Ads</div>
+                    </a>
+                </div>
+            </div>
            
             
             
@@ -324,15 +413,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="single">
-                    <a href="{{ route('user.referral') }}">
-                        <div class="icon"><img src="https://hyiprio.tdevs.co/assets/frontend/materials/referral.png" alt="">
-                        </div>
-                        <div class="name">Referral</div>
-                    </a>
-                </div>
-            </div>
+            
             <div class="col-4">
                 <div class="single">
                     <a href="{{ route('user.setting') }}">

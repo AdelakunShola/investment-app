@@ -106,7 +106,34 @@
     </td>
     <td><a class="link" href="{{ route('admin.user.edit', $customer->id) }}">{{ $customer->username }}</a></td>
     <td>{{ Str::limit($customer->email, 20, '...') }}</td>
-    <td>${{ number_format($customer->wallet_balance, 2) }}</td>
+    @php
+    $totalDeposit = \App\Models\Transaction::where('user_id', $customer->id)
+        ->where('type', 'deposit')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalProfit = \App\Models\Transaction::where('user_id', $customer->id)
+        ->where('type', 'profit')
+        ->sum('amount');
+
+    $totalWithdraw = \App\Models\Transaction::where('user_id', $customer->id)
+        ->where('type', 'withdraw')
+        ->where('status', 'approved')
+        ->sum('amount');
+
+    $totalInvestment = \App\Models\Transaction::where('user_id', $customer->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->sum('amount');
+
+    $referralBonus = \App\Models\Referral::where('referred_by', $customer->id)
+        ->sum('bonus');
+
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+@endphp
+
+<td>${{ number_format($walletBalance, 2) }}</td>
+
     <td><strong>${{ number_format($customer->profit ?? 0, 2) }}</strong></td>
   
     <td>
