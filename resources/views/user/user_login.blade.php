@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="csrf-token" content="X35FYZ6cizqru3ehnMKk12ta5sOwjSlNbOE0exqP">
-      <meta name="keywords" content="digibank,digital banking">
+      <meta name="keywords" content="ad sharing">
       <meta name="description" content="Digi Bank is a fully online banking system.">
       <link rel="canonical" href="https://hyiprio.tdevs.co/login">
       <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
