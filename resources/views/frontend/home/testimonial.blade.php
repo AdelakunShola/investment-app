@@ -17,7 +17,9 @@
                                  </span>
                               </span>
                            </h2>
-                           <p class="tp-el-content">Many desktop publishing packages and web page editors now <br> use Lorem Ipsum as their default model text. Many desktop publishing packages and web page editors now...</p>
+                           <p class="tp-el-rep-content">
+   “Sharealux changed the game for me. I sell gadgets I no longer need and earn consistently. The best part? I withdraw my money instantly—no delays, no hassles.”
+</p>
                         </div>
                      </div>
                   </div>
@@ -25,8 +27,16 @@
                      <div class="elementor-element elementor-element-f0f799b e-con-full e-flex e-con e-child" data-id="f0f799b" data-element_type="container">
                         <div class="elementor-element elementor-element-7761ee6 elementor-widget elementor-widget-tp-button" data-id="7761ee6" data-element_type="widget" data-widget_type="tp-button.default">
                            <div class="elementor-widget-container">
-                              <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">List Your Ads<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
-                           </div>
+                              @auth
+<a href="{{ route('user.dashboard') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">
+    List Your Ads <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+</a>
+@else
+<a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-btn">
+    List Your Ads <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+</a>
+@endauth
+ </div>
                         </div>
                      </div>
                      <div class="elementor-element elementor-element-08fe529 e-con-full e-flex e-con e-child" data-id="08fe529" data-element_type="container">
@@ -83,10 +93,12 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                   <p class="tp-el-rep-content">
+   “I was skeptical at first, but Sharealux proved to be 100% trustworthy. My first sale happened within hours, and I’ve been withdrawing daily ever since.”
+</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
-                                    <span class="tp-el-rep-name">Alonso D. Dowson</span>
+                                   <span class="tp-el-rep-name">Rosalina D. William</span>
                                  </div>
                               </div>
                            </div>
@@ -124,7 +136,9 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                  <p class="tp-el-rep-content">
+   “As a student, Sharealux became my side hustle. I list, I sell, I get paid—simple as that. It’s transparent, fast, and feels like a real business.”
+</p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Rosalina D. William</span>
@@ -204,7 +218,7 @@
                                     <i class="fa-solid fa-star"></i>
                                  </div>
                                  <div class="tp-testimonial-text pb-10">
-                                    <p class="tp-el-rep-content">“  Sharealux is a hidden gem for sell, buy tech enthusiasts. They offer an array of unique and niche gadgets. ”</p>
+                                    <p>💸 Average withdrawal time: <strong>30 seconds</strong> | ✅ Verified transactions: <strong>99.9% success rate</strong></p>
                                  </div>
                                  <div class="tp-testimonial-author-info">
                                     <span class="tp-el-rep-name">Miranda H. Halim</span>

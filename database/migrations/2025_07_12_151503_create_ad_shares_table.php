@@ -13,12 +13,12 @@ return new class extends Migration
     {
       Schema::create('ad_shares', function (Blueprint $table) {
     $table->id();
-    $table->foreignId('user_id')->constrained()->onDelete('cascade');
-    $table->foreignId('blog_id')->constrained()->onDelete('cascade');
-    $table->date('shared_on');
+    $table->foreignId('user_id')->constrained()->onDelete('cascade')->nullable();
+    $table->foreignId('blog_id')->constrained()->onDelete('cascade')->nullable();
+    $table->date('shared_on')->nullable();
     $table->timestamps();
 
-    $table->unique(['user_id', 'shared_on']); // prevents multiple shares per day per user
+    $table->unique(['user_id', 'shared_on'])->nullable();
 });
 
     }

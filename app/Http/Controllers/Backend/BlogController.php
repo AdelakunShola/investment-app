@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdShare;
 use App\Models\Blog;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -129,81 +130,76 @@ public function Blogdestroy($id)
 
 
 
-
 public function shareAdReward(Request $request)
 {
-    $user = Auth::user();
+    $user = auth()->user();
 
-    if (!$user) {
-        Log::warning('ShareAdReward: Unauthenticated access attempt.');
-        return response()->json(['status' => false, 'message' => 'User not authenticated.'], 401);
-    }
-
-    Log::info('ShareAdReward: User ' . $user->id . ' attempting to share ad.');
-
-    // Check if user already earned today
-    $alreadyEarned = Transaction::where('user_id', $user->id)
-        ->whereDate('created_at', Carbon::today())
-        ->where('type', 'profit')
-        ->where('method', 'system')
-        ->where('description', 'like', 'Ad share reward%')
+    // Check if user already shared today
+    $today = now()->toDateString();
+    $sharedToday = AdShare::where('user_id', $user->id)
+        ->where('shared_on', $today)
         ->exists();
 
-    if ($alreadyEarned) {
-        Log::info('ShareAdReward: User ' . $user->id . ' already earned today.');
+    if ($sharedToday) {
         return response()->json([
             'status' => false,
-            'message' => 'You have already earned from ad sharing today.'
+            'message' => 'You have already earned from sharing an ad today, Try again tomorrow.'
         ]);
     }
 
-    // Calculate reward
-   $dailyReward = 0.50;
+    $dailyReward = 0.50; // Default reward
 
-if ($user->investmentPlan) {
-    $baseAmount = $user->investmentPlan->amount;
-    $weeklyPercent = $user->investmentPlan->weekly_interest;
+    // Check if user has any approved investment
+    $investmentTransaction = Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->where('status', 'completed')
+        ->latest()
+        ->first();
 
-    if ($baseAmount > 0 && $weeklyPercent > 0) {
-        $weeklyReward = ($weeklyPercent / 100) * $baseAmount;
-        $dailyReward = round($weeklyReward / 7, 2);
+    if ($investmentTransaction) {
+        $investmentAmount = $investmentTransaction->amount;
+
+        // Get weekly interest percent from user's plan
+        $weeklyPercent = optional($user->investmentPlan)->weekly_interest ?? 0;
+
+        if ($weeklyPercent > 0 && $investmentAmount > 0) {
+            $weeklyReward = ($weeklyPercent / 100) * $investmentAmount;
+            $dailyReward = round($weeklyReward / 7, 2);
+        } else {
+            Log::warning("ShareAdReward: Invalid investment plan for user {$user->id}. Falling back to default ₦0.50.");
+        }
     } else {
-        Log::warning("ShareAdReward: User {$user->id} has invalid plan values: amount={$baseAmount}, weekly_interest={$weeklyPercent}. Using default ₦0.50.");
+        Log::info("ShareAdReward: No approved investment for user {$user->id}. Using default ₦0.50.");
     }
-}
 
+    // Credit reward to user's profit balance
+    $user->increment('profit_balance', $dailyReward);
 
-    // Add reward to user's profit balance
-    $user->profit_balance += $dailyReward;
-    $user->save();
-    Log::info("ShareAdReward: Updated profit_balance for user {$user->id}.");
+    // Log share to prevent multiple earnings per day
+    AdShare::create([
+        'user_id' => $user->id,
+        'blog_id' => null, // not tracking which ad was shared
+        'shared_on' => $today,
+    ]);
 
-    // Record transaction
+    // Optionally, also log it in transaction table
     Transaction::create([
         'user_id' => $user->id,
-        'description' => 'Ad share reward',
-        'amount' => $dailyReward,
         'type' => 'profit',
+        'amount' => $dailyReward,
+        'status' => 'approved',
+        'description' => 'Daily ad share reward',
         'charge' => 0,
         'final_amount' => $dailyReward,
         'method' => 'system',
-        'pay_currency' => null,
-        'pay_amount' => null,
-        'manual_field_data' => null,
-        'approval_cause' => null,
-        'status' => 'approved',
     ]);
-
-    Log::info("ShareAdReward: Transaction recorded for user {$user->id}, amount ₦{$dailyReward}.");
 
     return response()->json([
         'status' => true,
-        'message' => 'Reward added successfully.',
+        'message' => 'Thank you for sharing the ad!',
         'amount' => $dailyReward
     ]);
 }
-
-
 
 
 

@@ -56,8 +56,8 @@
         <div class="tp-feature-title-box ele-content-align d-inline-block">
             <h4 class="tp-section-title pb-5 tp-el-title">
                 About <i>ShareAlux</i>, 
-                The Largest 
-                <span class="p-relative">buy, sell, exchange 
+                The Premier
+                <span class="p-relative">Ad Share Reward 
                     <span class="tp-section-title-shape-4">
                         <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/05/shape-2.png') }}" alt="">
                     </span> 
@@ -86,7 +86,7 @@
                                  Quality Team    
                               </h4>
                               <p>
-                                 Classified listing marketplace offers perfect.    
+                                 A reliable team behind every listing—ensuring smooth, secure, and trusted transactions.
                               </p>
                            </div>
                           
@@ -137,7 +137,7 @@
                                  Top-Notch Item    
                               </h4>
                               <p>
-                                 Classified listing marketplace offers perfect.    
+                                 Discover a curated selection of high-quality luxury items and properties, each verified for authenticity and excellence.  
                               </p>
                            </div>
                           
@@ -165,7 +165,7 @@
                                  Good Support    
                               </h4>
                               <p>
-                                 Classified listing marketplace offers perfect.    
+                                   Our dedicated support team is available to assist you every step of the way, ensuring a smooth and stress-free experience.
                               </p>
                            </div>
                           
@@ -190,7 +190,7 @@
                                  Easy To Use    
                               </h4>
                               <p>
-                                 Classified listing marketplace offers perfect.    
+                                 With an intuitive interface and user-friendly features, listing, sharing, and shopping is effortless for everyone.
                               </p>
                            </div>
                           
@@ -220,13 +220,13 @@
                   </span>
                </span>
             </h2>
-            <p class="tp-el-content"><b>ShareAlux</b> is a platform on which you can buy and sell almost everything!</p>
+            <p class="tp-el-content"><b>ShareAlux</b> is a platform on which you can earn daily by sharing ads!</p>
          </div>
       </div>
    </div>
 
    <!-- LEFT-ALIGNED DESCRIPTION BELOW -->
-   <p style="text-align: left; margin-top: 10px; margin-left: 60px;"> {{ $about->full_description ?? 'No about content available.' }}</p>
+   <p style="text-align: left; margin-top: 10px; margin-left: 60px;"> {!! $about->full_description ?? 'No about content available.' !!}</p>
 
 </div>
 

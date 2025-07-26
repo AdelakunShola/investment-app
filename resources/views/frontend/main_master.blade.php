@@ -130,6 +130,8 @@
       <meta name="msapplication-TileImage" content="{{ asset('frontend/wp-content/uploads/2024/05/favicon-1.jpg') }}" />
       <style id="kirki-inline-styles"></style>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
    </head>
    <body class="wp-singular page-template page-template-elementor_header_footer page page-id-15 wp-custom-logo wp-embed-responsive wp-theme-listbnb breadcrumb-blog rtcl-no-js translatepress-en_US no-sidebar elementor-default elementor-template-full-width elementor-kit-10 elementor-page elementor-page-15">

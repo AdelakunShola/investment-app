@@ -16,7 +16,7 @@
                      </span>
                   </span>
                </h2>
-               <p class="tp-el-content">Sharealux is a platform on which you can buy and sell almost everything!</p>
+               <p class="tp-el-content">Sharealux is a platform on which you can earn daily by sharing ads!</p>
             </div>
          </div>
       </div>
@@ -98,7 +98,7 @@
        .then(response => response.json())
        .then(data => {
            if (data.status) {
-               alert(`✅ ${data.message} ₦${data.amount} added to your profit.`);
+               alert(`✅ ${data.message} $${data.amount} added to your profit.`);
            } else {
                alert(`⚠️ ${data.message}`);
            }

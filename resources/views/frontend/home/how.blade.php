@@ -26,7 +26,7 @@
                                  </span>
                               </span>
                            </h2>
-                           <p class="tp-el-content">Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text. Many desktop publishing packages and web page editors now...</p>
+                           <p class="tp-el-content"> ShareAlux empowers you to earn from your influence by connecting you to luxury listings, secure crypto transactions, and a rewarding referral system. With a simple interface, trusted support, and a growing digital marketplace, we help you turn social reach into real income—effortlessly and transparently...</p>
                         </div>
                      </div>
                   </div>
@@ -36,7 +36,7 @@
                            <div class="elementor-element elementor-element-81092a9 elementor-widget elementor-widget-tp-text" data-id="81092a9" data-element_type="widget" data-widget_type="tp-text.default">
                               <div class="elementor-widget-container">
                                  <div class="tp-choose-text">
-                                    <span class="tp-el-title">Get unlimited listing &amp;<br>inspire. Level up your<br> design hustle.</span>
+                                    <span class="tp-el-title">Get daily rewards by<br>sharing ads. Level up your<br> finances.</span>
                                  </div>
                               </div>
                            </div>
@@ -45,7 +45,7 @@
                            <div class="elementor-element elementor-element-f9e3200 elementor-widget elementor-widget-tp-text" data-id="f9e3200" data-element_type="widget" data-widget_type="tp-text.default">
                               <div class="elementor-widget-container">
                                  <div class="tp-choose-text">
-                                    <span class="tp-el-title">24/7 our support engineer <br> ready to help you out.</span>
+                                    <span class="tp-el-title">24/7 our support team <br> ready to help you out.</span>
                                  </div>
                               </div>
                            </div>
@@ -64,6 +64,15 @@
                      <div class="elementor-widget-container">
                         <div class="tp-choose-link">
                            <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-el-btn">Get Started Now</a>
+                            @auth
+        <a href="{{ route('user.dashboard') }}" class="tp-el-btn">
+           Get Started Now 
+        </a>
+    @else
+        <a href="{{ route('user.register') }}" class="tp-el-btn">
+            Get Started Now
+        </a>
+    @endauth
                         </div>
                      </div>
                   </div>

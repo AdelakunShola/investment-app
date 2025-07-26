@@ -16,18 +16,17 @@
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
                                     <i class="fa-solid fa-star"></i>
-                                    <span>Trusted by 1M+ users</span>
+                                    <span>1M+ Users | Verified Listings | Daily Rewards</span>
                                  </div>
-                                 <h1 class="tp-hero-3-title mb-45 tp-el-title" data-wow-duration=".9s" data-wow-delay=".5s">The largest <br> site for buying &amp; selling in NYC.</h1>
+                                 <h1 class="tp-hero-3-title mb-45 tp-el-title" data-wow-duration=".9s" data-wow-delay=".5s">Share Ad and Earn. <br> The #1 Trusted Marketplace.</h1>
                                  <div class="tp-hero-3-button">
-                                    <a href="{{ route('contact.us') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                        <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+                                    <a href="{{ route('about.us') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                    
                                     </a>
                                    <a href="{{ Auth::check() ? route('user.dashboard') : route('user.register') }}" 
    target="_self" 
    rel="nofollow" 
    class="tp-btn-border hover-2 tp-el-btn-2">
     List Your Ads                        
-    <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
 </a>
 
                                  </div>

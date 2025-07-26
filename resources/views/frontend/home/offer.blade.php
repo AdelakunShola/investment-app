@@ -1,4 +1,5 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="elementor-element elementor-element-fb3380a e-flex e-con-boxed e-con e-parent" data-id="fb3380a" data-element_type="container">
             <div class="e-con-inner">
@@ -42,9 +43,18 @@
                               </div>
                            </div>
                            <div class="col-xl-4 col-lg-6 col-md-6">
-                              <div class="tp-price-button text-md-end">
-                                 <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-box-btn">Subscribe Now<i class="fa-sharp fa-regular fa-arrow-right-long"></i></a>
-                              </div>
+                            <div class="tp-price-button text-md-end">
+    @auth
+    <a href="{{ route('user.dashboard') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-box-btn">
+        Subscribe Now <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+    </a>
+    @else
+    <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-border tp-el-box-btn">
+        Subscribe Now <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
+    </a>
+    @endauth
+</div>
+
                            </div>
                         </div>
                      </div>
@@ -90,36 +100,40 @@
 
                                 <div class="tp-price-list mb-15">
                                     <ul>
-                                        <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">
-                                                Ads Range: {{ number_format($plan->min_amount) }} - {{ number_format($plan->max_amount) }}
-                                            </span>
-                                            <i class="fal fa-check"></i>
-                                        </li>
+                                        
                                         <li class="tp-el-box-list">
                                             <span class="tp-el-feature-title">Weekly Interest: {{ $plan->weekly_interest }}%</span>
-                                            <i class="fal fa-check"></i>
+                                            ✔️
                                         </li>
                                         <li class="tp-el-box-list">
                                             <span class="tp-el-feature-title">24/7 Online Support</span>
-                                            <i class="fal fa-check"></i>
+                                            ✔️
                                         </li>
+                                       
                                         <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">Limited Edit Option</span>
-                                            <i class="fal fa-check"></i>
+                                            <span class="tp-el-feature-title">Profit Withdrawal Anytime</span>
+                                           ✔️
                                         </li>
-                                        <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">Limited Upload Option</span>
-                                            <i class="fal fa-check"></i>
+                                         <li class="tp-el-box-list">
+                                            <span class="tp-el-feature-title">70% initial capital back in 3 months</span>
+                                           ✔️
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div  class="tp-price-button">
-                                    <a style="color: pink; href="#" class="tp-btn-border w-100 tp-el-box-btn">
-                                        Subscribe Now <i class="fa-sharp fa-regular fa-arrow-right-long"></i>
-                                    </a>
-                                </div>
+                               <div class="tp-price-button">
+    @auth
+        <a href="{{ route('user.dashboard') }}" style="color: pink;" class="tp-btn-border w-100 tp-el-box-btn">
+            Subscribe Now ✔️
+        </a>
+    @else
+        <a href="{{ route('user.register') }}" style="color: pink;" class="tp-btn-border w-100 tp-el-box-btn">
+            Subscribe Now ✔️
+
+        </a>
+    @endauth
+</div>
+
                             </div>
                         </div>
                     </div>
