@@ -37,10 +37,10 @@
                             <img decoding="async" src="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/thumb-2.png" alt="" style="width: 100%; border-radius: 12px;">
                         </div>
                         <div class="contact__shape-1 d-none d-md-block">
-                            <img decoding="async" src="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/shape-1-1-7.png" alt="">
+                            <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }}" alt="">
                         </div>
                         <div class="contact__shape-2 d-none d-md-block">
-                            <img decoding="async" src="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/shape-1-2-1.png" alt="">
+                            <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }}" alt="">
                         </div>
                     </div>
                 </div>

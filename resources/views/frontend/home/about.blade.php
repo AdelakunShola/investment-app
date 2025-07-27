@@ -9,7 +9,7 @@
                </div>
                <div class="elementor-element elementor-element-562cec5 elementor-widget elementor-widget-image" data-id="562cec5" data-element_type="widget" data-widget_type="image.default">
                   <div class="elementor-widget-container">
-                     <img decoding="async" width="188" height="188" src="../wp-content/uploads/2024/04/shape-1-1-3.png" class="attachment-large size-large wp-image-837" alt="" srcset="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/04/shape-1-1-3.png 188w, https://wp.aqlova.com/listbnb/wp-content/uploads/2024/04/shape-1-1-3-100x100.png 100w, https://wp.aqlova.com/listbnb/wp-content/uploads/2024/04/shape-1-1-3-150x150.png 150w" sizes="(max-width: 188px) 100vw, 188px" title="" />															
+                     <img decoding="async" width="188" height="188" src="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }}" class="attachment-large size-large wp-image-837" alt="" srcset="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }} 188w, {{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }} 100w, {{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }} 150w" sizes="(max-width: 188px) 100vw, 188px" title="" />															
                   </div>
                </div>
                <div class="elementor-element elementor-element-ff145a6 elementor-widget elementor-widget-section-title" data-id="ff145a6" data-element_type="widget" data-widget_type="section-title.default">
