@@ -9,8 +9,7 @@
 
    
 
-   <!-- wrapper-box start -->
-       <!-- breadcrumb area start -->
+  
     <div class="breadcrumb__area breadcrumb__overlay breadcrumb__bg p-relative fix" style="background-image:url(https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/breadcurmb.jpg); ">
       <div class="container">
          <div class="row">
