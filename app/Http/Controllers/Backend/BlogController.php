@@ -291,7 +291,8 @@ public function UserBlogstore(Request $request)
     // ✅ Create the blog post
     Blog::create($data);
 
-    return redirect()->back()->with('success', 'Ad created successfully.');
+    return redirect()->route('user.all.ads')->with('success', 'Ad created successfully.');
+
 }
 
 

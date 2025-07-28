@@ -39,9 +39,27 @@
     $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
         ->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw;
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $mainBalance = $totalDeposit + $referralBonus - $totalWithdraw - $totalInvestment;
 @endphp
 
+
+
+@php
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
+use App\Models\Transaction;
+
+$user = Auth::user();
+
+$startOfWeek = Carbon::now()->startOfWeek();
+$endOfWeek = Carbon::now()->endOfWeek();
+
+$weeklyProfit = Transaction::where('user_id', $user->id)
+    ->where('type', 'profit')
+    ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+    ->sum('amount');
+@endphp
 
 
   <div class="main-content">
@@ -259,7 +277,7 @@
             <div class="one">
                 <div class="balance">
 
-                    <span class="symbol">$</span>({{ number_format($walletBalance, 2) }} USD)
+                    <span class="symbol">$</span>({{ number_format($mainBalance, 2) }} USD)
                 </div>
                 <div class="wallet">Main Wallet</div>
             </div>
@@ -271,9 +289,24 @@
                 </div>
                 <div class="wallet">Profit Wallet</div>
             </div>
-            <div class="info">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="info" icon-name="info" class="lucide lucide-info"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>You Earned 3 USD This Week
+
+            <div class="one">
+                <div class="balance">
+
+                    <span class="symbol">$</span>({{ number_format($walletBalance, 2) }} USD)
+                </div>
+                <div class="wallet">Available Balance</div>
             </div>
+
+           <div class="info">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 16v-4"></path>
+        <path d="M12 8h.01"></path>
+    </svg>
+    You Earned {{ number_format($weeklyProfit, 2) }} USD This Week
+</div>
+
         </div>
     </div>
 

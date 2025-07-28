@@ -22,6 +22,39 @@
                 </a>
             </div>
         </div>
+
+         {{-- Ranking Info for Logged-in User --}}
+    @php
+        use App\Models\Transaction;
+        use App\Models\UserRanking;
+
+        $user = auth()->user();
+
+        $totalProfit = Transaction::where('user_id', $user->id)
+            ->where('type', 'profit')
+            ->sum('amount');
+
+        $totalDeposit = Transaction::where('user_id', $user->id)
+            ->where('type', 'deposit')
+            ->sum('amount');
+
+        $userRanking = UserRanking::where('minimum_earnings', '<=', $totalProfit)
+            ->where('minimum_deposit', '<=', $totalDeposit)
+            ->orderByDesc('minimum_earnings')
+            ->first();
+    @endphp
+
+    @if($userRanking)
+        <div class="user-ranking-header d-flex align-items-center me-3">
+            <div class="user-ranking-icon me-2" style="width: 36px; height: 36px;">
+                <img src="{{ asset('storage/' . $userRanking->icon) }}" alt="Rank" class="img-fluid rounded-circle shadow" style="object-fit: contain;">
+            </div>
+            <div class="user-ranking-text">
+               
+                <strong class="text-white">{{ $userRanking->ranking }}</strong>
+            </div>
+        </div>
+    @endif
         <div class="nav-right">
             <div class="single-nav-right">
 
@@ -33,22 +66,30 @@
                 </div>
 
                 
-                                                        <div class="single-nav-right user-notifications11867">
-                        <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell-ring" icon-name="bell-ring" class="lucide lucide-bell-ring"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path><path d="M4 2C2.8 3.7 2 5.7 2 8"></path><path d="M22 8c0-2.3-.8-4.3-2-6"></path></svg>
-    <div class="number">0</div>
-</button>
-<div class="dropdown-menu dropdown-menu-end notification-pop">
-    <div class="noti-head">Notifications <span>0</span></div>
-    <div class="all-noti">
-        
-                    <p>Notification Not Found</p>
-            </div>
+                                                     <div class="single-nav-right user-notifications11867 d-flex align-items-center">
 
+    {{-- Notification Button --}}
+    <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" class="lucide lucide-bell-ring">
+            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+            <path d="M4 2C2.8 3.7 2 5.7 2 8"></path>
+            <path d="M22 8c0-2.3-.8-4.3-2-6"></path>
+        </svg>
+        <div class="number">0</div>
+    </button>
+
+    <div class="dropdown-menu dropdown-menu-end notification-pop">
+        <div class="noti-head">Notifications <span>0</span></div>
+        <div class="all-noti">
+            <p>Notification Not Found</p>
+        </div>
     </div>
 
+</div>
 
-                    </div>
                                 
 
               

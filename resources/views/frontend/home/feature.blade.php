@@ -29,7 +29,7 @@
                   <div class="tp-fea-ads-item item-style-1">
                      <div class="tp-fea-ads-thumb-box p-relative">
                         <div class="tp-fea-ads-thumb">
-                           <a href="">
+                           <a href="{{ route('ad.details', $ad->id) }}">
                            <img loading="lazy" decoding="async" width="400" height="300"
                               src="{{ asset($ad->image) }}"
                               class="rtcl-thumbnail"
@@ -47,7 +47,7 @@
                            </span>
                         </div>
                         <h4 class="tp-fea-ads-2-title tp-el-rep-title">
-                           <a href="">{{ $ad->title }}</a>
+                           <a href="{{ route('ad.details', $ad->id) }}">{{ $ad->title }}</a>
                         </h4>
                         <div class="tp-fea-ads-2-price-box d-flex align-items-center justify-content-between">
                            <div class="tp-fea-ads-2-price">

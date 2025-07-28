@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\investment_plan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,8 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function AdminDashboard(){
+      
+ $latestUsers = User::latest()->take(10)->get();
+    $latestInvestments = investment_plan::with('user')->latest()->take(10)->get();
 
-        return view('admin.index');
+        return view('admin.index', compact('latestUsers', 'latestInvestments'));
      }//end method 
 
      public function AdminLogout(Request $request){

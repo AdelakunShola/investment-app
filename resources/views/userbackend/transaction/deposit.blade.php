@@ -59,7 +59,14 @@
 <div class="col-md-4 mb-3">
   <img src="{{ asset('logo.png') }}" alt="Pay with Crypto" class="img-fluid mb-2" style="max-height: 50px;">
  <button type="button" class="btn btn-warning btn-block" data-bs-toggle="modal" data-bs-target="#cryptoModal">
-  Pay with Cryptocurrency
+  Pay with Cryptocurrency(TRC20)
+</button>
+</div>
+
+<div class="col-md-4 mb-3">
+  <img src="{{ asset('logo.png') }}" alt="Pay with Crypto" class="img-fluid mb-2" style="max-height: 50px;">
+ <button type="button" class="btn btn-warning btn-block" data-bs-toggle="modal" data-bs-target="#cryptoModal1">
+  Pay with Cryptocurrency(ERC20)
 </button>
 
 
@@ -115,6 +122,48 @@
 
         </div>
         <small class="text-muted d-block mb-3">Receive tokens on the <strong>TRX (TRC20)</strong> network only.</small>
+        <!-- Countdown Timer -->
+<div class="mb-3">
+  <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
+  <h4 style="color: black;" id="countdownTimer">30:00</h4>
+</div>
+
+<!-- Payment Confirmation Button -->
+
+<button type="button" class="btn btn-success mt-2" data-bs-dismiss="modal">
+  I Have Made the Payment
+</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- CRYPTO MODAL1 -->
+<div class="modal fade" id="cryptoModal1" tabindex="-1" aria-labelledby="cryptoModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 rounded-4 shadow-lg text-center">
+      <div class="modal-header bg-dark text-white rounded-top-4">
+          <img src="{{ asset('logo1.jpg') }}" alt="Pay with Crypto" class="img-fluid mb-2" style="max-height: 50px;">
+        <h5 style="color: white" class="modal-title w-100" id="cryptoModalLabel1">Tether (USDT) Payment</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- QR Image -->
+        <img src="{{ asset('qrcode.jpg') }}" id="qrImage" alt="USDT QR Code" class="img-fluid mb-3" style="max-width: 220px; border-radius: 12px;">
+
+        <!-- Address -->
+        <p style="color: black;" class="fw-bold mb-1">Your Tether USD Address</p>
+        <div class="input-group mb-3 justify-content-center">
+          <input type="text" class="form-control text-center" id="usdtAddress" readonly value="0xEAA8231fd1DE72cBE9A444d6d1F4e90f86249675" style="max-width: 400px; color: black;">
+          <button class="btn btn-outline-secondary" onclick="copyUSDT()">Copy</button>
+          <small id="copyMsg" class="text-success mt-2" style="display: none;">Address copied to clipboard!</small>
+
+        </div>
+        <small class="text-muted d-block mb-3">Receive tokens on the <strong>TRX (ERC20)</strong> network only.</small>
         <!-- Countdown Timer -->
 <div class="mb-3">
   <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
@@ -269,6 +318,13 @@
   // On Crypto Modal Show → Start Countdown
   const cryptoModalEl = document.getElementById('cryptoModal');
   cryptoModalEl.addEventListener('show.bs.modal', function () {
+    startCountdown(30); // Start 30-minute timer
+  });
+
+
+   // On Crypto1 Modal Show → Start Countdown
+  const cryptoModalEl = document.getElementById('cryptoModal1');
+  cryptoModalEl.addEventListener('show.bs.modal1', function () {
     startCountdown(30); // Start 30-minute timer
   });
 

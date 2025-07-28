@@ -30,6 +30,7 @@
                                         <th scope="col">Ranking Icon</th>
                                         <th scope="col">Ranking Name</th>
                                         <th scope="col">Minimum Earning</th>
+                                        <th scope="col">Minimum Deposit</th>
                                         <th scope="col">Bonus</th>
                                         <th scope="col">Description</th>
                                        
@@ -43,6 +44,7 @@
                                         <td><img class="avatar" src="{{ asset('storage/' . $ranking->icon) }}" alt=""></td>
                                         <td><strong>{{ $ranking->ranking_name }}</strong></td>
                                         <td><strong>{{ number_format($ranking->minimum_earnings, 2) }} USD</strong></td>
+                                        <td><strong>{{ number_format($ranking->minimum_deposit, 2) }} USD</strong></td>
                                         <td><strong>{{ number_format($ranking->bonus, 2) }} USD</strong></td>
                                         <td>{{ $ranking->description }}</td>
                                         

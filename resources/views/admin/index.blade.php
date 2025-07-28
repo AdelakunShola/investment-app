@@ -170,20 +170,7 @@ $pendingDeposits = Transaction::where('type', 'deposit')->where('status', 'pendi
                </a>
             </div>
          </div>
-         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-            <div class="data-card">
-               <div class="icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" icon-name="send" class="lucide lucide-send">
-                     <line x1="22" x2="11" y1="2" y2="13"></line>
-                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                  </svg>
-               </div>
-               <div class="content">
-                  <h4>$<span class="count">6513.77</span></h4>
-                  <p>Total Send</p>
-               </div>
-            </div>
-         </div>
+         
          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
             <div class="data-card">
                <div class="icon">
@@ -209,131 +196,123 @@ $pendingDeposits = Transaction::where('type', 'deposit')->where('status', 'pendi
          
         
       </div>
-      <div class="row">
-         <div class="col-xl-12">
-            <div class="site-card">
-               <div class="site-card-header">
-                  <h3 class="title">Latest Registered User</h3>
-               </div>
-               <div class="site-card-body table-responsive">
-                  <div class="site-datatable">
-                     <table class="data-table mb-0">
+     <div class="row">
+    <div class="col-xl-12">
+        <div class="site-card">
+            <div class="site-card-header">
+                <h3 class="title">Latest Registered Users</h3>
+            </div>
+            <div class="site-card-body table-responsive">
+                <div class="site-datatable">
+                    <table class="data-table mb-0">
                         <thead>
-                           <tr>
-                              <th>Avatar</th>
-                              <th>User</th>
-                              <th>Email</th>
-                              <th>Balance</th>
-                              <th>Profit</th>
-                              <th>KYC</th>
-                              <th>Status</th>
-                              <th>Action</th>
-                           </tr>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Balance</th>
+                                <th>Profit</th>
+                                <th>KYC</th>
+                                <th>Status</th>
+                              
+                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>
-                                 <span class="avatar-text">DL</span>
-                              </td>
-                              <td><a href="https://hyiprio.tdevs.co/admin/user/11878/edit" class="link">Dan_ukbrudda</a></td>
-                              <td>
-                                 <strong>lo***********@gm******m</strong>
-                              </td>
-                              <td><strong>$0</strong></td>
-                              <td><strong>$3</strong></td>
-                              <td>
-                                 <div class="site-badge pending">Unverified</div>
-                              </td>
-                              <td>
-                                 <div class="site-badge success">Active</div>
-                              </td>
-                              <td>
-                                 <a href="https://hyiprio.tdevs.co/admin/user/11878/edit" class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title="" data-bs-original-title="Edit User">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="edit-3" icon-name="edit-3" class="lucide lucide-edit-3">
-                                       <path d="M12 20h9"></path>
-                                       <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                                    </svg>
-                                 </a>
-                                 <span type="button" data-id="11878" data-name="Daniel Long" class="send-mail">
-                                    <button class="round-icon-btn red-btn" data-bs-toggle="tooltip" title="" data-bs-original-title="Send Email">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" icon-name="mail" class="lucide lucide-mail">
-                                          <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                       </svg>
-                                    </button>
-                                 </span>
-                              </td>
-                           </tr>
-                           <tr class="centered">
-                              <td colspan="7">
-                              </td>
-                           </tr>
+                            @forelse ($latestUsers as $user)
+                                <tr>
+                                    <td>
+                                        <span class="avatar-text">{{ strtoupper(substr($user->username, 0, 2)) }}</span>
+                                    </td>
+                                    <td><a href="" class="link">{{ $user->username }}</a></td>
+                                    <td><strong>{{ Str::mask($user->email, '*', 3, 6) }}</strong></td>
+                                    <td><strong>${{ number_format($user->balance, 2) }}</strong></td>
+                                    <td><strong>${{ number_format($user->profit, 2) }}</strong></td>
+                                    <td>
+                                        <div class="site-badge {{ $user->kyc_status == 'verified' ? 'success' : 'pending' }}">
+                                            {{ ucfirst($user->kyc_status ?? 'Unverified') }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="site-badge {{ $user->status == 'active' ? 'success' : 'danger' }}">
+                                            {{ ucfirst($user->status) }}
+                                        </div>
+                                    </td>
+                                   
+                                </tr>
+                            @empty
+                                <tr><td colspan="8" class="text-center text-muted">No recent users found</td></tr>
+                            @endforelse
                         </tbody>
-                     </table>
-                  </div>
-               </div>
+                    </table>
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-xl-12">
-            <div class="site-card">
-               <div class="site-card-header">
-                  <h3 class="title">Latest Investment</h3>
-               </div>
-               <div class="site-card-body table-responsive">
-                  <div class="site-datatable">
-                     <table class="data-table mb-0">
+        </div>
+    </div>
+</div>
+
+{{-- Latest Investments 
+<div class="row mt-4">
+    <div class="col-xl-12">
+        <div class="site-card">
+            <div class="site-card-header">
+                <h3 class="title">Latest Investments</h3>
+            </div>
+            <div class="site-card-body table-responsive">
+                <div class="site-datatable">
+                    <table class="data-table mb-0">
                         <thead>
-                           <tr>
-                              <th>Avatar</th>
-                              <th>User</th>
-                              <th>Schema</th>
-                              <th>ROI</th>
-                              <th>Profit</th>
-                              <th>Capital Back</th>
-                              <th>Timeline</th>
-                           </tr>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Username</th>
+                                <th>Schema</th>
+                                <th>ROI</th>
+                                <th>Profit</th>
+                                <th>Capital Back</th>
+                                <th>Timeline</th>
+                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td>
-                                 <span class="avatar-text">ML</span>
-                              </td>
-                              <td><a href="https://hyiprio.tdevs.co/admin/user/11781/edit" class="link">luisa1839</a></td>
-                              <td>
-                                 <strong>
-                                    10000 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-big-right" icon-name="arrow-big-right" class="lucide lucide-arrow-big-right">
-                                       <path d="M6 9h6V5l7 7-7 7v-4H6V9z"></path>
-                                    </svg>
-                                    $10000
-                                 </strong>
-                              </td>
-                              <td>
-                                 <strong>$0</strong>
-                              </td>
-                              <td>
-                                 <strong>0 x 0 = 0 USD</strong>
-                              </td>
-                              <td>
-                                 <div class="site-badge pending">No</div>
-                              </td>
-                              <td>
-                                 <div class="site-badge pending">Pending</div>
-                              </td>
-                           </tr>
-                           <tr class="centered">
-                              <td colspan="7">
-                              </td>
-                           </tr>
+                            @forelse ($latestInvestments as $investment)
+                                <tr>
+                                   <td>
+    <span class="avatar-text">
+        {{ strtoupper(substr(optional($investment->user)->username ?? 'NA', 0, 2)) }}
+    </span>
+</td>
+
+                                    <td>{{ optional($investment->user)->last_name ?? 'Unknown User' }}</td>
+
+                                    <td>
+                                        <strong>
+                                            {{ $investment->amount }} 
+                                            <i class="lucide lucide-arrow-big-right"></i> 
+                                            ${{ number_format($investment->amount, 2) }}
+                                        </strong>
+                                    </td>
+                                    <td><strong>${{ number_format($investment->roi, 2) }}</strong></td>
+                                    <td><strong>{{ $investment->roi }} x {{ $investment->amount }} = ${{ number_format($investment->roi * $investment->amount, 2) }}</strong></td>
+                                    <td>
+                                        <div class="site-badge {{ $investment->capital_back ? 'success' : 'pending' }}">
+                                            {{ $investment->capital_back ? 'Yes' : 'No' }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="site-badge {{ $investment->status == 'completed' ? 'success' : 'pending' }}">
+                                            {{ ucfirst($investment->status) }}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr><td colspan="7" class="text-center text-muted">No recent investments found</td></tr>
+                            @endforelse
                         </tbody>
-                     </table>
-                  </div>
-               </div>
+                    </table>
+                </div>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
+</div>--}}
+
    </div>
 </div>
 @endsection

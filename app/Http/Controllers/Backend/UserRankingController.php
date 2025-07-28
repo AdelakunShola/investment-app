@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use App\Models\UserRanking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,6 +15,16 @@ class UserRankingController extends Controller
         $rankings = UserRanking::all();
         return view('backend.ranking.all_ranking', compact('rankings'));
     }
+
+ public function Referralindex()
+    {
+     
+        $referrals = Referral::with(['referredUser', 'referrer'])->get();
+
+        return view('backend.referral.all_referral', compact('referrals'));
+    }
+
+    
 
     public function Rankingstore(Request $request)
 {

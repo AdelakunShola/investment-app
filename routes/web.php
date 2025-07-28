@@ -120,6 +120,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/rankings/{id}', [UserRankingController::class, 'Rankingdestroy'])->name('admin.ranking.destroy');
 
     Route::get('/admin/assign-user-rankings', [UserRankingController::class, 'assignRankingsToUsers'])->name('rankings.assign');
+
+
+     Route::get('/all/referrals', [UserRankingController::class, 'Referralindex'])->name('referral.index');
 });
 
 
@@ -140,6 +143,17 @@ Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name(
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

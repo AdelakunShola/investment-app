@@ -293,12 +293,19 @@ public function storeUser(Request $request)
 
 
 
-  public function UserPlans()
+ public function UserPlans()
 {
-    $plans = investment_plan::all(); // Retrieve all plans from DB
-    return view('userbackend.plans.all_plans', compact('plans'));
-} 
+    $plans = investment_plan::all();
 
+    $user = Auth::user();
+
+    $highestPlanId = Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->join('investment_plans', 'transactions.description', '=', 'investment_plans.name')
+        ->max('investment_plans.id');
+
+    return view('userbackend.plans.all_plans', compact('plans', 'highestPlanId'));
+}
 
     public function invest($id)
 {

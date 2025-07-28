@@ -36,7 +36,8 @@
     $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
         ->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw;
+    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $mainBalance = $totalDeposit + $referralBonus - $totalWithdraw - $totalInvestment;
 @endphp
 
 
@@ -52,7 +53,7 @@
                     <div class="wallet-id">
                         <i class="fa-solid fa-wallet"></i> Main Wallet
                     </div>
-                    <div class="balance">({{ number_format($walletBalance, 2) }} USD)</div>
+                    <div class="balance">({{ number_format($mainBalance, 2) }} USD)</div>
                 </div>
                 <div class="wallet-info">
                     <div class="wallet-id">
@@ -60,6 +61,13 @@
                     </div>
                 <div class="balance">({{ number_format($totalProfit, 2) }} USD)</div>
 
+                </div>
+
+                <div class="wallet-info">
+                    <div class="wallet-id">
+                        <i class="fa-solid fa-wallet"></i> Available Balance
+                    </div>
+                    <div class="balance">({{ number_format($walletBalance, 2) }} USD)</div>
                 </div>
             </div>
             <div class="actions">
@@ -93,7 +101,7 @@
                 </li>
 
 <li class="side-nav-item dropdown">
-    <a href="#depositDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">
+    <a href="#depositDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class=" d-flex justify-content-between align-items-center">
         <div>
             <i class="fa-solid fa-money-bill-wave me-2"></i> <span>Deposit</span>
         </div>
@@ -110,7 +118,7 @@
 </li>
 
 <li class="side-nav-item dropdown">
-    <a href="#withdrawDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">
+    <a href="#withdrawDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="d-flex justify-content-between align-items-center">
         <div>
             <i class="fa-solid fa-hand-holding-dollar me-2"></i> <span>Withdraw</span>
         </div>
@@ -129,7 +137,7 @@
 
 
 <li class="side-nav-item dropdown">
-    <a href="#AdDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">
+    <a href="#AdDropdown" data-bs-toggle="collapse" role="button" aria-expanded="false" class=" d-flex justify-content-between align-items-center">
         <div>
             <i class="fa-solid fa-rectangle-ad"></i>
 <span>Post AD</span>
@@ -165,14 +173,9 @@
                     </a>
                 </li>
 
-                <li class="side-nav-item">
-                    <a href="https://hyiprio.tdevs.co/user/support-ticket/index">
-                        <i class="fa-solid fa-toolbox"></i><span>Support Tickets</span>
-                    </a>
-                </li>
 
                 <li class="side-nav-item">
-                    <a href="https://hyiprio.tdevs.co/user/notification/all">
+                    <a href="">
                         <i class="fa-regular fa-bell"></i><span>Notifications</span>
                     </a>
                 </li>
