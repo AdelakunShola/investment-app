@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-Route::prefix('admin/customer')->group(function () {
+Route::prefix('admin/customer')->middleware(['auth'])->group(function () {
     Route::get('all', [CustomerController::class, 'allCustomer'])->name('admin.customer.all');
 
     // remove "/admin" from here
@@ -80,10 +80,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('create/plans', [PlanController::class, 'AddPlan'])->name('add.plans');
     Route::get('/plans', [PlanController::class, 'indexPlan'])->name('admin.manage.plans');
     // Show edit form
-Route::get('/admin/investment-plans/{id}/edit', [PlanController::class, 'editPlan'])->name('admin.investment-plans.edit');
-Route::post('/admin/investment-plans/{id}/update', [PlanController::class, 'updatePlan'])->name('admin.investment-plans.update');
+Route::get('/investment-plans/{id}/edit', [PlanController::class, 'editPlan'])->name('admin.investment-plans.edit');
+Route::post('/investment-plans/{id}/update', [PlanController::class, 'updatePlan'])->name('admin.investment-plans.update');
 Route::delete('/plans/{id}/delete', [PlanController::class, 'destroyPlan'])->name('admin.plans.delete');
-Route::post('/admin/investment-plans', [PlanController::class, 'planStore'])->name('admin.investment-plans.store');
+Route::post('/investment-plans', [PlanController::class, 'planStore'])->name('admin.investment-plans.store');
 });
 
 
