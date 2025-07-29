@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -109,7 +111,21 @@ public function UserRegister(Request $request)
     
 public function storeUser(Request $request)
 {
-    // Step 1: Check referral code from either URL hidden input or manual entry
+    // Validate request first
+    $request->validate([
+        'first_name'    => 'required|string|max:255',
+        'last_name'     => 'required|string|max:255',
+        'email'         => 'required|email|unique:users,email',
+        'username'      => 'required|string|max:255|unique:users,username',
+        'country'       => 'required|string|max:255',
+        'phone'         => 'required|string|max:20',
+        'password'      => 'required|string|min:6|confirmed',
+    ], [
+        'email.unique' => 'This email address is already registered.',
+        'username.unique' => 'This username is already taken.',
+    ]);
+
+    // (Your referral logic remains unchanged)
     $referralCode = $request->referral_code ?: $request->referred_by;
     $referredBy = null;
 
@@ -120,12 +136,12 @@ public function storeUser(Request $request)
         }
     }
 
-    // Step 2: Generate a unique referral code for this new user
+    // Generate unique referral code
     do {
         $newReferralCode = strtoupper(Str::random(6));
     } while (User::where('referral_code', $newReferralCode)->exists());
 
-    // Step 3: Create the user
+    // Create user
     $user = User::create([
         'first_name'     => $request->first_name,
         'last_name'      => $request->last_name,
@@ -138,18 +154,22 @@ public function storeUser(Request $request)
         'referred_by'    => $referredBy,
     ]);
 
-    // ✅ Step 4: Store in `referrals` table
+    // Send welcome email
+    Mail::to($user->email)->send(new WelcomeMail($user));
+
+    // Store referral if applicable
     if ($referredBy) {
         Referral::create([
-            'user_id'     => $user->id,          // new user
-            'referred_by' => $referredBy,        // referrer
-            'bonus'       => 0.00,               // optionally assign signup bonus
-            'status'      => 'pending',          // or 'completed' if auto-approved
+            'user_id'     => $user->id,
+            'referred_by' => $referredBy,
+            'bonus'       => 0.00,
+            'status'      => 'pending',
         ]);
     }
 
     return redirect()->route('user.login')->with('success', 'Account created successfully!');
 }
+
 
 
 

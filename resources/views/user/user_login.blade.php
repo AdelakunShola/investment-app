@@ -4,12 +4,12 @@
      <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="csrf-token" content="">
-      <meta name="keywords" content="ad sharing">
-      <meta name="description" content="">
-      <link rel="canonical" href="">
-      <link rel="shortcut icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
-      <link rel="icon" href="https://hyiprio.tdevs.co/assets/global/images/uwMsIQh95hIgRhCppVCH.png" type="image/x-icon">
+     <meta name="csrf-token" content="">
+         <meta name="keywords" content="luxury affiliate platform, digital income, share ads for money, crypto shopping, earn with referrals, luxury real estate ads, luxury fashion, passive income online, influencer income, social media monetization, PayPal crypto ecommerce">
+      <meta name="description" content="ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online. Monetize your influence, refer others, and earn crypto-enabled passive income on high-end listings.">
+      <link rel="canonical" href="{{ route('user.register') }}">
+      <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
+      <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/vendor/bootstrap.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/animate.css">

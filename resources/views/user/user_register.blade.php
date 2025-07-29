@@ -6,11 +6,12 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="csrf-token" content="">
-      <meta name="keywords" content="digibank,digital banking">
-      <meta name="description" content="Digi Bank is a fully online banking system.">
-      <link rel="canonical" href="https://hyiprio.tdevs.co/register">
-      <link rel="shortcut icon" href="" type="image/x-icon">
-      <link rel="icon" href="" type="image/x-icon">
+         <meta name="keywords" content="luxury affiliate platform, digital income, share ads for money, crypto shopping, earn with referrals, luxury real estate ads, luxury fashion, passive income online, influencer income, social media monetization, PayPal crypto ecommerce">
+      <meta name="description" content="ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online. Monetize your influence, refer others, and earn crypto-enabled passive income on high-end listings.">
+    
+      <link rel="canonical" href="{{ route('user.register') }}">
+      <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
+      <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/global/css/fontawesome.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/vendor/bootstrap.min.css">
       <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/animate.css">
@@ -65,57 +66,84 @@
                         <p>Register to continue with Sharealux</p>
                      </div>
                      <div class="site-auth-form">
+                        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
                             <form method="POST" action="{{ route('user.register.submit') }}">
                       @csrf                   
                       <input type="hidden" name="referred_by" value="{{ $refCode }}">
+
+
+                     
+
          
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="row">
+                             <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="name">First Name<span class="required-field">*</span></label>
                                  <input class="box-input" type="text" placeholder="Your First Name" name="first_name" value="" >
                               </div>
                            </div>
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="name">Last Name<span class="required-field">*</span></label>
                                  <input class="box-input" type="text" placeholder="Your Last Name" name="last_name" value="" >
                               </div>
                            </div>
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                           </div>
+
+
+
+                           <div class="row">
+                             <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="email">Email Address<span class="required-field">*</span></label>
                                  <input class="box-input" type="email" name="email" value="" placeholder="Enter Your Email Address" >
                               </div>
                            </div>
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="username">User Name<span class="required-field">*</span></label>
                                  <input class="box-input" type="text" placeholder="Enter Your User Name" name="username" value="" >
                               </div>
                            </div>
+                            </div>
 
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+
+                           <div class="row">
+                             <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="username">Country<span class="required-field">*</span></label>
                                  <input class="box-input" type="text" placeholder="Enter Your Country" name="country" value="" >
                               </div>
                            </div>
                            
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                           <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="username">Phone Number<span class="required-field">*</span></label>
-                                 <div class="input-group joint-input"><span class="input-group-text" id="dial-code">+234</span>
-                                    <input type="text" class="form-control" placeholder="Phone Number" name="phone" value="" aria-label="Username" aria-describedby="basic-addon1">
+                                 <div class="input-group joint-input">
+                                    <input type="text" class="form-control" placeholder="e.g. +1 555-123-4567" name="phone" value="" aria-label="Username" aria-describedby="basic-addon1">
                                  </div>
                               </div>
                            </div>
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                           </div>
+
+
+                           <div class="row">
+                             <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="invite">Referral Code</label>
                                  <input class="box-input" type="text" placeholder="Enter Your Referral Code" name="referral_code" value="">
                               </div>
                            </div>
-                           <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                           <div class="col-md-6">
                               <div class="single-field">
                                  <label class="box-label" for="password">Password<span class="required-field">*</span></label>
                                  <div class="password">
@@ -123,6 +151,9 @@
                                  </div>
                               </div>
                            </div>
+                           </div>
+
+
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                               <div class="single-field">
                                  <label class="box-label" for="password">Confirm Password<span class="required-field">*</span></label>

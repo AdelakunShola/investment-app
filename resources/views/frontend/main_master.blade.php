@@ -10,8 +10,10 @@
       <meta name='robots' content='max-image-preview:large' />
       <style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
       <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
-    
-
+      <meta name="keywords" content="luxury affiliate platform, digital income, share ads for money, crypto shopping, earn with referrals, luxury real estate ads, luxury fashion, passive income online, influencer income, social media monetization, PayPal crypto ecommerce">
+      <meta name="description" content="ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online. Monetize your influence, refer others, and earn crypto-enabled passive income on high-end listings.">
+      <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
+      <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
   
 
 
