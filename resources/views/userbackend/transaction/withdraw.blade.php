@@ -64,7 +64,7 @@
    <label class="box-input-label">Select Withdrawal Method:</label>
    <select name="method" class="form-control" required>
       <option value="">Choose Method</option>
-      <option value="bank" disabled>Bank Transfer (Unavailable)</option>
+      <option value="bank" disabled>Cash App (Unavailable)</option>
       <option value="paypal" disabled>Paypal (Unavailable)</option>
       <option value="crypto">Crypto Wallet</option>
    </select>

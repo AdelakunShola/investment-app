@@ -608,19 +608,20 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
     </div>
 
     <div class="col-12">
-        <div class="mobile-ref-url mb-4">
-            <div class="all-feature-mobile">
-                <div class="title">Referral URL</div>
-                <div class="mobile-referral-link-form">
-                    <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLink">
-                    <button type="submit" onclick="copyRef()">
-                        <span id="copy">Copy</span>
-                    </button>
-                </div>
-                <p class="referral-joined"> {{ $totalReferral }} person(s) are joined by using this URL</p>
-            </div>
-        </div>
+  <div class="mobile-ref-url mb-4">
+    <div class="all-feature-mobile">
+      <div class="title">Referral URL</div>
+      <div class="mobile-referral-link-form">
+        <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLinkMobile">
+        <button type="button" onclick="copyRef('refLinkMobile')">
+          <span>Copy</span>
+        </button>
+      </div>
+      <p class="referral-joined"> {{ $totalReferral }} person(s) have joined by using this URL</p>
     </div>
+  </div>
+</div>
+
 </div>
     </div>
 
@@ -628,6 +629,20 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
                 </div>
             </div>
         </div>
+
+      
+<script>
+  function copyRef(inputId) {
+    const copyText = document.getElementById(inputId);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile compatibility
+    navigator.clipboard.writeText(copyText.value).then(() => {
+      alert("Copied: " + copyText.value);
+    }).catch(err => {
+      alert("Failed to copy.");
+    });
+  }
+</script>
 
 
 @endsection

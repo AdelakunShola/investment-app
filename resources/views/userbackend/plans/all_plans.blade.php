@@ -38,12 +38,18 @@
                                           ${{ number_format($plan->min_amount, 2) }} - ${{ number_format($plan->max_amount, 2) }}
                                        </span>
                                     </li>
-                                    <li>Capital Back
+                                    <li>Capital Back After 6 months
                                        <span>Yes</span>
                                     </li>
-                                    <li>Profit Withdraw 
-                                       <span>Anytime</span>
-                                    </li>
+                                  <li>
+    Profit Withdraw 
+    <span>Anytime</span>
+    <br>
+    <small style="display: block; font-size: 13px; color: #6b7280;">
+        Profit withdrawal weekly also applies to other plans (withdrawal depends on plan duration).
+    </small>
+</li>
+
                                     <li>Cancel Plan 
                                        <span>Yes</span>
                                     </li>

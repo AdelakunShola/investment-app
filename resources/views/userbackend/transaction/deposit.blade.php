@@ -43,16 +43,18 @@
    <!-- Payment Buttons Section -->
 <div class="row text-center my-4">
   <!-- PayPal -->
-  <div class="col-md-4 mb-3">
-    <img src="{{ asset('paypal.png') }}" alt="Pay with PayPal" class="img-fluid mb-2" style="max-height: 50px;">
-    <button class="btn btn-primary btn-block" onclick="showUnavailableModal('PayPal')">Pay with PayPal</button>
-  </div>
+ <!-- PayPal -->
+<div class="col-md-4 mb-3">
+  <img src="{{ asset('paypal.png') }}" alt="Pay with PayPal" class="img-fluid mb-2" style="max-height: 50px;">
+  <button class="btn btn-primary btn-block" onclick="showUnavailableModal('PayPal')">Pay with PayPal</button>
+</div>
 
-  <!-- Stripe -->
-  <div class="col-md-4 mb-3">
-    <img src="{{ asset('lloyd.png') }}" alt="Pay with Lloyd Bank" class="img-fluid mb-2" style="max-height: 50px;">
-    <button class="btn btn-info btn-block" onclick="showUnavailableModal('Stripe')">Pay with Lloyds Bank</button>
-  </div>
+<!-- Cash App -->
+<div class="col-md-4 mb-3">
+  <img src="{{ asset('cashapp.png') }}" alt="Pay with Cashapp" class="img-fluid mb-2" style="max-height: 50px;">
+  <button class="btn btn-info btn-block" onclick="showUnavailableModal('Cash App')">Pay with Cash App</button>
+</div>
+
 
   <!-- Crypto -->
   <!-- Crypto -->
@@ -80,7 +82,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0 shadow-lg rounded-4">
       <div class="modal-header bg-danger text-white rounded-top-4">
-        <h5 style="color: white" class="modal-title d-flex align-items-center" id="unavailableModalLabel">
+        <h5 class="modal-title d-flex align-items-center" id="unavailableModalLabel">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-exclamation-triangle me-2" viewBox="0 0 16 16">
             <path d="M7.938 2.016a.13.13 0 0 1 .124 0l6.857 11.856c.06.103.06.23 0 .333A.145.145 0 0 1 14.875 14H1.125a.145.145 0 0 1-.124-.195L7.858 2.016a.13.13 0 0 1 .08-.045zm.004 1.25L1.58 13.25h12.84L7.942 3.266zM8 5.5a.5.5 0 0 1 .5.5v3.5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm.002 6.5a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z"/>
           </svg>
@@ -97,6 +99,7 @@
     </div>
   </div>
 </div>
+
 
 
 
@@ -121,7 +124,7 @@
           <small id="copyMsg" class="text-success mt-2" style="display: none;">Address copied to clipboard!</small>
 
         </div>
-        <small class="text-muted d-block mb-3">Receive tokens on the <strong>TRX (TRC20)</strong> network only.</small>
+        <small class="text-muted d-block mb-3">Receive tokens on the <strong> (TRC20)</strong> network only.</small>
         <!-- Countdown Timer -->
 <div class="mb-3">
   <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
@@ -163,7 +166,7 @@
           <small id="copyMsg" class="text-success mt-2" style="display: none;">Address copied to clipboard!</small>
 
         </div>
-        <small class="text-muted d-block mb-3">Receive tokens on the <strong>TRX (ERC20)</strong> network only.</small>
+        <small class="text-muted d-block mb-3">Receive tokens on the <strong> (ERC20)</strong> network only.</small>
         <!-- Countdown Timer -->
 <div class="mb-3">
   <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
@@ -254,6 +257,7 @@
    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384..." crossorigin="anonymous"></script>
 
 <script>
   function previewScreenshot(event) {
@@ -272,12 +276,7 @@
 
 
 <script>
-  // Show unavailable modal with custom method name
-  function showUnavailableModal(method) {
-    document.getElementById('modalMessage').innerText = method + " payment is currently unavailable in your location.";
-    var unavailableModal = new bootstrap.Modal(document.getElementById('unavailableModal'));
-    unavailableModal.show();
-  }
+  
 
   // Copy USDT Address
   function copyUSDT() {
@@ -330,6 +329,17 @@
 
  
 </script>
+<script>
+  function showUnavailableModal(methodName) {
+    document.getElementById('modalMessage').textContent =
+      `Sorry, ${methodName} is not available in your location.`;
+
+    // Show Bootstrap modal (v5+)
+    const modal = new bootstrap.Modal(document.getElementById('unavailableModal'));
+    modal.show();
+  }
+</script>
+
 
 @endsection
 
