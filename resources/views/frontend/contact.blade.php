@@ -32,9 +32,10 @@
           <div class="contact__thumb-sm mb-4">
             <img src="https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/thumb-2.png" alt="Secondary" class="img-fluid rounded-3 w-100">
           </div>
-          <div class="">
-            <img src="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }}" alt="">
-          </div>
+         <div class="text-center d-block d-md-none">
+    <img src="{{ asset('frontend/wp-content/uploads/2024/04/shape-1-1-3.png') }}" alt="" class="img-fluid">
+</div>
+
           
         </div>
       </div>
@@ -75,7 +76,6 @@
             <div class="flex-grow-1">
               <strong class="d-block mb-1">Phone:</strong>
               <a href="tel:{{ $contact->phone1 }}">{{ $contact->phone1 }}</a><br>
-              <a href="tel:{{ $contact->phone2 }}">{{ $contact->phone2 }}</a>
             </div>
             <div class="contact__icon">
               <!-- SVG -->

@@ -82,9 +82,9 @@
          <div class="elementor-element elementor-element-1e63e49 e-flex e-con-boxed e-con e-parent" data-id="1e63e49" data-element_type="container">
             <div class="e-con-inner">
                <div class="elementor-element elementor-element-44b4825 elementor-widget elementor-widget-tp-copyright" data-id="44b4825" data-element_type="widget" data-widget_type="tp-copyright.default">
-                  <div class="elementor-widget-container"></br>
+                  <div class="elementor-widget-container"></br></br></br>
                      <div class="tp-copyright-2-text text-center wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
-                        <p>Copyright &amp; Design<a href="webmotionhq.com" target="_blank" rel="nofollow" class="tp-el-btn" style="color: white">WebmotionHq</a>
+                        <p>Copyright &amp; Design <a href="#" target="_blank" rel="nofollow" class="tp-el-btn" style="">Sharealux</a>
                            - 2025
                         </p>
                      </div>

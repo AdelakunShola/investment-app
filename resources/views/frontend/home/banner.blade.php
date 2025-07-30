@@ -20,7 +20,7 @@
                                  </div>
                                  <h1 class="tp-hero-3-title mb-45 tp-el-title" data-wow-duration=".9s" data-wow-delay=".5s">Share Ad and Earn. <br> The #1 Trusted Marketplace.</h1>
                                  <div class="tp-hero-3-button">
-                                    <a href="{{ route('about.us') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                    
+                                    <a href="{{ route('user.register') }}" target="_self" rel="nofollow" class="tp-btn-theme tp-el-btn">Earn Money Today                    
                                     </a>
                                    <a href="{{ Auth::check() ? route('user.dashboard') : route('user.register') }}" 
    target="_self" 
