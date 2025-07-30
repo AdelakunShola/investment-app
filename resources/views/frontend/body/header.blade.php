@@ -32,7 +32,7 @@ $about = About::first();
                               <div class="tp-header__left d-flex align-items-center">
                                  <div class="tp-header-logo d-md-none">
                                     <a href="{{ route('home') }}">
-                                    <img class="tpLogoImg" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="">
+                                    <img class="tpLogoImg" src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 70px; width: 70px;" alt="">
                                     </a>
                                  </div>
                               </div>
@@ -96,11 +96,11 @@ $about = About::first();
                   </div>
                   <div class="tpoffcanvas__logo">
                      <a href="{{ route('user.login') }}">
-                     <img class="offcanLogo" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="">
+                     <img class="offcanLogo" src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height:50px; width: 50px;" alt="">
                      </a>
                   </div>
                   <div class="tpoffcanvas__title">
-                     <p class="offcanAboutText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima incidunt eaque a cumque</p>
+                     <p class="offcanAboutText">ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online.</p>
                   </div>
                   <div class="tp-main-menu-mobile d-xl-none"></div>
                   <div class="tpoffcanvas__contact-info">

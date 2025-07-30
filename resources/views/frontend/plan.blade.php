@@ -10,22 +10,24 @@
    
 
   
-    <div class="breadcrumb__area breadcrumb__overlay breadcrumb__bg p-relative fix" style="background-image:url(https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/breadcurmb.jpg); ">
-      <div class="container">
-         <div class="row">
-            <div class="col-xxl-12">
-               <div class="breadcrumb__content z-index">
-                                 <div class="breadcrumb__list mb-10">
-                    <!-- Breadcrumb NavXT 7.4.1 -->
-<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to ListBnb." href="{{ route('home') }}" class="home"><span property="name">Home</span></a><meta property="position" content="1"></span><span class="dvdr"><i class="fa-solid fa-angle-right"></i></span><span property="itemListElement" typeof="ListItem"><span property="name" class="post post-page current-item">Plans</span><meta property="url" content=""><meta property="position" content="2"></span>                  </div>
-                                    <div class="breadcrumb__section-title-box">
-                     <h3 class="breadcrumb__title">Plans</h3>
-                  </div>
-               </div>
+       <div class="breadcrumb__area black-bg breadcrumb__height breadcrumb__border">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 text-center">
+                <div class="breadcrumb__content z-index">
+                    <div class="breadcrumb__list text-white">
+                        <span><a href="{{ url('/') }}">Home</a></span>
+                        
+                            &nbsp;/&nbsp;
+                            <span><a href="#">Plans</a></span>
+                        
+                       
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-     </div>
+        </div>
+    </div>
+</div>
    
      
 
@@ -149,7 +151,7 @@
                                            ✔️
                                         </li>
                                          <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">70% initial capital back in 3 months</span>
+                                            <span class="tp-el-feature-title">70% initial capital back in 6 months</span>
                                            ✔️
                                         </li>
                                     </ul>
@@ -177,8 +179,8 @@
     </div>
 
     {{-- Optional Navigation Buttons --}}
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div style="color: pink;" class="swiper-button-prev"></div>
+    <div style="color: pink;" class="swiper-button-next"></div>
 </div>
 
 

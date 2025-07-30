@@ -32,6 +32,9 @@
          padding: 0;
          }
       </style>
+      <link rel="stylesheet" href="https://hyiprio.tdevs.co/assets/frontend/css/vendor/bootstrap.min.css">
+<script src="https://hyiprio.tdevs.co/assets/frontend/js/bootstrap.bundle.min.js"></script>
+
       <title>Sharealux -    User Register</title>
       <style>
          .imageye-selected {
@@ -169,10 +172,11 @@
                               <div class="single-field">
                                  <input class="form-check-input check-input" type="checkbox" name="i_agree" value="yes" id="flexCheckDefault" >
                                  <label class="form-check-label" for="flexCheckDefault">
-                                 I agree with
-                                 <a href="">Privacy &amp; Policy</a>
-                                 and
-                                 <a href="">Terms &amp; Condition</a>
+                                I agree with
+<a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+and
+<a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
+
                                  </label>
                               </div>
                            </div>
@@ -191,6 +195,115 @@
             </div>
          </div>
       </section>
+
+
+      <!-- Privacy Policy Modal -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="line-height: 1.7;">
+        <p><strong>At ShareAlux, protecting your privacy and ensuring the security of your personal information is a top priority.</strong></p>
+        <p>This Privacy Policy explains how we securely collect, use, store, and protect your data when you access or use our website or services.</p>
+
+        <h6>1. Information We Collect</h6>
+        <ul>
+          <li>Personal Identifiable Information (PII): Full name, contact details (email, phone), ID verification (if required), payment data, and login credentials.</li>
+          <li>Device & Technical Data: IP address, browser type, OS, location, session timestamps, etc.</li>
+          <li>Behavioral Data: Clickstreams, logs, referral links, navigation activity.</li>
+          <li>Cookies & Analytics Tools: Including Google Analytics (anonymized).</li>
+        </ul>
+
+        <h6>2. How We Use Your Information</h6>
+        <ul>
+          <li>Operate and improve our platform</li>
+          <li>Authenticate users and secure account access</li>
+          <li>Process transactions safely and prevent fraud</li>
+          <li>Communicate important updates</li>
+          <li>Comply with legal and regulatory obligations</li>
+        </ul>
+
+        <h6>3. Data Security & Encryption</h6>
+        <ul>
+          <li>TLS/SSL and AES-256 encryption</li>
+          <li>Passwords stored with bcrypt/Argon2</li>
+          <li>2FA and anomaly detection</li>
+          <li>Firewall and intrusion detection</li>
+        </ul>
+
+        <h6>4. Data Retention</h6>
+        <p>We retain personal data only as necessary. Non-essential data is anonymized or deleted regularly.</p>
+
+        <h6>5. Your Rights</h6>
+        <ul>
+          <li>Access, correct, or delete data</li>
+          <li>Withdraw consent</li>
+          <li>Request data portability</li>
+          <li>File complaints with the DPA</li>
+        </ul>
+
+        <h6>6. Third-Party Access</h6>
+        <p>Only vetted providers under strict DPAs can access limited data. All comply with GDPR and ISO 27001.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="termsModalLabel">Terms & Conditions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="line-height: 1.7;">
+        <p>These Terms and Conditions (“Terms”) govern your access to and use of our secure platform. By registering or using our services, you agree to comply with the following:</p>
+
+        <h6>1. User Responsibilities</h6>
+        <ul>
+          <li>Use ShareAlux for lawful purposes</li>
+          <li>Protect your login credentials</li>
+          <li>Report unauthorized access or breaches</li>
+          <li>No malicious uploads or reverse engineering</li>
+        </ul>
+
+        <h6>2. Account Security</h6>
+        <p>2FA is encouraged. You’re responsible for your login activities. We monitor suspicious behavior.</p>
+
+        <h6>3. Acceptable Use</h6>
+        <ul>
+          <li>No unauthorized access attempts</li>
+          <li>No phishing, spamming, or illegal transactions</li>
+          <li>No scraping private data or deploying harmful code</li>
+        </ul>
+
+        <h6>4. Payments and Refunds</h6>
+        <ul>
+          <li>Encrypted payments through PCI-DSS-compliant gateways</li>
+          <li>Refunds follow our Refund Policy</li>
+          <li>You’re responsible for correct payment details</li>
+        </ul>
+
+        <h6>5. Intellectual Property</h6>
+        <p>All content and code belong to ShareAlux or its licensors. No unauthorized reuse.</p>
+
+        <h6>6. Termination</h6>
+        <p>We may terminate accounts for suspicious activity, fraud, or violations.</p>
+
+        <h6>7. Limitation of Liability</h6>
+        <p>We’re not liable for indirect damages. We aim for 99.99% uptime but can’t guarantee uninterrupted service.</p>
+
+        <h6>8. Indemnification</h6>
+        <p>You agree to indemnify ShareAlux against any legal claims or damages from your misuse or violations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
       <!-- Login Section End -->
       <script src="https://hyiprio.tdevs.co/assets/global/js/jquery.min.js"></script>
       <script src="https://hyiprio.tdevs.co/assets/global/js/jquery-migrate.js"></script>
@@ -216,7 +329,9 @@
          })(jQuery);
       </script>
      
-    
-     
+ 
+
+<!-- Update your checkbox label to trigger modal -->
+
    </body>
 </html>

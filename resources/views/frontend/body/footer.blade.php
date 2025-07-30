@@ -5,7 +5,7 @@
 
  
  <div data-elementor-type="wp-post" data-elementor-id="3135" class="elementor elementor-3135">
-        <div class="elementor-element elementor-element-f7e0f02 e-flex e-con-boxed e-con e-parent"
+        <div class=""
      data-id="f7e0f02" 
      data-element_type="container" 
      data-settings='{"background_background":"classic"}'
@@ -82,7 +82,7 @@
          <div class="elementor-element elementor-element-1e63e49 e-flex e-con-boxed e-con e-parent" data-id="1e63e49" data-element_type="container">
             <div class="e-con-inner">
                <div class="elementor-element elementor-element-44b4825 elementor-widget elementor-widget-tp-copyright" data-id="44b4825" data-element_type="widget" data-widget_type="tp-copyright.default">
-                  <div class="elementor-widget-container">
+                  <div class="elementor-widget-container"></br>
                      <div class="tp-copyright-2-text text-center wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
                         <p>Copyright &amp; Design<a href="webmotionhq.com" target="_blank" rel="nofollow" class="tp-el-btn" style="color: white">WebmotionHq</a>
                            - 2025

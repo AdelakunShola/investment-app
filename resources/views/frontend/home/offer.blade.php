@@ -1,5 +1,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
 
 <div class="elementor-element elementor-element-fb3380a e-flex e-con-boxed e-con e-parent" data-id="fb3380a" data-element_type="container">
             <div class="e-con-inner">
@@ -92,9 +93,16 @@
                                 @endif
 
                                 <div class="tp-price-top mb-15">
-                                    <h6 class="tp-price-number tp-el-box-ammount" style="font-size: 30px;">
-                                        <i>&#036;</i>{{ number_format($plan->min_amount, 2) }} - {{ number_format($plan->max_amount, 2) }}
-                                    </h6>
+                                   <h6 class="tp-price-number tp-el-box-ammount" style="
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #0f172a;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;">
+    <i style="font-style: normal;"></i>${{ number_format($plan->min_amount, 2) }} - ${{ number_format($plan->max_amount, 2) }}
+</h6>
+
                                     <span class="tp-el-header-title">{{ strtoupper($plan->name) }}</span>
                                 </div>
 
@@ -115,7 +123,7 @@
                                            ✔️
                                         </li>
                                          <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">70% initial capital back in 3 months</span>
+                                            <span class="tp-el-feature-title">70% initial capital back in 6 months</span>
                                            ✔️
                                         </li>
                                     </ul>
@@ -143,8 +151,8 @@
     </div>
 
     {{-- Optional Navigation Buttons --}}
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div style="color: pink;" class="swiper-button-prev"></div>
+    <div style="color: pink;" class="swiper-button-next"></div>
 </div>
 
 <!-- Swiper Scripts -->

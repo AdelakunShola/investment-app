@@ -57,12 +57,15 @@
                                  </span>
                               </div>
                            </div>
-                           <div class="tp-fea-ads-2-price-icon">
-                              <a href="#" onclick="shareAdWithReward('{{ request()->fullUrl() }}'); return false;" title="Share on Facebook">
-                              <i class="fas fa-share-alt"></i>
-                              <span class="favourite-label">Share</span>
-                              </a>
-                           </div>
+                         <div class="tp-fea-ads-2-price-icon">
+    <a href="#"
+       onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ request()->fullUrl() }}'); @endif return false;"
+       title="Share on Facebook">
+        <i class="fas fa-share-alt"></i>
+        <span class="favourite-label">Share</span>
+    </a>
+</div>
+
                         </div>
                      </div>
                   </div>
@@ -82,30 +85,39 @@
 </div>
 <script>
    function shareAdWithReward(adUrl) {
-       // Open Facebook share dialog
-       const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(adUrl)}`;
-       window.open(fbShareUrl, '_blank', 'width=600,height=400');
-   
-       // Send POST request to backend to record reward
-       fetch("{{ route('user.share.ad') }}", {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json",
-               "X-CSRF-TOKEN": '{{ csrf_token() }}'
-           },
-           body: JSON.stringify({})
-       })
-       .then(response => response.json())
-       .then(data => {
-           if (data.status) {
-               alert(`✅ ${data.message} $${data.amount} added to your profit.`);
-           } else {
-               alert(`⚠️ ${data.message}`);
-           }
-       })
-       .catch(error => {
-           console.error("Share error:", error);
-           alert("⚠️ Something went wrong. Please try again.");
-       });
-   }
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Use Facebook app deep link on mobile
+        const fbAppUrl = `fb://facewebmodal/f?href=https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(adUrl)}`;
+        window.location.href = fbAppUrl;
+    } else {
+        // Use web-based sharing on desktop
+        const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(adUrl)}`;
+        window.open(fbShareUrl, '_blank', 'width=600,height=400');
+    }
+
+    // Reward user (optional - this can be triggered after a delay or via web hook in real use)
+    fetch("{{ route('user.share.ad') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            alert(`✅ ${data.message} $${data.amount} added to your profit.`);
+        } else {
+            alert(`⚠️ ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error("Share error:", error);
+        alert("⚠️ Something went wrong. Please try again.");
+    });
+}
+
 </script>

@@ -1,27 +1,52 @@
 @extends('frontend.main_master')    
 @section('main')
+
+<style>
+@media (max-width: 768px) {
+  .e-con-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important; /* Adjust to 1px or 2px if you want tiny space */
+  }
+
+  .e-con-full.e-child {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .tp-feature-2-item {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+</style>
+
 <!-- wrapper-box start -->
 <!-- breadcrumb area start -->
-       <div class="breadcrumb__area breadcrumb__overlay breadcrumb__bg p-relative fix" style="background-image:url(https://wp.aqlova.com/listbnb/wp-content/uploads/2024/05/breadcurmb.jpg); ">
-      <div class="container">
-         <div class="row">
-            <div class="col-xxl-12">
-               <div class="breadcrumb__content z-index">
-                                 <div class="breadcrumb__list mb-10">
-                    <!-- Breadcrumb NavXT 7.4.1 -->
-<span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to ListBnb." href="{{ route('home') }}" class="home"><span property="name">Home</span></a><meta property="position" content="1"></span><span class="dvdr"><i class="fa-solid fa-angle-right"></i></span><span property="itemListElement" typeof="ListItem"><span property="name" class="post post-page current-item">About-us</span><meta property="url" content=""><meta property="position" content="2"></span>                  </div>
-                                    <div class="breadcrumb__section-title-box">
-                     <h3 class="breadcrumb__title">About-us</h3>
-                  </div>
-               </div>
+      <div class="breadcrumb__area black-bg breadcrumb__height breadcrumb__border">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 text-center">
+                <div class="breadcrumb__content z-index">
+                    <div class="breadcrumb__list text-white">
+                        <span><a href="{{ url('/') }}">Home</a></span>
+                        
+                            &nbsp;/&nbsp;
+                            <span><a href="#">About-Us</a></span>
+                        
+                       
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-     </div>
+        </div>
+    </div>
+</div>
 <!-- breadcrumb area end -->
+   
 <div data-elementor-type="wp-page" data-elementor-id="1872" class="elementor elementor-1872">
   <div class="elementor-element elementor-element-c0a19c5 e-flex e-con-boxed e-con e-parent e-lazyloaded" data-id="c0a19c5" data-element_type="container">
     <div class="e-con-inner">
+  
         <div class="elementor-element elementor-element-397ff67 elementor-widget elementor-widget-image" data-id="397ff67" data-element_type="widget" data-widget_type="image.default">
             <div class="elementor-widget-container">
                 <img fetchpriority="high" decoding="async" width="1290" height="650"
@@ -34,7 +59,7 @@
                      sizes="(max-width: 1290px) 100vw, 1290px" title="">
             </div>
         </div>
-
+</br></br>
         <div class="elementor-element elementor-element-b6d99c1 elementor-widget elementor-widget-image" data-id="b6d99c1" data-element_type="widget" data-widget_type="image.default">
             <div class="elementor-widget-container">
                 <img decoding="async" width="188" height="188"
@@ -62,15 +87,18 @@
                         <img decoding="async" src="{{ asset('frontend/wp-content/uploads/2024/05/shape-2.png') }}" alt="">
                     </span> 
                 </span> 
-                <br> Marketplace in <b>United States.</b>
+                <br> Marketplace.
             </h4>
         </div>
     </div>
 </div>
 
          <div class="elementor-element elementor-element-a5696ab e-flex e-con-boxed e-con e-child" data-id="a5696ab" data-element_type="container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-   <div class="e-con-inner" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px;">
-                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px;">
+ 
+   <div class="e-con-inner" style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; align-items: stretch;">
+
+
+                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px; margin-bottom:-150px;">
          <div class="elementor-widget-container">
             <div class="tp-feature-2-item feature-col-1 feature-border text-center">
                         <div class="tp-feature-2-item feature-col-1 feature-border">
@@ -94,7 +122,7 @@
                      </div>
                   </div>
                </div>
-                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px;">
+                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px; margin-bottom:-150px;">
          <div class="elementor-widget-container">
             <div class="tp-feature-2-item feature-col-1 feature-border text-center">
                         <div class="tp-feature-2-item feature-col-1 feature-border">
@@ -145,7 +173,7 @@
                      </div>
                   </div>
                </div>
-                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px;">
+                 <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px; margin-bottom:-150px;">
          <div class="elementor-widget-container">
             <div class="tp-feature-2-item feature-col-1 feature-border text-center">
                         <div class="tp-feature-2-item feature-col-1 feature-border">
@@ -173,7 +201,7 @@
                      </div>
                   </div>
                </div>
-                <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px;">
+                <div class="elementor-element e-con-full e-child" style="flex: 1 1 250px; max-width: 300px; ">
          <div class="elementor-widget-container">
             <div class="tp-feature-2-item feature-col-1 feature-border text-center">
                         <div class="tp-feature-2-item feature-col-1 ">
