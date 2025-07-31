@@ -110,7 +110,7 @@
             {{ $customer->is_active == 1 ? 'Active' : ($customer->is_active == 0 ? 'Disabled' : 'Closed') }}
         </div>
     </td>
-   <td>
+  <td>
     {{-- Edit Button --}}
     <a href="{{ route('admin.user.edit', $customer->id) }}" class="round-icon-btn primary-btn" title="Edit User">
         <i class="lucide lucide-edit-3"></i>
@@ -125,6 +125,7 @@
         </button>
     </form>
 </td>
+
 
 </tr>
 @endforeach

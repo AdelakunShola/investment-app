@@ -607,20 +607,21 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
 
     </div>
 
-    <div class="col-12">
+   <div class="col-12">
   <div class="mobile-ref-url mb-4">
     <div class="all-feature-mobile">
       <div class="title">Referral URL</div>
       <div class="mobile-referral-link-form">
         <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLinkMobile">
-        <button type="button" onclick="copyRef('refLinkMobile')">
-          <span>Copy</span>
+        <button type="button" id="copyBtn" onclick="copyRef('refLinkMobile')">
+          <span id="copyText">Copy</span>
         </button>
       </div>
       <p class="referral-joined"> {{ $totalReferral }} person(s) have joined by using this URL</p>
     </div>
   </div>
 </div>
+
 
 </div>
     </div>
@@ -633,14 +634,23 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
       
 <script>
   function copyRef(inputId) {
-    const copyText = document.getElementById(inputId);
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // For mobile compatibility
-    navigator.clipboard.writeText(copyText.value).then(() => {
-      alert("Copied: " + copyText.value);
-    }).catch(err => {
-      alert("Failed to copy.");
-    });
+    const input = document.getElementById(inputId);
+    const copyBtnText = document.getElementById('copyText');
+
+    input.focus();
+    input.select();
+    input.setSelectionRange(0, 99999); // For mobile
+
+    try {
+      navigator.clipboard.writeText(input.value).then(() => {
+        copyBtnText.textContent = "Copied!";
+        setTimeout(() => copyBtnText.textContent = "Copy", 2000);
+      }).catch(err => {
+        alert("Copy failed. Try manually selecting and copying.");
+      });
+    } catch (err) {
+      alert("Copy not supported. Please copy manually.");
+    }
   }
 </script>
 

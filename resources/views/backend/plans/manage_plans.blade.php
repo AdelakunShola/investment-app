@@ -29,6 +29,7 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Badge</th>
                 <th scope="col">Weekly Interest</th>
+                <th scope="col">Profit Withdraw Duration</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -46,6 +47,9 @@
                 </td>
                 <td>
                     <div class="site-badge success">{{ $plan->weekly_interest }}%</div>
+                </td>
+                <td>
+                    <div class="site-badge success">{{ $plan->duration }}</div>
                 </td>
                 <td class="d-flex gap-2">
     {{-- Edit Button --}}

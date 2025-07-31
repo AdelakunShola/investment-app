@@ -89,6 +89,14 @@
                                     </div>
                                 </div>
 
+
+                                <div class="col-xl-6 schema-badge">
+                                    <div class="site-input-groups">
+                                        <label class="box-input-label" for="">Profit Withdraw Duration:</label>
+                                        <input type="text" class="box-input" placeholder="Anytime" name="duration">
+                                    </div>
+                                </div>
+
                                 
                               
                               

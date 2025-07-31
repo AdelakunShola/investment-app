@@ -36,6 +36,7 @@ class PlanController extends Controller
     investment_plan::create([
         'icon' => $iconPath,
         'name' => $request->name,
+        'duration' => $request->duration,
         'badge' => $request->badge,
         'min_amount' => $request->min_amount,
         'max_amount' => $request->max_amount,
@@ -70,6 +71,7 @@ public function updatePlan(Request $request, $id)
     // Update other fields
     $plan->name = $request->name;
     $plan->badge = $request->badge;
+    $plan->duration = $request->duration;
     $plan->min_amount = $request->min_amount;
     $plan->max_amount = $request->max_amount;
     $plan->weekly_interest = $request->weekly_interest;

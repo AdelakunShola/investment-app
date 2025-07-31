@@ -94,6 +94,13 @@
         </div>
     </div>
 
+    <div class="col-xl-6 schema-badge">
+        <div class="site-input-groups">
+            <label class="box-input-label">Profit Withdraw Duration:</label>
+            <input type="text" name="duration" class="box-input" value="{{ $plan->duration }}">
+        </div>
+    </div>
+
     <div class="col-xl-12">
         <button type="submit" class="site-btn-sm primary-btn w-100">Update Schema</button>
     </div>

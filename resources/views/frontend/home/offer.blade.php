@@ -118,9 +118,10 @@
                                             ✔️
                                         </li>
                                        
-                                        <li class="tp-el-box-list">
-                                            <span class="tp-el-feature-title">Profit Withdrawal Anytime</span>
-                                           ✔️
+                                       <li class="tp-el-box-list">
+                                            Profit Withdrawal 
+                                            <span class="tp-el-feature-title">{{ $plan->duration }}</span>
+                                            ✔️ 
                                         </li>
                                          <li class="tp-el-box-list">
                                             <span class="tp-el-feature-title">70% initial capital back in 6 months</span>

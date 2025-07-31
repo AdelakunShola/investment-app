@@ -39,19 +39,16 @@
                                        </span>
                                     </li>
                                     <li>Capital Back After 6 months
-                                       <span>Yes</span>
+                                       <span class="special">Yes</span>
                                     </li>
                                   <li>
-    Profit Withdraw 
-    <span>Anytime</span>
-    <br>
-    <small style="display: block; font-size: 13px; color: #6b7280;">
-        Profit withdrawal weekly also applies to other plans (withdrawal depends on plan duration).
-    </small>
+    Profit Withdrawal 
+    <span style="font-size: 10px;" class="special">{{ $plan->duration }}</span>
+    
 </li>
 
                                     <li>Cancel Plan 
-                                       <span>Yes</span>
+                                       <span class="special">Yes</span>
                                     </li>
                                  </ul>
 
