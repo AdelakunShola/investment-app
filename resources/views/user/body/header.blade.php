@@ -6,8 +6,8 @@
 <div class="panel-header">
     <div class="logo">
         <a href="{{ route('user.dashboard') }}">
-            <img class="logo-unfold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
-            <img class="logo-fold" src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Logo">
+            <img class="logo-unfold" src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 120px; width: auto; margin-top: -20px;" alt="Logo">
+            <img class="logo-fold" src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 120px; width: auto; margin-top: -20px;" alt="Logo">
         </a>
     </div>
     <div class="nav-wrap">
@@ -18,7 +18,7 @@
             </button>
             <div class="mob-logo">
                 <a href="{{ route('user.dashboard') }}">
-                    <img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="Site Name">
+                    <img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 100px; width: auto;" alt="Site Name">
                 </a>
             </div>
         </div>
@@ -31,7 +31,7 @@
         $user = auth()->user();
 
         $totalProfit = Transaction::where('user_id', $user->id)
-            ->where('type', 'profit')
+            ->whereIn('type', ['profit', 'referral_bonus'])
             ->sum('amount');
 
         $totalDeposit = Transaction::where('user_id', $user->id)

@@ -89,7 +89,7 @@ public function investments(Request $request)
     $typeFilter = $request->query('filter_by_transaction_type');
 
     $transactions = Transaction::with('user')
-        ->where('type', 'profit')
+        ->whereIn('type', ['profit', 'referral_bonus'])
         ->latest();
 
     if ($query) {
@@ -145,6 +145,44 @@ public function depositAction(Request $request)
             $user = $deposit->user;
             $user->wallet_balance += $deposit->amount;
             $user->save();
+
+            // ✅ Check if it's the user's first approved deposit
+            $firstApproved = Transaction::where('user_id', $user->id)
+                ->where('type', 'deposit')
+                ->where('status', 'approved')
+                ->orderBy('created_at', 'asc')
+                ->first();
+
+            if ($firstApproved && $firstApproved->id == $deposit->id) {
+                // ✅ Check if user was referred by someone
+                $referral = \App\Models\Referral::where('user_id', $user->id)->first();
+
+                if ($referral && $referral->status == 'pending') {
+                    $referrer = \App\Models\User::find($referral->referred_by);
+
+                    if ($referrer) {
+                        $bonusAmount = 0.05 * $deposit->amount;
+
+                        // ✅ Update referrer's wallet
+                        $referrer->wallet_balance += $bonusAmount;
+                        $referrer->save();
+
+                        // ✅ Update referral record
+                        $referral->bonus = $bonusAmount;
+                        $referral->status = 'completed';
+                        $referral->save();
+
+                        // ✅ Log referral bonus as a transaction
+                        \App\Models\Transaction::create([
+                            'user_id' => $referrer->id,
+                            'description' => 'Referral bonus from user ID ' . $user->id,
+                            'amount' => $bonusAmount,
+                            'type' => 'Referral_bonus',
+                            'status' => 'approved',
+                        ]);
+                    }
+                }
+            }
         }
 
     } elseif ($request->has('reject')) {
@@ -154,6 +192,7 @@ public function depositAction(Request $request)
 
     return back()->with('success', 'Deposit status updated.');
 }
+
 
 
 

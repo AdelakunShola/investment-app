@@ -25,7 +25,7 @@
                                     <th>#</th>
                                     <th>Image</th>
                                     <th>Title</th>
-                                    <th>Category</th>
+                                   
                                     <th>Price</th>
                                     <th>Date</th>
                                     <th>Actions</th>
@@ -43,7 +43,6 @@
                                        @endif
                                     </td>
                                     <td>{{ $ad->title }}</td>
-                                    <td>{{ $ad->category ?? 'N/A' }}</td>
                                     <td>${{ number_format($ad->price, 2) }}</td>
                                    
                                     <td>{{ $ad->created_at->format('d M, Y h:i A') }}</td>

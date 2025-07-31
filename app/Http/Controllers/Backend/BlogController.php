@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AdShare;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,14 +21,19 @@ class BlogController extends Controller
 {
     public function Blogindex()
 {
-    $luxuryAds = Blog::with('user')->latest()->get();
+    $luxuryAds = Blog::with(['user', 'category'])->latest()->get();
+
     return view('backend.blog.index', compact('luxuryAds'));
 }
 
     public function Blogcreate()
     {
-        return view('backend.blog.create');
+     $categories = BlogCategory::all();
+        return view('backend.blog.create', compact('categories'));
     }
+
+
+
 
 public function Blogstore(Request $request)
 {
@@ -65,13 +71,16 @@ public function Blogstore(Request $request)
     // Create the ad
     Blog::create($data);
 
-    return redirect()->back()->with('success', 'Ad created successfully.');
+    return redirect()->route('admin.luxury_ads.index')->with('success', 'Ad created successfully.');
+
+    
 }
 
 public function Blogedit($id)
 {
     $ad = Blog::findOrFail($id);
-    return view('backend.blog.edit', compact('ad'));
+    $categories = BlogCategory::all();
+    return view('backend.blog.edit', compact('ad','categories'));
 }
 
 public function Blogupdate(Request $request, $id)
@@ -251,7 +260,8 @@ public function UserBlogindex()
 
 public function UserBlogcreate()
     {
-        return view('userbackend.blog.create');
+        $categories = BlogCategory::all();
+        return view('userbackend.blog.create', compact('categories'));
 }
 
 public function UserBlogstore(Request $request)
@@ -299,7 +309,8 @@ public function UserBlogstore(Request $request)
 public function UserBlogedit($id)
 {
     $ad = Blog::findOrFail($id);
-    return view('userbackend.blog.edit', compact('ad'));
+    $categories = BlogCategory::all();
+    return view('userbackend.blog.edit', compact('ad','categories'));
 }
 
 public function UserBlogupdate(Request $request, $id)
@@ -393,5 +404,47 @@ public function randomPosts()
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function index()
+{
+    $categories = BlogCategory::all();
+    return view('backend.blog.categories', compact('categories'));
+}
+
+public function store(Request $request)
+{
+    $request->validate(['name' => 'required|string|max:255']);
+    BlogCategory::create($request->only('name'));
+    return back()->with('success', 'Category created');
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate(['name' => 'required|string|max:255']);
+    BlogCategory::findOrFail($id)->update($request->only('name'));
+    return back()->with('success', 'Category updated');
+}
+
+public function destroy($id)
+{
+    BlogCategory::findOrFail($id)->delete();
+    return back()->with('success', 'Category deleted');
+}
 
 }

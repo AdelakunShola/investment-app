@@ -31,10 +31,17 @@
                               <input type="text" name="title" class="form-control" required>
                            </div>
 
-                           <div class="col-xl-6 col-md-12 mb-3">
-                              <label class="form-label">Category</label>
-                              <input type="text" name="category" class="form-control">
-                           </div>
+                          
+
+                                         <div class="col-xl-6 col-md-12 mb-3">
+    <label class="form-label">Category:</label>
+    <select name="category_id" class="form-select">
+        <option value="">-- Select Category --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
 
                            <div class="col-xl-6 col-md-12 mb-3">
                               <label class="form-label">Price</label>

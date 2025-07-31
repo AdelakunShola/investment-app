@@ -42,9 +42,15 @@
                             </div>
 
                             <div class="site-input-groups mb-3">
-                                <label class="box-input-label">Category:</label>
-                                <input type="text" name="category" class="box-input" placeholder="e.g., Watches, Cars, Furniture">
-                            </div>
+    <label class="box-input-label">Category:</label>
+    <select name="category_id" class="box-input" required>
+        <option value="">-- Select Category --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 
                             <div class="site-input-groups mb-3">
                                 <label class="box-input-label">Price (USD):</label>

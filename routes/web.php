@@ -142,6 +142,24 @@ Route::delete('/luxury_ads/{id}', [BlogController::class, 'Blogdestroy'])->name(
     Route::post('/about/update', [UserController::class, 'updateAbout'])->name('admin.about.update');
 
 
+
+
+
+
+
+
+
+    // Blog Category CRUD
+Route::get('/admin/blog-categories', [BlogController::class, 'index'])->name('blog.categories.index');
+Route::post('/admin/blog-categories/store', [BlogController::class, 'store'])->name('blog.categories.store');
+Route::post('/admin/blog-categories/update/{id}', [BlogController::class, 'update'])->name('blog.categories.update');
+Route::delete('/admin/blog-categories/delete/{id}', [BlogController::class, 'destroy'])->name('blog.categories.destroy');
+
+// Show posts by category
+
+
+
+
 });
 
 
@@ -243,6 +261,6 @@ Route::get('/ad/listing/{id}', [UserController::class, 'showDetails'])->name('ad
 Route::get('/about-us', [UserController::class, 'Aboutus'])->name('about.us');
 Route::get('/contact-us', [UserController::class, 'Contactus'])->name('contact.us');
 Route::get('/plan', [UserController::class, 'Plan'])->name('plan');
-
+Route::get('/category/{id}', [UserController::class, 'postsByCategory'])->name('category.posts');
 
 require __DIR__.'/auth.php';

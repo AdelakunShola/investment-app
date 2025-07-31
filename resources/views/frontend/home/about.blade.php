@@ -50,11 +50,11 @@
                                  </div>
                                  <div class="tp-feature-content">
                                     <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
-                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
+                                     @foreach($categories as $category)
+        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+            {{ $category->name }}<i>/</i>
+        </a>
+    @endforeach
                                  </div>
                               </div>
                            </div>
@@ -74,13 +74,13 @@
                                        </svg>
                                     </span>
                                  </div>
-                                 <div class="tp-feature-content">
-                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">15,300 ads <span> in Apartments</span></h4>
-                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
+                                <div class="tp-feature-content">
+                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
+                                     @foreach($categories as $category)
+        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+            {{ $category->name }}<i>/</i>
+        </a>
+    @endforeach
                                  </div>
                               </div>
                            </div>
@@ -103,13 +103,13 @@
                                        </svg>
                                     </span>
                                  </div>
-                                 <div class="tp-feature-content">
-                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Vehicles</span></h4>
-                                    <a class="tp-el-rep-category" href="">Desktop Computers<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Laptops<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">TVs<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Cameras ,Camcorders<i>/</i></a>
-                                    <a class="tp-el-rep-category" href="">Audio &amp; Sound Systems<i>/</i></a>
+                                <div class="tp-feature-content">
+                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
+                                     @foreach($categories as $category)
+        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+            {{ $category->name }}<i>/</i>
+        </a>
+    @endforeach
                                  </div>
                               </div>
                            </div>

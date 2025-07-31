@@ -42,15 +42,24 @@
                                 </div>
                                 @if($ad->image)
                                     <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $ad->image) }}" width="100">
+                                        <img src="{{ asset($ad->image) }}" width="100">
                                     </div>
                                 @endif
                             </div>
 
-                            <div class="site-input-groups mb-3">
-                                <label class="box-input-label">Category:</label>
-                                <input type="text" name="category" class="box-input" value="{{ $ad->category }}">
-                            </div>
+                    <div class="site-input-groups mb-3">
+    <label class="box-input-label">Category:</label>
+    <select name="category_id" class="box-input" required>
+        <option value="">-- Select Category --</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ $ad->category_id == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+
 
                             <div class="site-input-groups mb-3">
                                 <label class="box-input-label">Price (USD):</label>

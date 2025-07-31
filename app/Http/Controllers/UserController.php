@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\investment_plan;
 use App\Models\Referral;
 use App\Models\Transaction;
@@ -27,9 +28,10 @@ class UserController extends Controller
     public function Index(){
         $about = About::first();
         $plans = investment_plan::all();
-$featuredAds = Blog::where('featured', true)->latest()->take(8)->get();
+        $categories = BlogCategory::all();
+        $featuredAds = Blog::where('featured', true)->latest()->take(8)->get();
 
-      return view('frontend.index', compact('featuredAds','plans','about'));
+      return view('frontend.index', compact('featuredAds','plans','about','categories'));
 
     }//end method
 
@@ -65,7 +67,7 @@ $featuredAds = Blog::where('featured', true)->latest()->take(8)->get();
     $totalReferral = Referral::where('referred_by', $user->id)->count();
 
     $totalProfit = Transaction::where('user_id', $user->id)
-                    ->where('type', 'profit')
+                    ->whereIn('type', ['profit', 'referral_bonus'])
                     ->sum('amount');
 
     $referralBonus = Referral::where('referred_by', $user->id)
@@ -111,7 +113,6 @@ public function UserRegister(Request $request)
     
 public function storeUser(Request $request)
 {
-    // Validate request first
     $request->validate([
         'first_name'    => 'required|string|max:255',
         'last_name'     => 'required|string|max:255',
@@ -125,8 +126,8 @@ public function storeUser(Request $request)
         'username.unique' => 'This username is already taken.',
     ]);
 
-    // (Your referral logic remains unchanged)
-    $referralCode = $request->referral_code ?: $request->referred_by;
+    // Get referral code (from link or manual input)
+    $referralCode = $request->input('referral_code');
     $referredBy = null;
 
     if (!empty($referralCode)) {
@@ -136,12 +137,12 @@ public function storeUser(Request $request)
         }
     }
 
-    // Generate unique referral code
+    // Generate unique referral code for new user
     do {
         $newReferralCode = strtoupper(Str::random(6));
     } while (User::where('referral_code', $newReferralCode)->exists());
 
-    // Create user
+    // Create new user
     $user = User::create([
         'first_name'     => $request->first_name,
         'last_name'      => $request->last_name,
@@ -157,7 +158,7 @@ public function storeUser(Request $request)
     // Send welcome email
     Mail::to($user->email)->send(new WelcomeMail($user));
 
-    // Store referral if applicable
+    // Create referral record
     if ($referredBy) {
         Referral::create([
             'user_id'     => $user->id,
@@ -348,12 +349,12 @@ public function investNow(Request $request, $id)
 
     // Dynamically calculate wallet balance
     $totalDeposit = Transaction::where('user_id', $user->id)->where('type', 'deposit')->where('status', 'approved')->sum('amount');
-    $totalProfit = Transaction::where('user_id', $user->id)->where('type', 'profit')->sum('amount');
+    $totalProfit = Transaction::where('user_id', $user->id)->whereIn('type', ['profit', 'referral_bonus'])->sum('amount');
     $totalWithdraw = Transaction::where('user_id', $user->id)->where('type', 'withdraw')->where('status', 'approved')->sum('amount');
     $totalInvestment = Transaction::where('user_id', $user->id)->where('type', 'investment')->where('status', 'completed')->sum('amount');
     $referralBonus = Referral::where('referred_by', $user->id)->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw - $totalInvestment;
 
     // Check wallet balance
     if ($walletBalance < $amount) {
@@ -668,7 +669,7 @@ public function storeWithdraw(Request $request)
         ->sum('amount');
 
     $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
-        ->where('type', 'profit')
+        ->whereIn('type', ['profit', 'referral_bonus'])
         ->sum('amount');
 
     $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
@@ -683,7 +684,7 @@ public function storeWithdraw(Request $request)
 
     $referralBonus = \App\Models\Referral::where('referred_by', $user->id)->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw - $totalInvestment;
 
     // Check wallet balance against requested amount
     if ($request->amount > $walletBalance) {
@@ -799,5 +800,31 @@ public function updateAbout(Request $request) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function postsByCategory($id)
+{
+    $category = BlogCategory::with('blogs')->findOrFail($id);
+    return view('frontend.blog.category_posts', compact('category'));
+}
 
 }

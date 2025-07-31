@@ -113,7 +113,7 @@
         ->sum('amount');
 
     $totalProfit = \App\Models\Transaction::where('user_id', $customer->id)
-        ->where('type', 'profit')
+        ->whereIn('type', ['profit', 'referral_bonus'])
         ->sum('amount');
 
     $totalWithdraw = \App\Models\Transaction::where('user_id', $customer->id)
@@ -129,7 +129,7 @@
     $referralBonus = \App\Models\Referral::where('referred_by', $customer->id)
         ->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw - $totalInvestment;
 @endphp
 
 <td>${{ number_format($walletBalance, 2) }}</td>

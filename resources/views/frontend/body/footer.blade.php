@@ -31,7 +31,7 @@
                                     <div class="tp-footer-style-2">
                                        <div class="tp-footer-left text-md-center">
                                           <div class="tp-footer-logo mb-25">
-                                             <a href="{{ route('home') }}"><img src="{{ $about && $about->image ? asset($about->image) : '' }}" alt="logo"></a>
+                                             <a href="{{ route('home') }}"><img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 140px; width: 140px;" alt="logo"></a>
                                           </div>
                                           <div class="tp-footer-content pb-10">
                                              <p><i>ShareAlux</i> {{ $about->short_description }}

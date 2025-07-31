@@ -11,7 +11,7 @@
         ->sum('amount');
 
     $totalProfit = \App\Models\Transaction::where('user_id', $user->id)
-        ->where('type', 'profit')
+        ->whereIn('type', ['profit', 'referral_bonus'])
         ->sum('amount');
 
     $totalWithdraw = \App\Models\Transaction::where('user_id', $user->id)
@@ -27,7 +27,7 @@
     $referralBonus = \App\Models\Referral::where('referred_by', $user->id)
         ->sum('bonus');
 
-    $walletBalance = $totalDeposit + $totalProfit + $referralBonus - $totalWithdraw - $totalInvestment;
+    $walletBalance = $totalDeposit + $totalProfit - $totalWithdraw - $totalInvestment;
 @endphp
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -365,6 +365,60 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div class="row">
+    <div class="col-xl-12">
+        <div class="site-card">
+            <div class="site-card-header">
+                <h3 class="title">KYC & Identity</h3>
+            </div>
+            <div class="site-card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="site-input-groups">
+                            <label class="box-input-label">Document Type:</label>
+                            <p>{{ $user->document_type ?? 'Not provided' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="site-input-groups">
+                            <label class="box-input-label">Document Number:</label>
+                            <p>{{ $user->document_number ?? 'Not provided' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="site-input-groups">
+                            <label class="box-input-label">Uploaded Document:</label><br>
+
+                            @if($user->id_document_path)
+                                <img src="{{ asset('storage/' . $user->id_document_path)  }}"
+                                     alt="ID Document" 
+                                     class="img-fluid rounded" 
+                                     style="max-width: 300px;">
+                            @else
+                                <p class="text-danger">KYC doc not submitted yet.</p>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="site-input-groups">
+                            <label class="box-input-label">KYC Verified:</label>
+                            <p class="{{ $user->kyc_verified ? 'text-success' : 'text-warning' }}">
+                                {{ $user->kyc_verified ? 'Verified' : 'Not Verified' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
     
 </div>
                                 </div>

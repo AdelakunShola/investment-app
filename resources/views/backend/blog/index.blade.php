@@ -47,7 +47,7 @@
 
                                         </td>
                                         <td>{{ $ad->title }}</td>
-                                        <td>{{ $ad->category ?? 'N/A' }}</td>
+                                      <td>{{ $ad->category->name ?? 'N/A' }}</td>
                                         <td>${{ number_format($ad->price, 2) }}</td>
                                         <td>{{ $ad->condition }}</td>
                                         <td>{{ $ad->location ?? '—' }}</td>

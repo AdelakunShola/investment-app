@@ -62,7 +62,7 @@
                <div class="col-xl-8 col-md-12">
                   <div class="auth-content">
                      <div class="logo">
-                        <a href=""><img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 80px; width: auto;" alt="Logo"></a>
+                        <a href=""><img src="{{ $about && $about->image ? asset($about->image) : '' }}" style="height: 140px; width: 140px;" alt="Logo"></a>
                      </div>
                      <div class="title">
                         <h2> 💪 Create an account</h2>

@@ -30,7 +30,7 @@
          <div class="row mobile-screen-show">
             <div class="col">
             </div>
-         </div>
+         </div> 
          <!--Page Content-->
          <div class="row">
             <div class="col-xl-12 desktop-screen-show">

@@ -77,7 +77,7 @@ public function transactions()
 
 public function totalProfit()
 {
-    return $this->transactions()->where('type', 'profit')->sum('amount');
+    return $this->transactions()->whereIn('type', ['profit', 'referral_bonus'])->sum('amount');
 }
 
 public function updateUserRanking()
@@ -106,6 +106,17 @@ public function adShares()
 
 
 
+public function referral()
+{
+    // Referral record for the user (if they were referred)
+    return $this->hasOne(Referral::class, 'user_id');
+}
+
+public function referredUsers()
+{
+    // Users referred by this user
+    return $this->hasMany(Referral::class, 'referred_by');
+}
 
 
 }

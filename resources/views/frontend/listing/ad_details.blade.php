@@ -108,9 +108,7 @@
                         <li class="list-group-item"><strong>Dimensions:</strong> {{ $ad->dimensions }}</li>
                         @endif
                         @if ($ad->specifications)
-                            @foreach (json_decode($ad->specifications, true) as $key => $value)
-                                <li class="list-group-item"><strong>{{ ucfirst($key) }}:</strong> {{ $value }}</li>
-                            @endforeach
+                            <li class="list-group-item"><strong>Specification:</strong> {{ $ad->specifications }}</li>
                         @endif
                     </ul>
 
