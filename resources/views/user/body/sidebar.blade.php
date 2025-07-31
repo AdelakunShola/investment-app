@@ -88,6 +88,14 @@
                     </a>
                 </li>
 
+
+               <li class="side-nav-item">
+   <a href="{{ route('user.random.posts') }}">
+      <i class="fas fa-random"></i> Daily Tasks
+   </a>
+</li>
+
+
                 <li class="side-nav-item">
                     <a href="{{ route('user.plans') }}">
                         <i class="fa-regular fa-square-check"></i><span>All Plans</span>

@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="">
     <meta name="keywords" content="digibank,digital banking">
     <meta name="description" content="Digi Bank is a fully online banking system.">
-    <link rel="canonical" href="https://hyiprio.tdevs.co/user/dashboard">
+    <link rel="canonical" href="">
     <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
 <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
 

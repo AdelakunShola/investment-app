@@ -356,4 +356,42 @@ public function UserBlogdestroy($id)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function randomPosts()
+{
+    $userId = auth()->id();
+
+
+   $post = Blog::inRandomOrder()
+                ->limit(3)
+                ->get();
+
+    return view('userbackend.blog.random_posts', compact('post'));
+}
+
+
+
 }

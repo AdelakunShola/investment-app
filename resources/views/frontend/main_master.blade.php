@@ -6,7 +6,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>ShareAlux </title>
+     
       <meta name='robots' content='max-image-preview:large' />
       <style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
       <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
@@ -14,28 +14,9 @@
       <meta name="description" content="ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online. Monetize your influence, refer others, and earn crypto-enabled passive income on high-end listings.">
       <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
       <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
-  
+      @yield('meta') <!-- this enables the dynamic meta tags -->
+    <title>@yield('title', 'Sharealux')</title>
 
-
-
-@isset($ad)
-    @php
-        $shareUrl = route('ad.details', $ad->id);
-    @endphp
-
-    <!-- Open Graph for Facebook, LinkedIn, etc. -->
-    <meta property="og:url" content="{{ $shareUrl }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ $ad->title ?? 'Default Ad Title' }}" />
-    <meta property="og:description" content="{{ Str::limit(strip_tags($ad->description), 150) }}" />
-    <meta property="og:image" content="{{ asset($ad->image) }}" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ $ad->title ?? 'Default Ad Title' }}" />
-    <meta name="twitter:description" content="{{ Str::limit(strip_tags($ad->description), 150) }}" />
-    <meta name="twitter:image" content="{{ asset($ad->image) }}" />
-@endisset
 
 
 
@@ -133,6 +114,9 @@
       <style id="kirki-inline-styles"></style>
       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<!-- Head -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 
    </head>
@@ -206,6 +190,8 @@
 <script src="{{ asset('frontend/wp-content/plugins/elementor/assets/js/webpack.runtime.min2801.js') }}?ver=3.29.2"></script>
 <script src="{{ asset('frontend/wp-content/plugins/elementor/assets/js/frontend-modules.min2801.js') }}?ver=3.29.2"></script>
 <script src="{{ asset('frontend/wp-content/plugins/elementor/assets/js/frontend.min2801.js') }}?ver=3.29.2"></script>
+<!-- Footer -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
   setTimeout(() => {

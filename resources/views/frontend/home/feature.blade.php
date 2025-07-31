@@ -1,3 +1,17 @@
+@section('meta')
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ $ad->title }}" />
+    <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($ad->description), 100) }}" />
+    <meta property="og:image" content="{{ asset($ad->image) }}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $ad->title }}">
+    <meta name="twitter:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($ad->description), 100) }}">
+    <meta name="twitter:image" content="{{ asset($ad->image) }}">
+@endsection
+
+
 <div class="elementor-element elementor-element-6f0a812 e-flex e-con-boxed e-con e-parent" data-id="6f0a812" data-element_type="container">
    <div class="e-con-inner">
       <div class="elementor-element elementor-element-aa8cce2 elementor-widget elementor-widget-section-title" data-id="aa8cce2" data-element_type="widget" data-widget_type="section-title.default">
@@ -58,12 +72,13 @@
                               </div>
                            </div>
                          <div class="tp-fea-ads-2-price-icon">
-    <a href="#"
-       onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ request()->fullUrl() }}'); @endif return false;"
-       title="Share on Facebook">
-        <i class="fas fa-share-alt"></i>
-        <span class="favourite-label">Share</span>
-    </a>
+      <a href="#"
+   onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ route('ad.details', $ad->id) }}'); @endif return false;"
+   title="Share on Facebook">
+   <i class="fas fa-share-alt"></i>
+   <span class="favourite-label">Share</span>
+</a>
+
 </div>
 
                         </div>

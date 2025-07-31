@@ -76,11 +76,13 @@
                   </div>
                </div>
                <div class="tp-fea-ads-2-price-icon">
-                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" 
-                     target="_blank" title="Share on Facebook">
-                     <i class="fas fa-share-alt"></i>
-                     <span class="favourite-label">Share</span>
-                  </a>
+                    <a href="#"
+   onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ route('ad.details', $ad->id) }}'); @endif return false;"
+   title="Share on Facebook">
+   <i class="fas fa-share-alt"></i>
+   <span class="favourite-label">Share</span>
+</a>
+
                </div>
             </div>
          </div>
@@ -99,4 +101,44 @@
    </div>
 </div>
 </div>	
+
+
+<script>
+   function shareAdWithReward(adUrl) {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Use Facebook app deep link on mobile
+        const fbAppUrl = `fb://facewebmodal/f?href=https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(adUrl)}`;
+        window.location.href = fbAppUrl;
+    } else {
+        // Use web-based sharing on desktop
+        const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(adUrl)}`;
+        window.open(fbShareUrl, '_blank', 'width=600,height=400');
+    }
+
+    // Reward user (optional - this can be triggered after a delay or via web hook in real use)
+    fetch("{{ route('user.share.ad') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            alert(`✅ ${data.message} $${data.amount} added to your profit.`);
+        } else {
+            alert(`⚠️ ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error("Share error:", error);
+        alert("⚠️ Something went wrong. Please try again.");
+    });
+}
+
+</script>
 @endsection

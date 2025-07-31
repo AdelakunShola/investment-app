@@ -216,6 +216,9 @@ Route::put('blog/{id}', [BlogController::class, 'UserBlogupdate'])->name('user.b
 Route::delete('/luxury_ads/{id}', [BlogController::class, 'UserBlogdestroy'])->name('user.luxury_ads.destroy');
 
 
+
+Route::get('/random-posts', [BlogController::class, 'randomPosts'])->name('user.random.posts');
+
 });
 
 
