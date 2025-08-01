@@ -1,6 +1,42 @@
 @extends('user.user_dashboard')
 @section('user') 
 
+
+<style>
+.mobile-referral-link-form input {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 80px; /* space for the copy button */
+  font-size: 16px; /* Prevent Safari zoom on focus */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.mobile-referral-link-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-referral-link-form button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+</style>
 @php
     $user = Auth::user();
 @endphp
@@ -619,20 +655,30 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
 
     </div>
 
-   <div class="col-12">
+<div class="col-12">
   <div class="mobile-ref-url mb-4">
     <div class="all-feature-mobile">
       <div class="title">Referral URL</div>
+
       <div class="mobile-referral-link-form">
-        <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLinkMobile">
-        <button type="button" id="copyBtn" onclick="copyRef('refLinkMobile')">
+        <textarea id="refLinkMobile" readonly rows="2" style="width: 100%; resize: none;" onclick="this.select();">
+          {{ url('/user/register?ref=' . Auth::user()->referral_code) }}
+        </textarea>
+
+        <button id="copyBtn">
           <span id="copyText">Copy</span>
         </button>
       </div>
-      <p class="referral-joined"> {{ $totalReferral }} person(s) have joined by using this URL</p>
+
+      <p class="referral-joined">
+        {{ $totalReferral }} person(s) have joined by using this URL
+      </p>
     </div>
   </div>
 </div>
+
+
+
 
 
 </div>
@@ -643,28 +689,32 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
             </div>
         </div>
 
-      
 <script>
-  function copyRef(inputId) {
-    const input = document.getElementById(inputId);
-    const copyBtnText = document.getElementById('copyText');
+document.getElementById('copyBtn').addEventListener('click', function () {
+  const textarea = document.getElementById('refLinkMobile');
 
-    input.focus();
-    input.select();
-    input.setSelectionRange(0, 99999); // For mobile
+  // Fallback for iOS
+  textarea.readOnly = false;
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // Required for iOS
 
-    try {
-      navigator.clipboard.writeText(input.value).then(() => {
-        copyBtnText.textContent = "Copied!";
-        setTimeout(() => copyBtnText.textContent = "Copy", 2000);
-      }).catch(err => {
-        alert("Copy failed. Try manually selecting and copying.");
-      });
-    } catch (err) {
-      alert("Copy not supported. Please copy manually.");
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      document.getElementById('copyText').innerText = 'Copied!';
+    } else {
+      alert('Copy failed. Please copy manually.');
     }
+  } catch (err) {
+    alert('Copy not supported in your browser.');
   }
+
+  textarea.readOnly = true;
+});
 </script>
+
+
+
 
 
 @endsection

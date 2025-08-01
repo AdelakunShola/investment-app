@@ -84,7 +84,7 @@
     <option value="">-- Select Network --</option>
     <option value="TRC20">USDT TRC20</option>
     <option value="ERC20">USDT ERC20</option>
-    <option value="BEP20">BEP20</option>
+    <option value="BEP20">USDT BEP20</option>
   </select>
 </div>
 
