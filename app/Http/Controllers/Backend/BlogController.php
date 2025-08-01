@@ -138,80 +138,82 @@ public function Blogdestroy($id)
 
 
 
-
 public function shareAdReward(Request $request)
 {
     $user = auth()->user();
     $today = now()->toDateString();
 
     // Prevent duplicate daily reward
-    $sharedToday = AdShare::where('user_id', $user->id)
-        ->where('shared_on', $today)
-        ->exists();
-
-    if ($sharedToday) {
+    if (\App\Models\AdShare::where('user_id', $user->id)->where('shared_on', $today)->exists()) {
         return response()->json([
             'status' => false,
-            'message' => 'You have already earned from sharing an ad today, Try again tomorrow.'
+            'message' => 'You have already earned from sharing an ad today. Try again tomorrow.'
         ]);
     }
 
-    $dailyReward = 0.00;
+    $totalReward = 0.00;
 
-    // Check for active investment
-    $investmentTransaction = Transaction::where('user_id', $user->id)
+    // Get all completed investment transactions
+    $investmentTransactions = \App\Models\Transaction::where('user_id', $user->id)
         ->where('type', 'investment')
         ->where('status', 'completed')
-        ->latest()
-        ->first();
+        ->get();
 
-    if ($investmentTransaction) {
-        $investmentAmount = $investmentTransaction->amount;
-        $investmentPlan = $user->investmentPlan;
-
-        if ($investmentPlan && $investmentAmount > 0) {
-            $weeklyPercent = $investmentPlan->weekly_interest ?? 0;
-            $planDays = $investmentPlan->day ?? 7; // fallback to 7 if null
-
-            if ($weeklyPercent > 0 && $planDays > 0) {
-                $weeklyReward = ($weeklyPercent / 100) * $investmentAmount;
-                $dailyReward = round($weeklyReward / $planDays, 2); // dynamic days
-            } else {
-                Log::warning("ShareAdReward: Invalid plan config for user {$user->id}.");
-            }
-        }
-    } else {
-        Log::info("ShareAdReward: No active investment for user {$user->id}.");
+    if ($investmentTransactions->isEmpty()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'No eligible investments found for ad share reward.'
+        ]);
     }
 
-    // Update profit balance
-    $user->increment('profit_balance', $dailyReward);
+    foreach ($investmentTransactions as $investmentTransaction) {
+        $amount = floatval($investmentTransaction->amount);
+        $planName = $investmentTransaction->description ?? 'Unknown Plan';
 
-    // Log share
-    AdShare::create([
+        // Optionally, match the plan from DB if needed
+        $investmentPlan = \App\Models\investment_plan::where('name', $planName)->first();
+
+        if ($amount > 0 && $investmentPlan) {
+            $weeklyPercent = $investmentPlan->weekly_interest ?? 0;
+            $planDays = $investmentPlan->day ?? 7;
+
+            if ($weeklyPercent > 0 && $planDays > 0) {
+                $weeklyReward = ($weeklyPercent / 100) * $amount;
+                $dailyReward = round($weeklyReward / $planDays, 2);
+
+                // Add to user's profit balance
+                $user->increment('profit_balance', $dailyReward);
+                $totalReward += $dailyReward;
+
+                // Log individual reward transaction with correct plan name
+                \App\Models\Transaction::create([
+                    'user_id' => $user->id,
+                    'type' => 'profit',
+                    'amount' => $dailyReward,
+                    'status' => 'approved',
+                    'description' => "Ad share reward from {$planName} plan (\${$amount})",
+                    'charge' => 0,
+                    'final_amount' => $dailyReward,
+                    'method' => 'system',
+                ]);
+            }
+        }
+    }
+
+    // Log ad share only once
+    \App\Models\AdShare::create([
         'user_id' => $user->id,
         'blog_id' => null,
         'shared_on' => $today,
     ]);
 
-    // Log transaction
-    Transaction::create([
-        'user_id' => $user->id,
-        'type' => 'profit',
-        'amount' => $dailyReward,
-        'status' => 'approved',
-        'description' => 'Daily ad share reward',
-        'charge' => 0,
-        'final_amount' => $dailyReward,
-        'method' => 'system',
-    ]);
-
     return response()->json([
         'status' => true,
         'message' => 'Thank you for sharing the ad!',
-        'amount' => $dailyReward
+        'amount' => $totalReward
     ]);
 }
+
 
 
  

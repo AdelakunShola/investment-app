@@ -13,6 +13,10 @@ class Transaction extends Model
     return $this->belongsTo(User::class);
 }
 
+public function investmentPlan()
+{
+    return $this->belongsTo(investment_plan::class, 'plan_id'); // if using plan_id
+}
 
 
 }
