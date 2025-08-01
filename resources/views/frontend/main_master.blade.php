@@ -14,7 +14,8 @@
       <meta name="description" content="ShareAlux is a next-gen platform where users earn daily by sharing luxury ads online. Monetize your influence, refer others, and earn crypto-enabled passive income on high-end listings.">
       <link rel="shortcut icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
       <link rel="icon" href="{{ asset('frontend/favicon-1.png') }}" type="image/x-icon">
-      @yield('meta') <!-- this enables the dynamic meta tags -->
+       @yield('og-meta')
+
     <title>@yield('title', 'Sharealux')</title>
 
 

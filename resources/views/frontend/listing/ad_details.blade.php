@@ -9,6 +9,16 @@
     use App\Models\About;
     $about = About::first();
 @endphp
+
+@section('og-meta')
+    <meta property="og:title" content="{{ $ad->title }}" />
+    <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($ad->description), 150) }}" />
+    <meta property="og:image" content="{{ asset($ad->image) }}" />
+    <meta property="og:url" content="{{ route('ad.details', $ad->id) }}" />
+    <meta property="og:type" content="website" />
+@endsection
+
+
 <!-- Breadcrumb -->
 <div class="breadcrumb__area black-bg breadcrumb__height breadcrumb__border">
     <div class="container">
@@ -43,22 +53,19 @@
 
                         <!-- Meta -->
                         <div class="tp-list-details-top-meta d-flex flex-wrap mb-15 gap-3">
-                            <div><i class="fal fa-book"></i> <span><strong>ID:</strong> {{ $ad->id }}</span></div>
-                            <div><i class="fal fa-map-marker-alt"></i> {{ $ad->location }}</div>
-                            <div><i class="fal fa-calendar-alt"></i> {{ $ad->created_at->diffForHumans() }}</div>
-                            <div><i class="fal fa-eye"></i> Views: <b>1302</b></div>
-                        </div>
+    <div><i class="fas fa-book"></i> <span><strong>ID:</strong> {{ $ad->id }}</span></div>
+    <div><i class="fas fa-map-marker-alt"></i> {{ $ad->location }}</div>
+    <div><i class="fas fa-calendar-alt"></i> {{ $ad->created_at->diffForHumans() }}</div>
+    <div><i class="fas fa-eye"></i> Views: <b>1302</b></div>
+</div>
+
 
                         <!-- Social/Icons -->
                         <div class="tp-list-details-top-right d-flex align-items-center justify-content-between">
-                            <div class="tp-list-details-top-icon-box d-flex">
-                                <a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#logoutModalCenter" title="Favourites">
-                                    <i class="rtcl-icon rtcl-icon-heart-empty"></i>
-                                    <span>Add to Favourites</span>
-                                </a>
-                            </div>
+                           
 
-                            <div class="tp-list-details-top-social d-none d-md-block">
+                            <div class="tp-list-details-top-social d-block">
+
                                 <span>Share</span>
                                    <a href="#"
    onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ route('ad.details', $ad->id) }}'); @endif return false;"
@@ -67,7 +74,7 @@
    <span class="favourite-label">Share</span>
 </a>
 
-                              <i class="fas fa-share-alt"></i>
+                              
                              
                             </div>
                         </div>
@@ -117,6 +124,7 @@
                         <h5>Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><strong>Phone:</strong> {{ $about->phone1 }}</li>
+                            
                         </ul>
                     </div>
                 </div>
