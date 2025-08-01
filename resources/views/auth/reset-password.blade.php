@@ -1,4 +1,11 @@
-<x-guest-layout>
+    @php($about = \App\Models\About::first())
+
+    <div class="flex justify-center mb-8">
+        <a href="{{ url('/') }}">
+            <img src="{{ $about && $about->image ? asset($about->image) : '' }}"
+                 class="h-36 w-36 object-contain" alt="Logo">
+        </a>
+    </div>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -36,4 +43,4 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+

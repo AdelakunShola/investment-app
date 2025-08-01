@@ -156,7 +156,7 @@ public function shareAdReward(Request $request)
         ]);
     }
 
-    $dailyReward = 0.50; // Default reward
+    $dailyReward = 0.00; // Default reward
 
     // Check if user has any approved investment
     $investmentTransaction = Transaction::where('user_id', $user->id)
@@ -175,17 +175,17 @@ public function shareAdReward(Request $request)
             $weeklyReward = ($weeklyPercent / 100) * $investmentAmount;
             $dailyReward = round($weeklyReward / 7, 2);
         } else {
-            Log::warning("ShareAdReward: Invalid investment plan for user {$user->id}. Falling back to default ₦0.50.");
+            Log::warning("ShareAdReward: Invalid investment plan for user {$user->id}. Falling back to default $0.00.");
         }
     } else {
-        Log::info("ShareAdReward: No approved investment for user {$user->id}. Using default ₦0.50.");
+        Log::info("ShareAdReward: No approved investment for user {$user->id}. Using default $0.00.");
     }
 
     // Credit reward to user's profit balance
     $user->increment('profit_balance', $dailyReward);
 
     // Log share to prevent multiple earnings per day
-    AdShare::create([
+    AdShare::create(attributes: [
         'user_id' => $user->id,
         'blog_id' => null, // not tracking which ad was shared
         'shared_on' => $today,

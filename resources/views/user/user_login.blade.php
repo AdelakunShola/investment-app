@@ -80,7 +80,9 @@
                                  <input type="password" name="password" class="box-input" id="password" placeholder="Enter Password"> 
                               </div>
                            </div>
-                          
+                          <div class="form-group ms-2">
+                                        <a class="btn-link" href="{{ route('password.request') }}">Forgot Password?</a>
+                                    </div>
                            <div class="single-field">
                               <input class="form-check-input check-input" type="checkbox" name="remember" id="flexCheckDefault">
                               <label class="form-check-label" for="flexCheckDefault">
