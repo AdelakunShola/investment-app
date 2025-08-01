@@ -117,7 +117,6 @@
                         <h5>Contact Info</h5>
                         <ul class="list-unstyled">
                             <li><strong>Phone:</strong> {{ $about->phone1 }}</li>
-                            <li><strong>Phone:</strong> {{ $about->phone2 }}</li>
                         </ul>
                     </div>
                 </div>

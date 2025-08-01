@@ -49,12 +49,13 @@
                                     </span>
                                  </div>
                                  <div class="tp-feature-content">
-                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
-                                     @foreach($categories as $category)
-        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
-            {{ $category->name }}<i>/</i>
-        </a>
-    @endforeach
+                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">ads <span> in  </span></h4>
+                                    @foreach($categories->take(3) as $category)
+    <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+        {{ $category->name }}<i>/</i>
+    </a>
+@endforeach
+
                                  </div>
                               </div>
                            </div>
@@ -75,12 +76,13 @@
                                     </span>
                                  </div>
                                 <div class="tp-feature-content">
-                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
-                                     @foreach($categories as $category)
-        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
-            {{ $category->name }}<i>/</i>
-        </a>
-    @endforeach
+                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title"> ads <span> in </span></h4>
+                                    @foreach($categories->skip(3)->take(3) as $category)
+    <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+        {{ $category->name }}<i>/</i>
+    </a>
+@endforeach
+
                                  </div>
                               </div>
                            </div>
@@ -104,12 +106,13 @@
                                     </span>
                                  </div>
                                 <div class="tp-feature-content">
-                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title">61,672 ads <span> in Electronics </span></h4>
-                                     @foreach($categories as $category)
-        <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
-            {{ $category->name }}<i>/</i>
-        </a>
-    @endforeach
+                                    <h4 class="tp-feature-title pb-20 tp-el-rep-title tp-el-rep-title"> ads <span> in  </span></h4>
+                                     @foreach($categories->skip(6) as $category)
+    <a class="tp-el-rep-category" href="{{ route('category.posts', $category->id) }}">
+        {{ $category->name }}<i>/</i>
+    </a>
+@endforeach
+
                                  </div>
                               </div>
                            </div>
