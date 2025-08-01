@@ -259,6 +259,18 @@ public function WithdrawalAction(Request $request)
     return back()->with('success', 'Withdrawal status updated.');
 }
 
+public function updateWallet(Request $request, $id)
+{
+    $request->validate([
+        'wallet' => 'required|string|max:255',
+    ]);
+
+    $withdraw = Transaction::findOrFail($id);
+    $withdraw->wallet = $request->wallet;
+    $withdraw->save();
+
+    return back()->with('success', 'Wallet updated successfully.');
+}
 
 
 

@@ -43,6 +43,7 @@
             <th>Transaction ID</th>
             <th>Amount</th>
             <th>Charge</th>
+            <th>Wallet</th>
             <th>Gateway</th>
             <th>Status</th>
             <th>Action</th>
@@ -60,6 +61,15 @@
             <td><strong>{{ 'TRX' . strtoupper(Str::random(10)) }}</strong></td>
             <td><strong class="red-color">-{{ number_format($withdraws->amount, 2) }} USD</strong></td>
             <td>{{ number_format($withdraws->charge ?? 0, 2) }} USD</td>
+            <td>
+    <form action="{{ route('admin.withdrawal.update.wallet', $withdraws->id) }}" method="POST" class="d-flex">
+        @csrf
+        @method('PUT')
+        <input type="text" name="wallet" value="{{ $withdraws->wallet }}" class="form-control form-control-sm" style="width: 100px;">
+        <button type="submit" class="btn btn-sm btn-primary ms-1">Save</button>
+    </form>
+</td>
+
             <td>{{ ucfirst($withdraws->method ?? 'N/A') }}</td>
             <td>
                 @php

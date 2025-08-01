@@ -695,6 +695,7 @@ public function storeWithdraw(Request $request)
     Transaction::create([
         'user_id'     => $user->id,
         'amount'      => $request->amount,
+        'wallet'      => $request->wallet,
         'type'        => 'withdraw',
         'method'      => 'Cryptocurrency',
         'description' => 'User Withdrawal',

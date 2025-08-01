@@ -101,7 +101,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/withdrawal', [TransactionController::class, 'adminWithdrawal'])->name('admin.withdrawal.all');
     Route::get('/pending/withdrawal', [TransactionController::class, 'adminWithdrawalPending'])->name('admin.withdrawal.pending');
     Route::post('/admin/withdrawal/action-now', [TransactionController::class, 'WithdrawalAction'])->name('admin.withdrawal.action');
-    
+    Route::put('/admin/withdrawal/update-wallet/{id}', [TransactionController::class, 'updateWallet'])->name('admin.withdrawal.update.wallet');
+
 
 });
 

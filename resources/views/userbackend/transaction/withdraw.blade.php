@@ -36,7 +36,7 @@
          <div class="row">
             <div class="col-xl-12">
                <div class="site-card">
-                  <div class="site-card-header">
+                  <div class="site-card-header"> 
                      <h3 class="title">Withdraw Funds</h3>
                   </div>
                   <div class="site-card-body">
@@ -73,7 +73,7 @@
 
                            <div class="col-xl-6 mb-3">
                               <label class="box-input-label">Account/Wallet Address:</label>
-                              <input type="text" name="details" class="form-control" placeholder="Bank account or wallet address" required>
+                              <input type="text" name="wallet" class="form-control" placeholder="Bank account or wallet address" required>
                            </div>
 
 
