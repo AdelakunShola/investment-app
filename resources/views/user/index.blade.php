@@ -351,6 +351,18 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
                 </a>
             </div>
         </div>
+
+
+        <div class="col-4">
+            <div class="single">
+                <a href="{{ route('user.random.posts') }}">
+                    <div class="icon"><i class="fas fa-random"></i> 
+                    </div>
+                    <div class="name">Daily Tasks</div>
+                </a>
+            </div>
+        </div>
+
         <div class="col-4">
             <div class="single">
                 <a href="{{ route('user.deposit.form') }}">
