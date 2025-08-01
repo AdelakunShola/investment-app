@@ -107,7 +107,7 @@
                                  </tr>
                                  <tr>
                                     <td><strong>Return of Interest:</strong></td>
-                                    <td>{{ $plan->weekly_interest }}% Weekly</td>
+                                    <td>{{ $plan->weekly_interest }}% every {{ $plan->day }} day(s)</td>
                                  </tr>
                                  <tr>
                                     <td><strong>Capital Back:</strong></td>
