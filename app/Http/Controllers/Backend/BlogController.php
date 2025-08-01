@@ -142,9 +142,9 @@ public function Blogdestroy($id)
 public function shareAdReward(Request $request)
 {
     $user = auth()->user();
-
-    // Check if user already shared today
     $today = now()->toDateString();
+
+    // Prevent duplicate daily reward
     $sharedToday = AdShare::where('user_id', $user->id)
         ->where('shared_on', $today)
         ->exists();
@@ -156,9 +156,9 @@ public function shareAdReward(Request $request)
         ]);
     }
 
-    $dailyReward = 0.00; // Default reward
+    $dailyReward = 0.00;
 
-    // Check if user has any approved investment
+    // Check for active investment
     $investmentTransaction = Transaction::where('user_id', $user->id)
         ->where('type', 'investment')
         ->where('status', 'completed')
@@ -167,31 +167,34 @@ public function shareAdReward(Request $request)
 
     if ($investmentTransaction) {
         $investmentAmount = $investmentTransaction->amount;
+        $investmentPlan = $user->investmentPlan;
 
-        // Get weekly interest percent from user's plan
-        $weeklyPercent = optional($user->investmentPlan)->weekly_interest ?? 0;
+        if ($investmentPlan && $investmentAmount > 0) {
+            $weeklyPercent = $investmentPlan->weekly_interest ?? 0;
+            $planDays = $investmentPlan->day ?? 7; // fallback to 7 if null
 
-        if ($weeklyPercent > 0 && $investmentAmount > 0) {
-            $weeklyReward = ($weeklyPercent / 100) * $investmentAmount;
-            $dailyReward = round($weeklyReward / 7, 2);
-        } else {
-            Log::warning("ShareAdReward: Invalid investment plan for user {$user->id}. Falling back to default $0.00.");
+            if ($weeklyPercent > 0 && $planDays > 0) {
+                $weeklyReward = ($weeklyPercent / 100) * $investmentAmount;
+                $dailyReward = round($weeklyReward / $planDays, 2); // dynamic days
+            } else {
+                Log::warning("ShareAdReward: Invalid plan config for user {$user->id}.");
+            }
         }
     } else {
-        Log::info("ShareAdReward: No approved investment for user {$user->id}. Using default $0.00.");
+        Log::info("ShareAdReward: No active investment for user {$user->id}.");
     }
 
-    // Credit reward to user's profit balance
+    // Update profit balance
     $user->increment('profit_balance', $dailyReward);
 
-    // Log share to prevent multiple earnings per day
-    AdShare::create(attributes: [
+    // Log share
+    AdShare::create([
         'user_id' => $user->id,
-        'blog_id' => null, // not tracking which ad was shared
+        'blog_id' => null,
         'shared_on' => $today,
     ]);
 
-    // Optionally, also log it in transaction table
+    // Log transaction
     Transaction::create([
         'user_id' => $user->id,
         'type' => 'profit',
@@ -211,7 +214,7 @@ public function shareAdReward(Request $request)
 }
 
 
-
+ 
 
 
 

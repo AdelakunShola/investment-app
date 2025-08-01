@@ -40,6 +40,7 @@ class PlanController extends Controller
         'badge' => $request->badge,
         'min_amount' => $request->min_amount,
         'max_amount' => $request->max_amount,
+        'day' => $request->day,
         'weekly_interest' => $request->weekly_interest,
     ]);
 
@@ -74,6 +75,7 @@ public function updatePlan(Request $request, $id)
     $plan->duration = $request->duration;
     $plan->min_amount = $request->min_amount;
     $plan->max_amount = $request->max_amount;
+    $plan->day = $request->day;
     $plan->weekly_interest = $request->weekly_interest;
     $plan->save();
 

@@ -101,6 +101,18 @@
         </div>
     </div>
 
+    <div class="col-xl-6">
+        <div class="site-input-groups row">
+            <div class="col-xl-12 schema-fixed-amount">
+                <label class="box-input-label">Interest Duration Days:</label>
+                <div class="input-group joint-input">
+                    <input type="text" name="day" class="form-control" value="{{ $plan->day }}">
+                    <span class="input-group-text">Day(s)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-xl-12">
         <button type="submit" class="site-btn-sm primary-btn w-100">Update Schema</button>
     </div>
