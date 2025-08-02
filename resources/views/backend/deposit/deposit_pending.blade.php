@@ -131,6 +131,8 @@
             <li class="list-group-item">Conversion amount: <strong id="modalConversion">--</strong></li>
           </ul>
 
+          <img class="avatar" src="{{ asset('storage/' . $deposit->screenshot) }}" alt="" width="250">
+
           <form id="depositActionForm" method="POST" action="{{ route('admin.deposit.action') }}">
             @csrf
             <input type="hidden" name="id" id="modalDepositId">
