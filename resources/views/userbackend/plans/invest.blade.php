@@ -125,10 +125,11 @@
                            </div>
                            <div class="button mt-3">
                            <button type="submit" class="site-btn primary-btn me-3">
-                              <i class="anticon anticon-check"></i> Invest Now
+                             <i class="fas fa-check"></i> Invest Now
                            </button>
                            <a href="{{ route('user.plans') }}" class="site-btn black-btn">
-                              <i class="anticon anticon-stop"></i> Cancel
+                              <i class="fas fa-times"></i>
+ Cancel
                            </a>
                         </div>
                         </div>

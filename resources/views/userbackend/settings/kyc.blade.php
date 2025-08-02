@@ -14,7 +14,8 @@
                <div class="col">
                   <div class="alert site-alert alert-success alert-dismissible fade show" role="alert">
                      <div class="content">
-                        <div class="icon"><i class="anticon anticon-check-circle"></i></div>
+                        <div class="icon"><i class="fas fa-check-circle"></i>
+</div>
                         <strong>Your KYC is Verified</strong>
                      </div>
                   </div>
@@ -27,7 +28,8 @@
                <div class="col">
                   <div class="alert site-alert alert-warning alert-dismissible fade show" role="alert">
                      <div class="content">
-                        <div class="icon"><i class="anticon anticon-warning"></i></div>
+                        <div class="icon"><i class="fas fa-exclamation-triangle"></i>
+</div>
                         <strong>KYC Pending</strong>
                      </div>
                   </div>
@@ -52,13 +54,14 @@
                <div class="col">
                   <div class="alert site-alert alert-dismissible fade show" role="alert">
                      <div class="content">
-                        <div class="icon"><i class="anticon anticon-warning"></i></div>
+                        <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
                         You need to submit your
                         <strong>KYC and Other Documents</strong> before proceeding to the system.
                      </div>
                      <div class="action">
-                        <a href="{{ route('user.kyc') }}" class="site-btn-sm grad-btn"><i class="anticon anticon-info-circle"></i>Submit Now</a>
-                        <a href="#" class="site-btn-sm red-btn ms-2" type="button" data-bs-dismiss="alert" aria-label="Close"><i class="anticon anticon-close"></i>Later</a>
+                        <a href="{{ route('user.kyc') }}" class="site-btn-sm grad-btn"><i class="fas fa-info-circle"></i>Submit Now</a>
+                        <a href="#" class="site-btn-sm red-btn ms-2" type="button" data-bs-dismiss="alert" aria-label="Close"><i class="fas fa-times"></i>
+Later</a>
                      </div>
                   </div>
                </div>

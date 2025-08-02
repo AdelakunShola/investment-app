@@ -50,7 +50,8 @@
                 <a href="{{ route('user.kyc') }}" class="site-btn-sm grad-btn"><i class="fas fa-info-circle"></i>
 </i>Submit Now</a>
                 <a href="#" class="site-btn-sm red-btn ms-2" type="button" data-bs-dismiss="alert" aria-label="Close">
-                    <i class="anticon anticon-close"></i>Later
+                    <i class="fas fa-times"></i>
+Later
                 </a>
             </div>
         </div>

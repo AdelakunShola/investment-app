@@ -126,7 +126,8 @@ $weeklyProfit = Transaction::where('user_id', $user->id)
                         <div class="referral-link-form">
                             <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLink">
                             <button type="submit" onclick="copyRef()">
-                                <i class="anticon anticon-copy"></i>
+                               <i class="fas fa-copy"></i>
+
                                 <span id="copy">Copy</span>
                             </button>
                         </div>

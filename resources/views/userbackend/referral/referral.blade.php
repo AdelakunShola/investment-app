@@ -27,7 +27,8 @@
                         <div class="referral-link-form">
                            <input type="text" value="{{ url('/user/register?ref=' . Auth::user()->referral_code) }}" id="refLink">
                            <button type="submit" onclick="copyRef()">
-                           <i class="anticon anticon-copy"></i>
+                          <i class="fas fa-copy"></i>
+
                            <span id="copy">Copy Url</span>
                            <input id="copied" hidden="" value="Copied">
                            </button>
