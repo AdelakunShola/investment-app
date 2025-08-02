@@ -7,7 +7,9 @@
    <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
          <h3 class="title">Explore Daily Task</h3>
-         <a href="{{ route('user.dashboard') }}" class="btn btn-sm btn-secondary">← Back to Dashboard</a>
+           <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
       </div>
 
       <div class="row">

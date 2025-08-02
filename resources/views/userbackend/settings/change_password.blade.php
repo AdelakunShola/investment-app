@@ -17,6 +17,9 @@
                <div class="site-card">
                   <div class="site-card-header">
                      <h3 class="title">Change Password</h3>
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
                   </div>
                   <div class="site-card-body">
                      <div class="progress-steps-form">

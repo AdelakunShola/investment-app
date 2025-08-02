@@ -46,6 +46,9 @@
                     <div class="site-card">
                         <div class="site-card-header">
                             <h3 class="title">All The Badges</h3>
+                               <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
                         </div>
                         <div class="site-card-body">
                             <div class="row justify-content-center">

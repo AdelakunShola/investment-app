@@ -18,6 +18,9 @@
                <div class="site-card">
                   <div class="site-card-header">
                      <h3 class="title">All The Plans</h3>
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
                   </div>
                   <div class="site-card-body">
                      <div class="row">
@@ -59,7 +62,8 @@
                                     </a>
                                  @else
                                     <a href="{{ route('user.plan.invest', ['id' => $plan->id]) }}" class="site-btn grad-btn w-100 centered">
-                                       <i class="anticon anticon-check"></i> Invest Now
+                                       <i class="fas fa-check"></i>
+ Invest Now
                                     </a>
                                  @endif
 

@@ -16,7 +16,10 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                <div class="site-card">
                   <div class="site-card-header">
-                     <h3 class="title">Profile Settings</h3>
+                     <h3 class="title">Deposit Funds</h3>
+                       <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
                   </div>
                   <div class="site-card-body">
                       @if(session('success'))

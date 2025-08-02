@@ -18,6 +18,9 @@
                   <div class="site-card-header">
                      <h3 class="title">Referral URL                             and Tree
                      </h3>
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
                   </div>
                   <div class="site-card-body">
                      <div class="referral-link">

@@ -4,6 +4,9 @@
 <div class="main-content">
    <div class="section-gap">
       <div class="container-fluid">
+        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary me-2">
+   ← Back
+</a>
 
          @if($user->kyc_verified)
             {{-- ✅ KYC Verified --}}
