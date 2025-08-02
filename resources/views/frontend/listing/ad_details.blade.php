@@ -64,7 +64,7 @@
                         <div class="tp-list-details-top-right d-flex align-items-center justify-content-between">
                            
 
-                            <div class="tp-list-details-top-social d-block">
+                            <div class="tp-list-details-top-social d-block d-none">
 
                                 <span>Share</span>
                                    <a href="#"
@@ -77,6 +77,16 @@
                               
                              
                             </div>
+                          <div class="tp-list-details-top-social d-block ">
+
+                                <span>Share</span>   
+                            <a href="#"
+   onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareOnWhatsApp('{{ route('ad.details', $ad->id) }}'); @endif return false;"
+   title="Share on WhatsApp">
+   <i class="fas fa-share-alt"></i> <i class="fab fa-whatsapp"></i>
+   <span class="favourite-label">WhatsApp</span>
+</a>
+  </div>
                         </div>
 
                         <!-- Image -->
@@ -193,4 +203,36 @@
 }
 
 </script>
+
+<script>
+
+function shareOnWhatsApp(adUrl) {
+    const message = `Check out this ad on {{ config('app.name') }}: ${adUrl}`;
+    const waShareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(waShareUrl, '_blank');
+
+    // Trigger reward API
+    fetch("{{ route('user.share.ad') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            alert(`✅ ${data.message} $${data.amount} added to your profit.`);
+        } else {
+            alert(`⚠️ ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error("WhatsApp share error:", error);
+        alert("⚠️ Something went wrong. Please try again.");
+    });
+}
+</script>
+
 @endsection

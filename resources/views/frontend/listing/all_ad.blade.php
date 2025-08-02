@@ -75,7 +75,7 @@
                      </div>
                   </div>
                </div>
-               <div class="tp-fea-ads-2-price-icon">
+               <div class="tp-fea-ads-2-price-icon d-none">
                     <a href="#"
    onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareAdWithReward('{{ route('ad.details', $ad->id) }}'); @endif return false;"
    title="Share on Facebook">
@@ -84,6 +84,17 @@
 </a>
 
                </div>
+
+                <div class="tp-list-details-top-social d-block ">
+
+                                <span>Share</span>   
+                            <a href="#"
+   onclick="@if(!auth()->check()) window.location.href='{{ route('user.register') }}'; @else shareOnWhatsApp('{{ route('ad.details', $ad->id) }}'); @endif return false;"
+   title="Share on WhatsApp">
+   <i class="fas fa-share-alt"></i> 
+   <span class="favourite-label">Share</span>
+</a>
+  </div>
             </div>
          </div>
       </div>
@@ -141,4 +152,37 @@
 }
 
 </script>
+
+
+<script>
+
+function shareOnWhatsApp(adUrl) {
+    const message = `Check out this ad on {{ config('app.name') }}: ${adUrl}`;
+    const waShareUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(waShareUrl, '_blank');
+
+    // Trigger reward API
+    fetch("{{ route('user.share.ad') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status) {
+            alert(`✅ ${data.message} $${data.amount} added to your profit.`);
+        } else {
+            alert(`⚠️ ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error("WhatsApp share error:", error);
+        alert("⚠️ Something went wrong. Please try again.");
+    });
+}
+</script>
+
 @endsection
