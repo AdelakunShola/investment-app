@@ -44,6 +44,7 @@
             <th>Amount</th>
             <th>Charge</th>
             <th>Wallet</th>
+            <th>Network</th>
             <th>Gateway</th>
             <th>Status</th>
             <th>Action</th>
@@ -69,6 +70,7 @@
         <button type="submit" class="btn btn-sm btn-primary ms-1">Save</button>
     </form>
 </td>
+<td> {{ $withdraws->network ?? 'N/A' }} </td>
 
             <td>{{ ucfirst($withdraws->method ?? 'N/A') }}</td>
             <td>

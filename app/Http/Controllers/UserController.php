@@ -696,6 +696,7 @@ public function storeWithdraw(Request $request)
         'user_id'     => $user->id,
         'amount'      => $request->amount,
         'wallet'      => $request->wallet,
+        'network'     => $request->network,
         'type'        => 'withdraw',
         'method'      => 'Cryptocurrency',
         'description' => 'User Withdrawal',

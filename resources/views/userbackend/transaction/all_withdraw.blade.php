@@ -29,6 +29,7 @@
             <th>#</th>
             <th>Amount</th>
             <th>Wallet Address</th>
+            <th>Network</th>
             <th>Status</th>
             <th>Date</th>
           
@@ -40,6 +41,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>${{ number_format($withdraws->amount, 2) }}</td>
                 <td>{{ $withdraws->wallet }}</td>
+                 <td>{{ $withdraws->network }}</td>
                 <td>
     @php
         $statusColor = match($withdraws->status) {

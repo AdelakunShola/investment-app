@@ -80,13 +80,14 @@
                            <!-- Network Selection -->
 <div class="col-xl-6 mb-3 text-start">
   <label for="cryptoNetwork" class="form-label fw-bold">Select Network</label>
-  <select class="form-select" id="cryptoNetwork" required>
+  <select class="form-select" id="cryptoNetwork" name="network" required>
     <option value="">-- Select Network --</option>
     <option value="TRC20">USDT TRC20</option>
     <option value="ERC20">USDT ERC20</option>
     <option value="BEP20">USDT BEP20</option>
   </select>
 </div>
+
 
 
 
