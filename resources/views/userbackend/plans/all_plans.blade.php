@@ -24,8 +24,9 @@
                         <div class="row">
                            @foreach($plans as $plan)
                            @php
-                              $isLocked = isset($highestPlanId) && $plan->id < $highestPlanId;
-                           @endphp
+    $isLocked = $plan->id === $plans->first()->id && isset($userHasInvested) && $userHasInvested;
+@endphp
+
                            <div class="col-xxl-3 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="single-investment-plan {{ $isLocked ? 'locked-plan' : '' }}">
                                  <img class="investment-plan-icon" src="{{ asset('storage/' . $plan->icon) }}" alt="">
@@ -75,6 +76,47 @@
       </div>
    </div>
 </div>
+
+
+
+
+
+@if($userInvestments->count())
+    <div class="row mt-5">
+        <div class="col-xl-12">
+            <div class="site-card">
+                <div class="site-card-header">
+                    <h3 class="title">Your Investments</h3>
+                </div>
+                <div class="site-card-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr style="color: white">
+                                <th >#</th>
+                                <th>Plan Name</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userInvestments as $index => $inv)
+                                <tr>
+                                    <td style="color: white">{{ $index + 1 }}</td>
+                                    <td style="color: white">{{ $inv->description }}</td>
+                                    <td style="color: white">${{ number_format($inv->amount, 2) }}</td>
+                                    <td style="color: white"><span class="badge bg-{{ $inv->status == 'approved' ? 'success' : ($inv->status == 'pending' ? 'warning' : 'danger') }}">{{ ucfirst($inv->status) }}</span></td>
+                                    <td style="color: white">{{ \Carbon\Carbon::parse($inv->created_at)->format('M d, Y') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 
 <style>
 .locked-plan {

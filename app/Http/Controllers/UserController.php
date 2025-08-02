@@ -314,19 +314,31 @@ public function storeUser(Request $request)
 
 
 
- public function UserPlans()
+public function UserPlans()
 {
     $plans = investment_plan::all();
-
     $user = Auth::user();
 
-    $highestPlanId = Transaction::where('user_id', $user->id)
+    // Check if the user has made any investment via the transactions table
+    $userHasInvested = \App\Models\Transaction::where('user_id', $user->id)
+        ->where('type', 'investment')
+        ->exists();
+
+        $userInvestments = \App\Models\Transaction::where('user_id', $user->id)
+    ->where('type', 'investment')
+    ->latest()
+    ->get();
+
+
+    // Get the highest investment plan ID from transactions joined with investment_plans
+    $highestPlanId = \App\Models\Transaction::where('user_id', $user->id)
         ->where('type', 'investment')
         ->join('investment_plans', 'transactions.description', '=', 'investment_plans.name')
         ->max('investment_plans.id');
 
-    return view('userbackend.plans.all_plans', compact('plans', 'highestPlanId'));
+    return view('userbackend.plans.all_plans', compact('plans', 'highestPlanId', 'userHasInvested','userInvestments'));
 }
+
 
     public function invest($id)
 {
