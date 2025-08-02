@@ -39,6 +39,7 @@
     <thead>
         <tr>
             <th>Date</th>
+            <th>Screenshot</th>
             <th>User</th>
             <th>Transaction ID</th>
             <th>Amount</th>
@@ -52,6 +53,10 @@
         @forelse($deposits as $deposit)
         <tr>
             <td>{{ \Carbon\Carbon::parse($deposit->created_at)->format('M d Y H:i') }}</td>
+             <td>
+                   
+                    <img class="avatar" src="{{ asset('storage/' . $deposit->screenshot) }}" alt="" width="40">
+                </td>
             <td>
                 <a class="link" href="{{ route('admin.user.edit', $deposit->user->id) }}">
                     {{ $deposit->user->username ?? 'N/A' }}
