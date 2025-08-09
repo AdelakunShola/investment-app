@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeMail;
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -89,7 +90,7 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/user/login');
+        return redirect('/');
     }//end method
 
 
@@ -838,7 +839,24 @@ public function updateAbout(Request $request) {
 public function postsByCategory($id)
 {
     $category = BlogCategory::with('blogs')->findOrFail($id);
-    return view('frontend.blog.category_posts', compact('category'));
+    return view('frontend.listing.category_posts', compact('category'));
+}
+
+
+
+
+
+
+
+
+
+public function markAsRead($id)
+{
+    $notification = Notification::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+    $notification->is_read = true;
+    $notification->save();
+
+    return back();
 }
 
 }

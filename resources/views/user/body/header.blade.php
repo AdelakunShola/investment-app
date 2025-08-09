@@ -66,7 +66,7 @@
                 </div>
 
                 
-                                                     <div class="single-nav-right user-notifications11867 d-flex align-items-center">
+    <div class="single-nav-right user-notifications11867 d-flex align-items-center">
 
     {{-- Notification Button --}}
     <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">

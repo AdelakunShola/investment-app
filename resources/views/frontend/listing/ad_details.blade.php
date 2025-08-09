@@ -92,18 +92,16 @@
                         <!-- Image -->
                         <div class="tp-list-details-slider-wrap mt-30">
                             <div class="tp-list-details-slider-active">
-                                <div class="slick-track" style="opacity: 1; width: 942px;">
-                                   <div class="it-tp-list-details-slider-item slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 314px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0">
-   <img src="{{ asset($ad->image) }}" data-src="{{ asset($ad->image) }}" data-large_image="{{ asset($ad->image) }}" data-large_image_width="900" data-large_image_height="600" alt="{{ $ad->title }}" data-caption="" class="rtcl-responsive-img">
+                                <div class="slick-track" style="opacity: 1; ">
+                                  <div class="mx-auto" style="max-width: 400px;">
+    <img 
+        src="{{ asset($ad->image) }}" 
+        alt="{{ $ad->title }}" 
+        width="400" height="300"
+        class="img-fluid rounded border shadow-sm"
+        style="display: block; object-fit: cover;">
 </div>
 
-<div class="it-tp-list-details-slider-item slick-slide" data-slick-index="1" aria-hidden="true" style="width: 314px; position: relative; left: -314px; top: 0px; z-index: 998; opacity: 0;" tabindex="-1">
-   <img src="{{ asset($ad->image) }}" data-src="{{ asset($ad->image) }}" data-large_image="{{ asset($ad->image) }}" data-large_image_width="900" data-large_image_height="600" alt="{{ $ad->title }}" data-caption="" class="rtcl-responsive-img">
-</div>
-
-<div class="it-tp-list-details-slider-item slick-slide" data-slick-index="2" aria-hidden="true" style="width: 314px; position: relative; left: -628px; top: 0px; z-index: 998; opacity: 0;" tabindex="-1">
-   <img src="{{ asset($ad->image) }}" data-src="{{ asset($ad->image) }}" data-large_image="{{ asset($ad->image) }}" data-large_image_width="900" data-large_image_height="600" alt="{{ $ad->title }}" data-caption="" class="rtcl-responsive-img">
-</div>
 
                                  </div>
                             </div>

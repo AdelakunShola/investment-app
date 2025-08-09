@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Console\Commands\SendInvestmentNotifications;
+use Illuminate\Console\Scheduling\Schedule;
 
 class Kernel extends HttpKernel
 {
@@ -44,6 +46,21 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+
+
+
+    protected $commands = [
+        SendInvestmentNotifications::class,
+        
+    ];
+
+    /**
+     * Define the application's command schedule.
+     */
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('investment:notify')->daily(); // SCHEDULE HERE
+    }
 
     /**
      * The application's middleware aliases.

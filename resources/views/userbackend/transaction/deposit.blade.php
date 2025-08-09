@@ -131,7 +131,7 @@
         <!-- Countdown Timer -->
 <div class="mb-3">
   <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
-  <h4 style="color: black;" id="countdownTimer">30:00</h4>
+  <h4 style="color: black;" id="countdownTimer1">30:00</h4>
 </div>
 
 <!-- Payment Confirmation Button -->
@@ -173,7 +173,7 @@
         <!-- Countdown Timer -->
 <div class="mb-3">
   <p class="fw-bold mb-1 text-danger">Time left to complete payment:</p>
-  <h4 style="color: black;" id="countdownTimer">30:00</h4>
+  <h4 style="color: black;" id="countdownTimer2">30:00</h4>
 </div>
 
 <!-- Payment Confirmation Button -->
@@ -294,42 +294,55 @@
     }, 3000);
   }
 
-  // Countdown Timer
-  let countdown;
-  function startCountdown(durationMinutes = 30) {
-    clearInterval(countdown); // Prevent duplicate timers
-
-    const display = document.getElementById("countdownTimer");
+ // Start countdown with reset each time modal is shown
+  function startCountdown(timerElementId, durationMinutes = 30) {
     let time = durationMinutes * 60;
+    const display = document.getElementById(timerElementId);
 
-    countdown = setInterval(() => {
+    // Clear previous interval if any
+    if (display.dataset.timerId) {
+      clearInterval(display.dataset.timerId);
+    }
+
+    const countdown = setInterval(() => {
       const minutes = Math.floor(time / 60);
       const seconds = time % 60;
 
-      display.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      if (display) {
+        display.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }
 
       if (time <= 0) {
         clearInterval(countdown);
-        display.textContent = "Expired";
+        if (display) display.textContent = "Expired";
       }
 
       time--;
     }, 1000);
+
+    // Store interval ID in DOM element's dataset so we can clear it later
+    display.dataset.timerId = countdown;
   }
 
-  // On Crypto Modal Show → Start Countdown
-  const cryptoModalEl = document.getElementById('cryptoModal');
-  cryptoModalEl.addEventListener('show.bs.modal', function () {
-    startCountdown(30); // Start 30-minute timer
+  // Trigger timer on modal open
+  document.getElementById('cryptoModal').addEventListener('show.bs.modal', function () {
+    startCountdown('countdownTimer1', 30); // Restart for cryptoModal
   });
 
-
-   // On Crypto1 Modal Show → Start Countdown
-  const cryptoModalEl = document.getElementById('cryptoModal1');
-  cryptoModalEl.addEventListener('show.bs.modal1', function () {
-    startCountdown(30); // Start 30-minute timer
+  document.getElementById('cryptoModal1').addEventListener('show.bs.modal', function () {
+    startCountdown('countdownTimer2', 30); // Restart for cryptoModal1
   });
 
+  // Attach show event listeners
+  const cryptoModal = document.getElementById('cryptoModal');
+  cryptoModal.addEventListener('show.bs.modal', function () {
+    startCountdown('countdownTimer1', 30); // For TRC20
+  });
+
+  const cryptoModal1 = document.getElementById('cryptoModal1');
+  cryptoModal1.addEventListener('show.bs.modal', function () {
+    startCountdown('countdownTimer2', 30); // For ERC20
+  });
  
 </script>
 <script>

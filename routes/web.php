@@ -225,6 +225,9 @@ Route::post('/store/user/withdraw', [UserController::class, 'storeWithdraw'])->n
 
 
 
+Route::post('/notifications/read/{id}', [UserController::class, 'markAsRead'])->name('notifications.markAsRead');
+
+
 
 Route::prefix('user')->middleware(['auth'])->group(function () {
 Route::get('/luxury-ads/create', [BlogController::class, 'UserBlogcreate'])->name('user.create.ads');
@@ -237,6 +240,9 @@ Route::delete('/luxury_ads/{id}', [BlogController::class, 'UserBlogdestroy'])->n
 
 
 Route::get('/random-posts', [BlogController::class, 'randomPosts'])->name('user.random.posts');
+
+
+
 
 });
 
